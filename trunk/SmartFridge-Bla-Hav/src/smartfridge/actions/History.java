@@ -4,6 +4,6 @@ public class History {
 
 	private void main() {
 		// TODO Auto-generated method stub
-		System.out.println("coucuo");
+		System.out.println("coucou");
 	}
 }
