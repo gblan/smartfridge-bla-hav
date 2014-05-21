@@ -1,13 +1,12 @@
 package smartfridge.product;
 
-public class ProductPerishable {
+import java.util.Date;
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+public class ProductPerishable extends ProductBean {
 
+	Date datePerishment;
+
+	public Date getDatePerishment() {
+		return datePerishment;
 	}
-
 }

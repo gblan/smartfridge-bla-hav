@@ -1,6 +1,6 @@
 package smartfridge.enu;
 
-public enum TypeQuantity {
+public enum TypeQuantityEnum {
 
 
 
