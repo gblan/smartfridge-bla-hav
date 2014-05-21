@@ -1,13 +1,7 @@
 package smartfridge.product;
 
-public class ProductUnPerishable {
+public class ProductUnPerishable extends ProductBean{
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-	}
 
 }

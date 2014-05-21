@@ -2,12 +2,13 @@ package smartfridge.product;
 
 public class ProductManager {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
+	public void increaseQuantity(ProductBean p){
+		
+	}
+	
+	public void decreaseQuantity(ProductBean p){
+		
 	}
 
 }
