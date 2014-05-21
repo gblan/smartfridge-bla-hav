@@ -7,12 +7,17 @@ import smartfridge.enu.TypeQuantityEnum;
 
 public abstract class ProductBean {
 
-	TypeProductEnum typeProduct;
-	String productName;
-	TypeQuantityEnum typeQuantity;
-	int quantity;
-	Date dateAjout;
+	private int productId;
+	private TypeProductEnum typeProduct;
+	private String productName;
+	private TypeQuantityEnum typeQuantity;
+	private int quantity;
+	private Date dateAjout;
 
+	public int getProductId() {
+		return productId;
+	}
+	
 	public TypeProductEnum getTypeProduct() {
 		return typeProduct;
 	}
@@ -36,5 +41,6 @@ public abstract class ProductBean {
 	public Date getDateAjout() {
 		return dateAjout;
 	}
+
 
 }
