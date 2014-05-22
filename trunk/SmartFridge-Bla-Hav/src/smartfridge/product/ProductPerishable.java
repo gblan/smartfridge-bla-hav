@@ -2,11 +2,34 @@ package smartfridge.product;
 
 import java.util.Date;
 
-public class ProductPerishable extends ProductBean {
+import smartfridge.enu.TypeProductEnum;
+import smartfridge.enu.TypeQuantityEnum;
 
-	Date datePerishment;
+public class ProductPerishable extends ProductAbstract {
+
+	private Date datePerishment;
+
+	public ProductPerishable(TypeProductEnum typeProduct, String productName,
+			TypeQuantityEnum typeQuantity, int quantity, Date datePerishment) {
+		super(typeProduct, productName, typeQuantity, quantity);
+		this.datePerishment = datePerishment;
+	}
 
 	public Date getDatePerishment() {
 		return datePerishment;
+	}
+
+	@Override
+	public String toString() {
+		String tmp = super.toString();
+		tmp += " --- " + this.datePerishment.toString();
+
+		return tmp;
+	}
+
+	@Override
+	public int compareTo(ProductAbstract o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

@@ -1,16 +1,16 @@
 package smartfridge.fridge;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import smartfridge.actions.Actions;
 import smartfridge.actions.CurrentDate;
-import smartfridge.actions.Date;
-import smartfridge.product.ProductBean;
+import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
 
 public class Fridge {
 
-	private ArrayList<ProductBean> fridgeContent;
+	private ArrayList<ProductAbstract> fridgeContent;
 	private ArrayList<Actions> unDo;
 	private ArrayList<Actions> reDo;
 
@@ -19,16 +19,16 @@ public class Fridge {
 	 * 
 	 * @param fridgeContent
 	 */
-	public Fridge(ArrayList<ProductBean> fridgeContent) {
+	public Fridge(ArrayList<ProductAbstract> fridgeContent) {
 		super();
 		this.fridgeContent = fridgeContent;
 	}
 
-	public void addProduct(ProductBean p) {
+	public void addProduct(ProductAbstract p) {
 		this.fridgeContent.add(p);
 	}
 
-	public boolean deleteProduct(ProductBean p) {
+	public boolean deleteProduct(ProductAbstract p) {
 		if (this.fridgeContent.remove(p)) {
 			return true;
 		} else {
@@ -37,7 +37,7 @@ public class Fridge {
 	}
 
 	public void deletePerishedProduct() {
-		for (ProductBean p : this.fridgeContent) {
+		for (ProductAbstract p : this.fridgeContent) {
 			if (p instanceof ProductPerishable) {
 				if (((ProductPerishable) p).getDatePerishment().compareTo(
 						CurrentDate.getCurrentDate()) == -1) {
@@ -51,8 +51,8 @@ public class Fridge {
 		
 	}
 
-	public void sortProductByDate() {
-		
+	public void sortProductByAddingDate() {
+		Collections.sort(this.fridgeContent);
 	}
 
 	public void sortProductByPerishmentDate() {
