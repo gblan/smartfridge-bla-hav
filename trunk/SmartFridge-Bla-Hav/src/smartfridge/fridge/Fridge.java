@@ -3,6 +3,7 @@ package smartfridge.fridge;
 import java.util.ArrayList;
 
 import smartfridge.actions.Actions;
+import smartfridge.actions.CurrentDate;
 import smartfridge.actions.Date;
 import smartfridge.product.ProductBean;
 import smartfridge.product.ProductPerishable;
@@ -36,33 +37,34 @@ public class Fridge {
 	}
 
 	public void deletePerishedProduct() {
-		for(ProductBean p : this.fridgeContent){
-			if(p instanceof ProductPerishable){
-				if (((ProductPerishable) p).getDatePerishment() < Date.date()){
-					
+		for (ProductBean p : this.fridgeContent) {
+			if (p instanceof ProductPerishable) {
+				if (((ProductPerishable) p).getDatePerishment().compareTo(
+						CurrentDate.getCurrentDate()) == -1) {
+					this.fridgeContent.remove(p);
 				}
 			}
 		}
 	}
 
 	public void showListPerishedProductIn(int n) {
-
+		
 	}
 
 	public void sortProductByDate() {
-
+		
 	}
 
 	public void sortProductByPerishmentDate() {
-
+		
 	}
 
 	public void sortProductByType() {
-
+		
 	}
 
 	public void sortProductByQuantity(boolean increase) {
-
+		
 	}
 
 }
