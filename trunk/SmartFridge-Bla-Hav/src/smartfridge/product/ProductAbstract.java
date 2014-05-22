@@ -15,10 +15,15 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 	private int quantity;
 	private Date dateAjout;
 
+
 	public int getProductId() {
 		return productId;
 	}
 
+	public void setProductId(int productId) {
+		this.productId = productId;
+	}
+	
 	public TypeProductEnum getTypeProduct() {
 		return typeProduct;
 	}
@@ -56,11 +61,12 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 	public String toString() {
 		String res = "";
 
-		res += "#" + this.productId + " : " + this.quantity + " "
+		res += "#" + this.getProductId() + " : " + this.quantity + " "
 				+ this.typeQuantity.toString() + " - "
 				+ this.typeProduct.toString() + " : " + this.productName;
 
 		return res;
 	}
+
 	
 }

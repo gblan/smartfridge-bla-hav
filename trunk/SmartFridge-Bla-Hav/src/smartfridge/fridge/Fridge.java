@@ -2,6 +2,7 @@ package smartfridge.fridge;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import smartfridge.actions.Actions;
 import smartfridge.actions.CurrentDate;
@@ -10,7 +11,7 @@ import smartfridge.product.ProductPerishable;
 
 public class Fridge {
 
-	private ArrayList<ProductAbstract> fridgeContent;
+	private List<ProductAbstract> fridgeContent = new ArrayList<ProductAbstract>();
 	private ArrayList<Actions> unDo;
 	private ArrayList<Actions> reDo;
 
@@ -24,7 +25,13 @@ public class Fridge {
 		this.fridgeContent = fridgeContent;
 	}
 
+	public Fridge() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void addProduct(ProductAbstract p) {
+		int idProd = this.fridgeContent.size();
+		p.setProductId(idProd+1);
 		this.fridgeContent.add(p);
 	}
 
@@ -65,6 +72,17 @@ public class Fridge {
 
 	public void sortProductByQuantity(boolean increase) {
 		
+	}
+	
+	@Override
+	public String toString() {
+		String res = "";
+		
+		for(ProductAbstract p : this.fridgeContent){
+			res += p.toString()+"\n";
+		}
+		
+		return res;
 	}
 
 }
