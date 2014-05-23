@@ -1,5 +1,6 @@
 package smartfridge.product;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -7,8 +8,9 @@ import smartfridge.actions.CurrentDate;
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.enu.TypeQuantityEnum;
 
-public abstract class ProductAbstract implements Comparable<ProductAbstract>{
+public abstract class ProductAbstract implements Comparable<ProductAbstract>, Serializable{
 
+	private static final long serialVersionUID = -2036680820842552707L;
 	private TypeProductEnum typeProduct;
 	private String productName;
 	private TypeQuantityEnum typeQuantity;
