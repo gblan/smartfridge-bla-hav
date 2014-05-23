@@ -17,37 +17,6 @@ public class Fridge {
 	private ArrayList<Actions> unDo;
 	private ArrayList<Actions> reDo;
 
-	Comparator<ProductAbstract> comparatorAddingDate = new Comparator<ProductAbstract>() {
-		@Override
-		public int compare(ProductAbstract p1, ProductAbstract p2) {
-			return p1.getDateAjout().compareTo(p2.getDateAjout());
-		}
-	};
-
-	Comparator<ProductAbstract> comparatorPerishmentDate = new Comparator<ProductAbstract>() {
-		@Override
-		public int compare(ProductAbstract p1, ProductAbstract p2) {
-			/* NE PAS prendre en compte les produits non périssables */
-			if (p1 instanceof ProductPerishable
-					&& p2 instanceof ProductPerishable) {
-
-				return ((ProductPerishable) p1).getDatePerishment().compareTo(
-						((ProductPerishable) p2).getDatePerishment());
-
-			} else if (p1 instanceof ProductUnPerishable
-					&& p2 instanceof ProductPerishable) {
-				return 1;
-
-			} else if (p1 instanceof ProductPerishable
-					&& p2 instanceof ProductUnPerishable) {
-				return -1;
-			} else {
-				return 0;
-			}
-
-		}
-	};
-
 	public List<ProductAbstract> getFridgeContent() {
 		return fridgeContent;
 	}
@@ -92,20 +61,70 @@ public class Fridge {
 	}
 
 	public void sortProductByAddingDate() {
+		Comparator<ProductAbstract> comparatorAddingDate = new Comparator<ProductAbstract>() {
+			@Override
+			public int compare(ProductAbstract p1, ProductAbstract p2) {
+				return p1.getDateAjout().compareTo(p2.getDateAjout());
+			}
+		};
 		Collections.sort(this.fridgeContent, comparatorAddingDate);
+
 	}
 
 	public void sortProductByPerishmentDate() {
-		Collections.sort(this.fridgeContent, comparatorPerishmentDate);
+		Comparator<ProductAbstract> comparatorPerishmentDate = new Comparator<ProductAbstract>() {
+			@Override
+			public int compare(ProductAbstract p1, ProductAbstract p2) {
+				if (p1 instanceof ProductPerishable
+						&& p2 instanceof ProductPerishable) {
 
+					return ((ProductPerishable) p1).getDatePerishment()
+							.compareTo(
+									((ProductPerishable) p2)
+											.getDatePerishment());
+
+				} else if (p1 instanceof ProductUnPerishable
+						&& p2 instanceof ProductPerishable) {
+					return 1;
+
+				} else if (p1 instanceof ProductPerishable
+						&& p2 instanceof ProductUnPerishable) {
+					return -1;
+				} else {
+					return 0;
+				}
+
+			}
+		};
+
+		Collections.sort(this.fridgeContent, comparatorPerishmentDate);
 	}
 
 	public void sortProductByType() {
+		Comparator<ProductAbstract> comparatorType = new Comparator<ProductAbstract>() {
+			@Override
+			public int compare(ProductAbstract p1, ProductAbstract p2) {
+				return p1.getTypeProduct().compareTo(p2.getTypeProduct());
+			}
+		};
 
+		Collections.sort(this.fridgeContent, comparatorType);
 	}
 
-	public void sortProductByQuantity(boolean increase) {
+	public void sortProductByQuantity(final boolean increase) {
+		Comparator<ProductAbstract> comparatorQuantity = new Comparator<ProductAbstract>() {
+			@Override
+			public int compare(ProductAbstract p1, ProductAbstract p2) {
+				if (increase) {
+					return Integer.compare(p1.getQuantity(), p2.getQuantity());
+				} else {
+					return Integer.compare(p2.getQuantity(), p1.getQuantity());
 
+				}
+			}
+		};
+
+		Collections.sort(this.fridgeContent, comparatorQuantity);
 	}
 
 	@Override
