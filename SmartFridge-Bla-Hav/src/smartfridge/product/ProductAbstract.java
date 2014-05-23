@@ -1,6 +1,7 @@
 package smartfridge.product;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import smartfridge.actions.CurrentDate;
 import smartfridge.enu.TypeProductEnum;
@@ -12,7 +13,7 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 	private String productName;
 	private TypeQuantityEnum typeQuantity;
 	private int quantity;
-	private Date dateAjout;
+	private GregorianCalendar dateAjout;
 
 	public TypeProductEnum getTypeProduct() {
 		return typeProduct;
@@ -34,7 +35,7 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 		this.quantity = quantity;
 	}
 
-	public Date getDateAjout() {
+	public GregorianCalendar getDateAjout() {
 		return dateAjout;
 	}
 	
@@ -52,7 +53,7 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 		this.productName = productName;
 		this.typeQuantity = typeQuantity;
 		this.quantity = quantity;
-		this.dateAjout = CurrentDate.getCurrentDate();
+		this.dateAjout = new GregorianCalendar();
 	}
 
 	@Override
