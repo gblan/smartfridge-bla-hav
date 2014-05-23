@@ -56,16 +56,11 @@ public class Fridge {
 
 	public void addProduct(ProductAbstract p) {
 		int idProd = this.fridgeContent.size();
-		p.setProductId(idProd + 1);
 		this.fridgeContent.add(p);
 	}
 
-	public boolean deleteProduct(ProductAbstract p) {
-		if (this.fridgeContent.remove(p)) {
-			return true;
-		} else {
-			return false;
-		}
+	public void deleteProduct(int n) {
+		this.fridgeContent.remove(n);
 	}
 
 	public void deletePerishedProduct() {
@@ -104,9 +99,15 @@ public class Fridge {
 	@Override
 	public String toString() {
 		String res = "";
+		int i=1;
+		res += "#####################\n";
+		res += "The Fridge contents : \n";
+		res += "#####################\n";
 
 		for (ProductAbstract p : this.fridgeContent) {
+			res += "#" + i  ;
 			res += p.toString() + "\n";
+			i++;
 		}
 
 		return res;
