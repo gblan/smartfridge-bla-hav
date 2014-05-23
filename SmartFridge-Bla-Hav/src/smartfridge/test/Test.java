@@ -1,4 +1,4 @@
-package test;
+package smartfridge.test;
 
 import java.util.Date;
 
