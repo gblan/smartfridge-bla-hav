@@ -1,5 +1,6 @@
 package smartfridge.fridge;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -14,8 +15,9 @@ import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
 
-public class Fridge {
+public class Fridge implements Serializable{
 
+	private static final long serialVersionUID = -5601074623725600420L;
 	private List<ProductAbstract> fridgeContent = new ArrayList<ProductAbstract>();
 	private ArrayList<Actions> unDo;
 	private ArrayList<Actions> reDo;
