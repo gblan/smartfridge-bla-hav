@@ -40,12 +40,20 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	private void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
 	public Date getDateAjout() {
 		return dateAjout;
+	}
+	
+	public void increaseQuantity(int quantityToAdd) {
+		this.setQuantity(this.getQuantity()+ quantityToAdd);
+	}
+
+	public void decreaseQuantity(int quantityToDecrease) {
+		this.setQuantity(this.getQuantity()- quantityToDecrease);
 	}
 
 	public ProductAbstract(TypeProductEnum typeProduct, String productName,
