@@ -23,6 +23,12 @@ public class Test {
 		f.addProduct(p2);
 		f.addProduct(p3);
 		System.out.println(f);
+		f.getFridgeContent().get(2).increaseQuantity(2);
+		f.getFridgeContent().get(0).decreaseQuantity(100);
+
+		System.out.println("#######################");
+		System.out.println(f);
+
 	}
 
 }
