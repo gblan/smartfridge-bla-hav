@@ -1,8 +1,11 @@
 package smartfridge.fridge;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import smartfridge.actions.Actions;
@@ -43,7 +46,7 @@ public class Fridge {
 	public void deleteProduct(int n) {
 		this.fridgeContent.remove(n);
 	}
-
+/*
 	public void deletePerishedProduct() {
 		for (ProductAbstract p : this.fridgeContent) {
 			if (p instanceof ProductPerishable) {
@@ -55,8 +58,25 @@ public class Fridge {
 			}
 		}
 	}
-
+*/
 	public void showListPerishedProductIn(int n) {
+		GregorianCalendar calendar = new java.util.GregorianCalendar();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.add(Calendar.DATE, n-1);
+		System.out.println("Liste périmés dans "+ n +" jours : ");
+		for (ProductAbstract p : this.fridgeContent) {
+			if(p instanceof ProductPerishable){
+				if(((ProductPerishable) p).getDatePerishment().getTimeInMillis() < calendar.getTimeInMillis() ){
+					
+					System.out.println(p);
+				}
+			}
+			
+			
+			
+		}
+		
+		
 
 	}
 

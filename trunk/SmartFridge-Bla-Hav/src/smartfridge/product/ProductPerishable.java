@@ -1,28 +1,30 @@
 package smartfridge.product;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.enu.TypeQuantityEnum;
 
 public class ProductPerishable extends ProductAbstract {
 
-	private Date datePerishment;
+	private GregorianCalendar datePerishment;
 
 	public ProductPerishable(TypeProductEnum typeProduct, String productName,
-			TypeQuantityEnum typeQuantity, int quantity, Date datePerishment) {
+			TypeQuantityEnum typeQuantity, int quantity, GregorianCalendar datePerishment) {
 		super(typeProduct, productName, typeQuantity, quantity);
+		datePerishment.add(Calendar.MONTH, -1);
 		this.datePerishment = datePerishment;
 	}
 
-	public Date getDatePerishment() {
+	public GregorianCalendar getDatePerishment() {
 		return datePerishment;
 	}
 
 	@Override
 	public String toString() {
 		String tmp = super.toString(); 
-		tmp += " --- " + this.datePerishment.getDate() + "/" + this.datePerishment.getMonth() + "/"+ this.datePerishment.getYear();
+		tmp += " --- " + this.datePerishment.get(Calendar.DATE) + "/" + (this.datePerishment.get(Calendar.MONTH)+1) + "/"+ this.datePerishment.get(Calendar.YEAR);
 
 		return tmp;
 	}
