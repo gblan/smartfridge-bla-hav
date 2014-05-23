@@ -46,19 +46,37 @@ public class Fridge {
 	public void deleteProduct(int n) {
 		this.fridgeContent.remove(n);
 	}
-/*
-	public void deletePerishedProduct() {
-		for (ProductAbstract p : this.fridgeContent) {
-			if (p instanceof ProductPerishable) {
-				if (((ProductPerishable) p).getDatePerishment().compareTo(
-						CurrentDate.getCurrentDate()) < 0) {
 
-					this.fridgeContent.remove(p);
+	public void deletePerishedProduct() {
+		GregorianCalendar calendar = new java.util.GregorianCalendar();
+		calendar.setTimeInMillis(System.currentTimeMillis());
+		calendar.add(Calendar.DATE, -1);
+		int[] tab = new int[this.fridgeContent.size()];
+		int i = -1;
+		int j = 0;
+		int k = 0;
+		for (ProductAbstract p : this.fridgeContent) {
+			i++;
+			if(p instanceof ProductPerishable){
+				if(((ProductPerishable) p).getDatePerishment().getTimeInMillis() < calendar.getTimeInMillis() ){
+					
+					tab[j]=i;
+					j++;
+
 				}
 			}
 		}
+
+		for(i = 0 ; i<j; i++){
+			System.out.println(tab[i]);
+			this.deleteProduct(tab[i]-k);
+			k++;
+				
+			
+			
+		}
 	}
-*/
+
 	public void showListPerishedProductIn(int n) {
 		GregorianCalendar calendar = new java.util.GregorianCalendar();
 		calendar.setTimeInMillis(System.currentTimeMillis());
