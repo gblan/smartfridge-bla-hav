@@ -22,7 +22,7 @@ public class ProductPerishable extends ProductAbstract {
 	@Override
 	public String toString() {
 		String tmp = super.toString();
-		tmp += " --- " + this.datePerishment.toString();
+		tmp += " --- " + this.datePerishment.getDate() + "/" + this.datePerishment.getMonth() + "/"+ this.datePerishment.getYear();
 
 		return tmp;
 	}
