@@ -26,7 +26,9 @@ public class Test {
 		f.getFridgeContent().get(2).increaseQuantity(2);
 		f.getFridgeContent().get(0).decreaseQuantity(100);
 
-		System.out.println("#######################");
+		System.out.println(f);
+		
+		f.deleteProduct(0);
 		System.out.println(f);
 
 	}

@@ -8,22 +8,12 @@ import smartfridge.enu.TypeQuantityEnum;
 
 public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 
-	private int productId;
 	private TypeProductEnum typeProduct;
 	private String productName;
 	private TypeQuantityEnum typeQuantity;
 	private int quantity;
 	private Date dateAjout;
 
-
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-	
 	public TypeProductEnum getTypeProduct() {
 		return typeProduct;
 	}
@@ -69,7 +59,7 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>{
 	public String toString() {
 		String res = "";
 
-		res += "#" + this.getProductId() + " : " + this.quantity + " "
+		res += " : " + this.quantity + " "
 				+ this.typeQuantity.toString() + " - "
 				+ this.typeProduct.toString() + " : " + this.productName;
 
