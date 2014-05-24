@@ -1,10 +1,8 @@
 package smartfridge.product;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
-import smartfridge.actions.CurrentDate;
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.enu.TypeQuantityEnum;
 
