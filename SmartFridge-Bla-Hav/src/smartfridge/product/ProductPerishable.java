@@ -8,6 +8,7 @@ import smartfridge.enu.TypeQuantityEnum;
 
 public class ProductPerishable extends ProductAbstract {
 
+	private static final long serialVersionUID = 6264276293944938696L;
 	private GregorianCalendar datePerishment;
 
 	public ProductPerishable(TypeProductEnum typeProduct, String productName,

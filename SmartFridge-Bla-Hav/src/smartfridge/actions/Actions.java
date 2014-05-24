@@ -1,8 +1,17 @@
 package smartfridge.actions;
 
 import smartfridge.enu.TypeActionEnum;
+import smartfridge.product.ProductAbstract;
 
 public class Actions {
+
+	private ProductAbstract product;
+	private TypeActionEnum enu;
+		
+	public Actions(ProductAbstract product, TypeActionEnum enu) {
+		this.product = product;
+		this.enu = enu;
+	}
 
 	public static String printListActions() {
 		String res = "";
