@@ -16,8 +16,6 @@ public class Fridge implements Serializable{
 
 	private static final long serialVersionUID = -5601074623725600420L;
 	private List<ProductAbstract> fridgeContent = new ArrayList<ProductAbstract>();
-//	private ArrayList<Actions> unDo;
-//	private ArrayList<Actions> reDo;
 
 	public List<ProductAbstract> getFridgeContent() {
 		return fridgeContent;

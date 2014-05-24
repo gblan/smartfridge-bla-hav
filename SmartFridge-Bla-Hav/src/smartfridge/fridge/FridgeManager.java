@@ -1,10 +1,13 @@
 package smartfridge.fridge;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
 
+import smartfridge.actions.Actions;
+import smartfridge.enu.TypeActionEnum;
 import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
@@ -12,11 +15,25 @@ import smartfridge.product.ProductUnPerishable;
 public class FridgeManager {
 
 	private Fridge fridge;
-
+	private ArrayList<Actions> unDo;
+	private ArrayList<Actions> reDo;
+	
 	public FridgeManager(Fridge f) {
 		this.fridge = f;
 	}
 
+	public void executeAction(TypeActionEnum enu,int idProduct){
+		unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu));
+		switch (enu) {
+		case ADD:
+		case REMOVE:
+		case INCREASE_QUANTITY:
+		case DECREASE_QUANTITY:
+		default:
+		}
+	}
+	
+	
 	public void addProduct(ProductAbstract p) {
 		this.fridge.getFridgeContent().add(p);
 	}
