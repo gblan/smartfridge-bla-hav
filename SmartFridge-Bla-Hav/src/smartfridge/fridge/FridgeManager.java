@@ -1,10 +1,10 @@
 package smartfridge.fridge;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import smartfridge.actions.Actions;
 import smartfridge.enu.TypeActionEnum;
@@ -15,25 +15,57 @@ import smartfridge.product.ProductUnPerishable;
 public class FridgeManager {
 
 	private Fridge fridge;
-	private ArrayList<Actions> unDo;
-	private ArrayList<Actions> reDo;
-	
+	private List<Actions> unDo;
+	private List<Actions> reDo;
+
 	public FridgeManager(Fridge f) {
 		this.fridge = f;
 	}
 
-	public void executeAction(TypeActionEnum enu,int idProduct){
+	public void executeAction(TypeActionEnum enu, int idProduct,
+			ProductAbstract addProduct, int setQuantity) {
 		unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu));
 		switch (enu) {
 		case ADD:
+			addProduct(addProduct);
 		case REMOVE:
+			deleteProduct(idProduct);
 		case INCREASE_QUANTITY:
+			fridge.getFridgeContent().get(idProduct)
+					.increaseQuantity(setQuantity);
 		case DECREASE_QUANTITY:
+			fridge.getFridgeContent().get(idProduct)
+					.decreaseQuantity(setQuantity);
 		default:
 		}
 	}
-	
-	
+
+	public void cancelAction(int idAction) {
+		Actions actions = unDo.get(idAction);
+
+		int previousQuantity = unDo.get(idAction).getProduct().getQuantity();
+		int actualQuantity = fridge.getFridgeContent().get(idAction)
+				.getQuantity();
+
+		reDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu())));
+
+		
+		switch (Actions.getOppositeAction(actions.getEnu())) {
+		case ADD:
+			addProduct(unDo.get(idAction).getProduct());
+		case REMOVE:
+			deleteProduct(idAction);
+		case INCREASE_QUANTITY:
+			fridge.getFridgeContent().get(idAction)
+					.decreaseQuantity(previousQuantity - actualQuantity);
+
+		case DECREASE_QUANTITY:
+			fridge.getFridgeContent().get(idAction)
+					.decreaseQuantity(actualQuantity - previousQuantity);
+		default:
+		}
+	}
+
 	public void addProduct(ProductAbstract p) {
 		this.fridge.getFridgeContent().add(p);
 	}

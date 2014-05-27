@@ -13,6 +13,14 @@ public class Actions {
 		this.enu = enu;
 	}
 
+	public ProductAbstract getProduct() {
+		return product;
+	}
+
+	public TypeActionEnum getEnu() {
+		return enu;
+	}
+	
 	public static String printListActions() {
 		String res = "";
 
@@ -31,7 +39,7 @@ public class Actions {
 		return res;
 	}
 
-	public TypeActionEnum getOppositeAction(TypeActionEnum enu) {
+	public static TypeActionEnum getOppositeAction(TypeActionEnum enu) {
 		switch (enu) {
 		case ADD:
 			return TypeActionEnum.REMOVE;
@@ -45,4 +53,6 @@ public class Actions {
 			return null;
 		}
 	}
+
+
 }

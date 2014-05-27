@@ -2,15 +2,9 @@ package smartfridge.fridge;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 import smartfridge.product.ProductAbstract;
-import smartfridge.product.ProductPerishable;
-import smartfridge.product.ProductUnPerishable;
 
 public class Fridge implements Serializable{
 
