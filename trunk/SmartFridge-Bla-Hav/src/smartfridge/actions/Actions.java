@@ -6,11 +6,13 @@ import smartfridge.product.ProductAbstract;
 public class Actions {
 
 	private ProductAbstract product;
+	private int idProduit;
 	private TypeActionEnum enu;
 		
-	public Actions(ProductAbstract product, TypeActionEnum enu) {
+	public Actions(ProductAbstract product, TypeActionEnum enu, int idProduit) {
 		this.product = product;
 		this.enu = enu;
+		this.setIdProduit(idProduit);
 	}
 
 	public ProductAbstract getProduct() {
@@ -54,5 +56,20 @@ public class Actions {
 		}
 	}
 
+	@Override
+	public String toString() {
+		String res = "";
+
+		res += "Action : "+this.enu.toString()+", product"+this.product;
+		return res ;
+	}
+
+	public int getIdProduit() {
+		return idProduit;
+	}
+
+	public void setIdProduit(int idProduit) {
+		this.idProduit = idProduit;
+	}
 
 }

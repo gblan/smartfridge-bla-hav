@@ -2,6 +2,7 @@ package smartfridge.test;
 
 import java.util.GregorianCalendar;
 
+import smartfridge.enu.TypeActionEnum;
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.enu.TypeQuantityEnum;
 import smartfridge.fridge.Fridge;
@@ -36,27 +37,40 @@ public class Test {
 
 		Fridge f = new Fridge();
 		FridgeManager fm = new FridgeManager(f);
-		fm.addProduct(p);
-		fm.addProduct(p2);
-		fm.addProduct(p3);
-		fm.addProduct(p4);
-		fm.addProduct(p12);
+		fm.executeAction(TypeActionEnum.ADD, p, 0);
+		fm.executeAction(TypeActionEnum.ADD, p2, 0);
+		fm.executeAction(TypeActionEnum.ADD, p3, 0);
+		fm.executeAction(TypeActionEnum.ADD, p4, 0);
+
+		
 		System.out.println(f);
-		f.getFridgeContent().get(2).increaseQuantity(2);
-		f.getFridgeContent().get(0).decreaseQuantity(100);
-
+		fm.unDoAction();
 		System.out.println(f);
-
-		// f.deleteProduct(0);
-		// System.out.println(f);
-
-		fm.sortProductByType();
+		fm.executeAction(TypeActionEnum.ADD, p12, 0);
 		System.out.println(f);
 
-		fm.sortProductByQuantity(true);
+		fm.executeAction(TypeActionEnum.REMOVE,p2,0 );
+		fm.executeAction(TypeActionEnum.DECREASE_QUANTITY, p3, 30);
+
+		
 		System.out.println(f);
 
-		fm.sortProductByAddingDate();
+
+		//fm.addProduct(p2);
+		//fm.addProduct(p3);
+		//fm.addProduct(p4);
+		//fm.addProduct(p12);
+		fm.executeAction(TypeActionEnum.INCREASE_QUANTITY, p3, 50);
+
+
+		System.out.println(fm.showUndoList());
+		
+
+		
+		System.out.println(f);
+		
+		fm.unDoAction();
+		System.out.println(f);
 
 		// System.out.println(Actions.printListActions());
 
