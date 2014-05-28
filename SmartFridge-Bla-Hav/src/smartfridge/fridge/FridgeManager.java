@@ -1,5 +1,6 @@
 package smartfridge.fridge;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
@@ -20,56 +21,106 @@ public class FridgeManager {
 
 	public FridgeManager(Fridge f) {
 		this.fridge = f;
+		unDo = new ArrayList<Actions>();
+		reDo = new ArrayList<Actions>();
+
 	}
 
-	public void executeAction(TypeActionEnum enu, int idProduct,
+	public void executeAction(TypeActionEnum enu,
 			ProductAbstract addProduct, int setQuantity) {
-		unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu));
+		int idProduct = getIdProduct(addProduct);;
 		switch (enu) {
 		case ADD:
 			addProduct(addProduct);
+			idProduct = getIdProduct(addProduct);
+			unDo.add(new Actions(addProduct, enu , idProduct));
+			
+			break;
+
 		case REMOVE:
+
+			unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu , idProduct));
 			deleteProduct(idProduct);
+			break;
 		case INCREASE_QUANTITY:
+			unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
+
 			fridge.getFridgeContent().get(idProduct)
 					.increaseQuantity(setQuantity);
+			break;
+
 		case DECREASE_QUANTITY:
+			unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
+
 			fridge.getFridgeContent().get(idProduct)
 					.decreaseQuantity(setQuantity);
+			break;
+
 		default:
 		}
 	}
 
-	public void cancelAction(int idAction) {
-		Actions actions = unDo.get(idAction);
+	public void unDoAction() {
+		Actions actions = unDo.get(unDo.size() - 1);
 
-		int previousQuantity = unDo.get(idAction).getProduct().getQuantity();
-		int actualQuantity = fridge.getFridgeContent().get(idAction)
-				.getQuantity();
+		int previousQuantity;
+		int actualQuantity;
 
-		reDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu())));
+		reDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
 
 		
 		switch (Actions.getOppositeAction(actions.getEnu())) {
 		case ADD:
-			addProduct(unDo.get(idAction).getProduct());
+			addProduct(unDo.get(unDo.size()- 1).getProduct(),actions.getIdProduit());
+			break;
+
 		case REMOVE:
-			deleteProduct(idAction);
-		case INCREASE_QUANTITY:
-			fridge.getFridgeContent().get(idAction)
-					.decreaseQuantity(previousQuantity - actualQuantity);
+			deleteProduct(actions.getIdProduit());
+			break;
+
+		case INCREASE_QUANTITY:	
+			previousQuantity = unDo.get(unDo.size() - 1).getProduct().getQuantity();
+			actualQuantity = fridge.getFridgeContent().get(actions.getIdProduit())
+				.getQuantity();
+			//System.out.println(previousQuantity  + "actual" + actualQuantity);
+			fridge.getFridgeContent().get(actions.getIdProduit())
+					.increaseQuantity(previousQuantity - actualQuantity);
+			break;
+
 
 		case DECREASE_QUANTITY:
-			fridge.getFridgeContent().get(idAction)
+			previousQuantity = unDo.get(unDo.size() - 1).getProduct().getQuantity();
+			actualQuantity = fridge.getFridgeContent().get(actions.getIdProduit())
+					.getQuantity();
+			
+			fridge.getFridgeContent().get(actions.getIdProduit())
 					.decreaseQuantity(actualQuantity - previousQuantity);
+			break;
+
 		default:
 		}
+	}
+	
+	public int getIdProduct(ProductAbstract product){
+		int i = 0;
+		for(ProductAbstract p : this.fridge.getFridgeContent()){
+			if(p == product){
+				return i;
+			}
+			i++;
+			
+		}
+		return -1;
+		
 	}
 
 	public void addProduct(ProductAbstract p) {
 		this.fridge.getFridgeContent().add(p);
 	}
 
+	public void addProduct(ProductAbstract p, int idAction){
+		this.fridge.getFridgeContent().add(idAction, p);
+	}
 	public void deleteProduct(int n) {
 		this.fridge.getFridgeContent().remove(n);
 	}
@@ -187,6 +238,23 @@ public class FridgeManager {
 		};
 
 		Collections.sort(this.fridge.getFridgeContent(), comparatorQuantity);
+	}
+	
+	public String showUndoList(){
+		String res = "";
+		for(Actions act : this.unDo){
+			res += act.toString()+"\n";
+		}
+		
+		return res;
+	}
+	public String showRedoList(){
+		String res = "";
+		for(Actions act : this.reDo){
+			res += act.toString()+"\n";
+		}
+		
+		return res;
 	}
 
 }

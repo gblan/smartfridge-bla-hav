@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.enu.TypeQuantityEnum;
 
-public abstract class ProductAbstract implements Comparable<ProductAbstract>, Serializable{
+public abstract class ProductAbstract implements Comparable<ProductAbstract>, Serializable, Cloneable{
 
 	private static final long serialVersionUID = -2036680820842552707L;
 	private TypeProductEnum typeProduct;
@@ -67,5 +67,21 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>, Se
 		return res;
 	}
 
+	public ProductAbstract clone(){
+		ProductAbstract product = null;
+	    try {
+	    	// On récupère l'instance à renvoyer par l'appel de la 
+	      	// méthode super.clone()
+	      	product = (ProductAbstract) super.clone();
+	    } catch(CloneNotSupportedException cnse) {
+	      	// Ne devrait jamais arriver car nous implémentons 
+	      	// l'interface Cloneable
+	      	cnse.printStackTrace(System.err);
+	    }
+
+	    
+	    // on renvoie le clone
+	    return product;
+	}
 	
 }
