@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import smartfridge.enu.TypeProductEnum;
-import smartfridge.enu.TypeQuantityEnum;
 
 public class ProductPerishable extends ProductAbstract {
 
@@ -12,8 +11,8 @@ public class ProductPerishable extends ProductAbstract {
 	private GregorianCalendar datePerishment;
 
 	public ProductPerishable(TypeProductEnum typeProduct, String productName,
-			TypeQuantityEnum typeQuantity, int quantity, GregorianCalendar datePerishment) {
-		super(typeProduct, productName, typeQuantity, quantity);
+			 int quantity, GregorianCalendar datePerishment) {
+		super(typeProduct, productName, quantity);
 		datePerishment.add(Calendar.MONTH, -1);
 		this.datePerishment = datePerishment;
 	}
