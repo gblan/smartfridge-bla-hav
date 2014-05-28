@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 import smartfridge.enu.TypeProductEnum;
-import smartfridge.enu.TypeQuantityEnum;
 
 public abstract class ProductAbstract implements Comparable<ProductAbstract>, Serializable, Cloneable{
 
 	private static final long serialVersionUID = -2036680820842552707L;
 	private TypeProductEnum typeProduct;
 	private String productName;
-	private TypeQuantityEnum typeQuantity;
 	private int quantity;
 	private GregorianCalendar dateAjout;
 
@@ -23,9 +21,6 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>, Se
 		return productName;
 	}
 
-	public TypeQuantityEnum getTypeQuantity() {
-		return typeQuantity;
-	}
 
 	public int getQuantity() {
 		return quantity;
@@ -48,10 +43,9 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>, Se
 	}
 
 	public ProductAbstract(TypeProductEnum typeProduct, String productName,
-			TypeQuantityEnum typeQuantity, int quantity) {
+			int quantity) {
 		this.typeProduct = typeProduct;
 		this.productName = productName;
-		this.typeQuantity = typeQuantity;
 		this.quantity = quantity;
 		this.dateAjout = new GregorianCalendar();
 	}
@@ -61,7 +55,7 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>, Se
 		String res = "";
 
 		res += " : " + this.quantity + " "
-				+ this.typeQuantity.toString() + " - "
+				+  " - "
 				+ this.typeProduct.toString() + " : " + this.productName;
 
 		return res;
