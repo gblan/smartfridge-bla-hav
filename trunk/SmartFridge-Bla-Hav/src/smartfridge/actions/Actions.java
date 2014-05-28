@@ -29,12 +29,12 @@ public class Actions {
 		res += "#####################\n";
 		res += "Actions available : \n";
 		res += "#####################\n";
-		res += "'a' - add\t\t\t\t's'   - display content\n";
+		res += "'a' - add\t\t\t\t'st'   - sorted by type\n";
 		res += "'r' - remove\t\t\t\t'sda' - sorted by date added\n";
 		res += "'re' - remove expired\t\t\t'sed' - sorted by expiration date\n";
 		res += "'i' - increase quantity\t\t\t'siq' - sorted by increasing quantity\n";
 		res += "'d' - decrease quantity\t\t\t'sqd' - sorted by decreasing quantity\n";
-		res += "'ck' - check expiration\t\t\t'st'  - sorted by type\n";
+		res += "'ck' - check expiration\n";
 		res += "----------------------------------------------------------------------------\n";
 		res += "'ud' - unDo\t'rd' - reDo\t'sa' - save\t'lo' - load\t'ex' - exit\n";
 

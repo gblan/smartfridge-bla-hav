@@ -8,6 +8,7 @@ import smartfridge.fridge.Fridge;
 import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
+import smartfridge.utils.FridgeUtils;
 
 public class Test {
 
@@ -83,6 +84,7 @@ public class Test {
 		
 		fm.unDoAction();
 		System.out.println(f);
+		FridgeUtils.saveFridge(f);
 
 		// System.out.println(Actions.printListActions());
 

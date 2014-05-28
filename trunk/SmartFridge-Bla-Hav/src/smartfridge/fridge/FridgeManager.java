@@ -214,7 +214,7 @@ public class FridgeManager {
 		GregorianCalendar calendar = new java.util.GregorianCalendar();
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.add(Calendar.DATE, n - 1);
-		System.out.println("Liste périmés dans " + n + " jours : ");
+		System.out.println("Perished product in : " + n + " days : ");
 		for (ProductAbstract p : this.fridge.getFridgeContent()) {
 			if (p instanceof ProductPerishable) {
 				if (((ProductPerishable) p).getDatePerishment()
