@@ -23,7 +23,8 @@ public class Main {
 		System.out.println("Select the ID of the product you want to remove : ");
 		try {
 			line = console.readLine();
-			fm.executeAction(TypeActionEnum.REMOVE, null, 0);
+			int id = Integer.parseInt(line);
+			fm.executeAction(TypeActionEnum.REMOVE, fm.getFridge().getFridgeContent().get(id), 0);
 		} catch (IOException e) {
 			line = "Reading error";
 			e.printStackTrace();
@@ -121,5 +122,6 @@ public class Main {
 				e.printStackTrace();
 			}
 		}
+		System.out.println("See you soon");
 	}
 }

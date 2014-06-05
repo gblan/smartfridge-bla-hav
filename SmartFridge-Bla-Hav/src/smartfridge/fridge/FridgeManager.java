@@ -26,6 +26,10 @@ public class FridgeManager {
 
 	}
 
+	public Fridge getFridge() {
+		return fridge;
+	}
+	
 	public void executeAction(TypeActionEnum enu,
 			ProductAbstract addProduct, int setQuantity) {
 		int idProduct = getIdProduct(addProduct);
