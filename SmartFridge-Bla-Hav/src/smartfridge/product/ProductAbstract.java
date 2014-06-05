@@ -49,6 +49,14 @@ public abstract class ProductAbstract implements Comparable<ProductAbstract>, Se
 		this.quantity = quantity;
 		this.dateAjout = new GregorianCalendar();
 	}
+	
+	public ProductAbstract(TypeProductEnum typeProduct, String productName) {
+		this.typeProduct = typeProduct;
+		this.productName = productName;
+		this.quantity = 1;
+		this.dateAjout = new GregorianCalendar();
+	}
+	
 
 	@Override
 	public String toString() {
