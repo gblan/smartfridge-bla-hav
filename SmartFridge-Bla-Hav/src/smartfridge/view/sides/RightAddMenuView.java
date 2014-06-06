@@ -12,6 +12,8 @@ import jcalendar.JCalendar;
 
 public class RightAddMenuView extends RightSide {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel instructionPanel;
 	private JLabel instructionsLabel;
 

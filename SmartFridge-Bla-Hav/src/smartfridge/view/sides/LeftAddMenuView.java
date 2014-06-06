@@ -7,6 +7,8 @@ import javax.swing.JRadioButton;
 
 public class LeftAddMenuView extends LeftSide {
 
+	private static final long serialVersionUID = 1L;
+	
 	private ButtonGroup bg;
 	private JRadioButton drinks;
 	private JRadioButton meats;

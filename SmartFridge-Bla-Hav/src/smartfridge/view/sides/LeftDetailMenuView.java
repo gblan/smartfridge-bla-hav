@@ -8,6 +8,8 @@ import javax.swing.JTextField;
 
 public class LeftDetailMenuView extends LeftSide {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel iconePanel;
 
 	private JLabel nomLabel;
