@@ -1,4 +1,4 @@
-package smartfridge.view;
+package smartfridge.view.sides;
 
 import javax.swing.JPanel;
 

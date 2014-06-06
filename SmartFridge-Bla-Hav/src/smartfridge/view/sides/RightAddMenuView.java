@@ -1,4 +1,4 @@
-package smartfridge.view;
+package smartfridge.view.sides;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,7 +16,7 @@ public class RightAddMenuView extends RightSide{
 	private JTextField nameTextField;
 	
 	private JLabel expirationDateLabel;
-	private JCalendar  dateSelection;
+//	private JCalendar  dateSelection;
 	
 	private JLabel quantityLabel;
 	private JTextField quantityTextField;
