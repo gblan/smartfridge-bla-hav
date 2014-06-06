@@ -246,7 +246,7 @@ public class FridgeManager {
 		Comparator<ProductAbstract> comparatorAddingDate = new Comparator<ProductAbstract>() {
 			@Override
 			public int compare(ProductAbstract p1, ProductAbstract p2) {
-				return p1.getDateAjout().compareTo(p2.getDateAjout());
+				return p2.getDateAjout().compareTo(p1.getDateAjout());
 			}
 		};
 		Collections.sort(this.fridge.getFridgeContent(), comparatorAddingDate);
