@@ -25,6 +25,7 @@ public class RightAddMenuView extends RightSide {
 	
 	private JPanel expirationDatePanel;
 	private JLabel expirationDateLabel;
+	/* Pense a configurer ajouter le jar que j'ai mis dans le dossier /SRC a ton build path*/
 	private JDateChooser dateSelection;
 
 	private JPanel validationPanel;
