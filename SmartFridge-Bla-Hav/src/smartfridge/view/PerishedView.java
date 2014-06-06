@@ -10,6 +10,8 @@ import smartfridge.view.sides.RightProductMenuView;
 
 public class PerishedView extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+
 	public PerishedView() {
 		super("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +32,7 @@ public class PerishedView extends JFrame {
 
 		this.add(mainPanel);
 
-//		pack();
+		pack();
 
 		setLocationRelativeTo(null);
 		setVisible(true);

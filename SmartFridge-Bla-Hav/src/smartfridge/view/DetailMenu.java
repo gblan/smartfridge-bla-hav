@@ -5,11 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import smartfridge.view.sides.LeftButtonMenuView;
 import smartfridge.view.sides.LeftDetailMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
 public class DetailMenu extends JFrame{
+
+	private static final long serialVersionUID = 1L;
 
 	public DetailMenu(){
 		super("Smart Fridge");
@@ -31,7 +32,7 @@ public class DetailMenu extends JFrame{
 
 		this.add(mainPanel);
 
-//		pack();
+		pack();
 
 		setLocationRelativeTo(null);
 		setVisible(true);

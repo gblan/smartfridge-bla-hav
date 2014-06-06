@@ -40,10 +40,10 @@ public class LeftDetailMenuView extends LeftSide {
 		panelQuantity.add(increaseQuantityButton);
 
 		deleteReturnPanel = new JPanel();
-		returnButton = new JButton("RETURN");
 		deleteButton = new JButton("DELETE");
-		deleteReturnPanel.add(returnButton);
+		returnButton = new JButton("RETURN");
 		deleteReturnPanel.add(deleteButton);
+		deleteReturnPanel.add(returnButton);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(iconePanel);
