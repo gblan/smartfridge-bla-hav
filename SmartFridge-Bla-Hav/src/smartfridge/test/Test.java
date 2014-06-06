@@ -1,16 +1,6 @@
 package smartfridge.test;
 
-import java.awt.peer.MenuPeer;
-import java.util.GregorianCalendar;
-
-import smartfridge.enu.TypeActionEnum;
-import smartfridge.enu.TypeProductEnum;
-import smartfridge.fridge.Fridge;
-import smartfridge.fridge.FridgeManager;
-import smartfridge.product.ProductPerishable;
-import smartfridge.product.ProductUnPerishable;
-import smartfridge.utils.FridgeUtils;
-import smartfridge.view.MainMenu;
+import smartfridge.view.PerishedView;
 
 public class Test {
 
@@ -93,7 +83,7 @@ public class Test {
 //	}
 	
 	public static void main(String[] args) {
-		MainMenu m = new MainMenu();
+		PerishedView d = new PerishedView();
 	}
 
 }
