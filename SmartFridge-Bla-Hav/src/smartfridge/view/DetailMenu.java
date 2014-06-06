@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import smartfridge.view.sides.LeftButtonMenuView;
 import smartfridge.view.sides.LeftDetailMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
