@@ -3,11 +3,12 @@ package smartfridge.view.sides;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class LeftPerishedMenuView extends LeftSide {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JLabel perishedInLabel;
 	private JTextField perishedLabel;
 	private JLabel perished;

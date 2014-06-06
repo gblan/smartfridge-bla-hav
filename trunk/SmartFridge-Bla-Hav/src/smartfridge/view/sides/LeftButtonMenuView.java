@@ -7,6 +7,8 @@ import javax.swing.JTextField;
 
 public class LeftButtonMenuView extends LeftSide{
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel panelUndoRedo;
 	private JButton undoButton;
 	private JButton redoButton;
