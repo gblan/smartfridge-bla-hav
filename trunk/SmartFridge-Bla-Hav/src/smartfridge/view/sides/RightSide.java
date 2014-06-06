@@ -1,4 +1,4 @@
-package smartfridge.view;
+package smartfridge.view.sides;
 
 import java.awt.Canvas;
 
