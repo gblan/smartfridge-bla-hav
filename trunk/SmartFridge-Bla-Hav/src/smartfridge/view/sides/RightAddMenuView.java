@@ -20,4 +20,10 @@ public class RightAddMenuView extends RightSide{
 	
 	private JLabel quantityLabel;
 	private JTextField quantityTextField;
+	
+	
+	public RightAddMenuView() {
+		super();
+	}	
+	
 }

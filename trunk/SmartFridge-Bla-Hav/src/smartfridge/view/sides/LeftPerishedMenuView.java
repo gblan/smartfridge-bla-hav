@@ -10,4 +10,8 @@ public class LeftPerishedMenuView extends LeftSide {
 	private JTextField perishedLabel;
 	private JLabel perished;
 	private JButton menuButton;
+	
+	public LeftPerishedMenuView() {
+		super();
+	}
 }
