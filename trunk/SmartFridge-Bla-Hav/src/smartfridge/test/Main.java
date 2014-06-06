@@ -24,10 +24,9 @@ public class Main {
 		try {
 			line = console.readLine();
 			int id = Integer.parseInt(line);
-			fm.executeAction(TypeActionEnum.REMOVE, fm.getFridge().getFridgeContent().get(id), 0);
+			fm.executeAction(TypeActionEnum.REMOVE, fm.getFridge().getFridgeContent().get(id + 1), 0);
 		} catch (IOException e) {
-			line = "Reading error";
-			e.printStackTrace();
+			System.err.println("Id Invalide");
 		}
 	}
 
@@ -79,8 +78,7 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		Fridge f = new Fridge();
-		FridgeManager fm = new FridgeManager(f);
+		FridgeManager fm = new FridgeManager(new Fridge());
 		BufferedReader console = new BufferedReader(new InputStreamReader(
 				System.in));
 		String line;
@@ -88,7 +86,7 @@ public class Main {
 		while(!exit ){
 			exit = false;
 			
-			System.out.println(f);
+			System.out.println(fm.getFridge());
 			System.out.println(Actions.printListActions());
 			
 			System.out.println("Select an action in the above list: ");
@@ -109,9 +107,9 @@ public class Main {
 				case "sqd":	fm.sortProductByQuantity(false); break;
 				case "ud":	fm.unDoAction(); break;
 				case "rd":	fm.reDoAction(); break;
-				case "sa":	FridgeUtils.saveFridge(f); break;
-				case "lo":	f = FridgeUtils.loadFridge(); break;
-				case "ex":	exit = true; break;
+				case "sa":	FridgeUtils.saveFridge(fm.getFridge()); break;
+				case "lo":	fm.setFridge(FridgeUtils.loadFridge()); break; // ça marche
+				case "ex":	exit = true; break;// ça marche
 				default:
 					System.out.println("Unrecognize command, try again");
 					break;
