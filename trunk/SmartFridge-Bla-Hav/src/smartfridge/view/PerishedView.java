@@ -5,13 +5,12 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 
-import smartfridge.view.sides.LeftButtonMenuView;
-import smartfridge.view.sides.LeftDetailMenuView;
+import smartfridge.view.sides.LeftPerishedMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
-public class DetailMenu extends JFrame{
+public class PerishedView extends JFrame {
 
-	public DetailMenu(){
+	public PerishedView() {
 		super("Smart Fridge");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -20,7 +19,7 @@ public class DetailMenu extends JFrame{
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-		LeftDetailMenuView left = new LeftDetailMenuView();
+		LeftPerishedMenuView left = new LeftPerishedMenuView();
 		mainPanel.add(left);
 
 		JSeparator separator = new JSeparator();
