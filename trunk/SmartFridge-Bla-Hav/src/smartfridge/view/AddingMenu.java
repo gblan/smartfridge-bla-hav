@@ -1,5 +1,8 @@
 package smartfridge.view;
 
+import java.awt.Dimension;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,9 +26,12 @@ public class AddingMenu extends JFrame{
 
 		LeftAddMenuView left = new LeftAddMenuView();
 		mainPanel.add(left);
-
-		JSeparator separator = new JSeparator();
+		
+		mainPanel.add(Box.createRigidArea(new Dimension(30	, 0)));
+		JSeparator separator = new JSeparator(JSeparator.VERTICAL);		
 		mainPanel.add(separator);
+		mainPanel.add(Box.createRigidArea(new Dimension(30, 0)));
+
 
 		RightAddMenuView right = new RightAddMenuView();
 		mainPanel.add(right);
