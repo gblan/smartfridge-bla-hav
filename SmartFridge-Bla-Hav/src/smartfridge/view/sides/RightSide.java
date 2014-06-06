@@ -1,7 +1,10 @@
 package smartfridge.view.sides;
 
-import java.awt.Canvas;
+import javax.swing.JPanel;
 
-public class RightSide extends Canvas{
+public abstract class RightSide extends JPanel{
 
+	public RightSide(){
+		setBounds(700, 400, 0, 0);
+	}
 }

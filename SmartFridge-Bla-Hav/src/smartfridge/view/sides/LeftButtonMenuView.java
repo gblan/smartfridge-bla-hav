@@ -11,4 +11,8 @@ public class LeftButtonMenuView extends LeftSide{
 	private JButton removeButton;
 	private JButton checkButton;
 	private JTextField checkIn;
+	
+	public LeftButtonMenuView(){
+		super();
+	}
 }
