@@ -37,11 +37,12 @@ public class FridgeManager {
 	public void executeAction(TypeActionEnum enu,
 			ProductAbstract addProduct, int setQuantity) {
 		int idProduct = getIdProduct(addProduct);
-		if(idProduct < 0 || idProduct >= this.getFridge().getFridgeContent().size()){
+		if((idProduct < 0 || idProduct >= this.getFridge().getFridgeContent().size() )&& enu != TypeActionEnum.ADD){
 			System.err.println("Problem ID");
 		}
 		else{
 			switch (enu) {
+
 			case ADD:
 				addProduct(addProduct);
 				idProduct = getIdProduct(addProduct);
