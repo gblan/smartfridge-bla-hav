@@ -30,38 +30,48 @@ public class FridgeManager {
 		return fridge;
 	}
 	
+	public void setFridge(Fridge f){
+		this.fridge = f;
+	}
+	
 	public void executeAction(TypeActionEnum enu,
 			ProductAbstract addProduct, int setQuantity) {
 		int idProduct = getIdProduct(addProduct);
-		switch (enu) {
-		case ADD:
-			addProduct(addProduct);
-			idProduct = getIdProduct(addProduct);
-			unDo.add(new Actions(addProduct, enu , idProduct));
-			
-			break;
-
-		case REMOVE:
-
-			unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu , idProduct));
-			deleteProduct(idProduct);
-			break;
-		case INCREASE_QUANTITY:
-			unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
-
-			fridge.getFridgeContent().get(idProduct)
-					.increaseQuantity(setQuantity);
-			break;
-
-		case DECREASE_QUANTITY:
-			unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
-
-			fridge.getFridgeContent().get(idProduct)
-					.decreaseQuantity(setQuantity);
-			break;
-
-		default:
+		if(idProduct < 0 || idProduct >= this.getFridge().getFridgeContent().size()){
+			System.err.println("Problem ID");
 		}
+		else{
+			switch (enu) {
+			case ADD:
+				addProduct(addProduct);
+				idProduct = getIdProduct(addProduct);
+				unDo.add(new Actions(addProduct, enu , idProduct));
+				
+				break;
+
+			case REMOVE:
+
+				unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu , idProduct));
+				deleteProduct(idProduct);
+				break;
+			case INCREASE_QUANTITY:
+				unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
+
+				fridge.getFridgeContent().get(idProduct)
+						.increaseQuantity(setQuantity);
+				break;
+
+			case DECREASE_QUANTITY:
+				unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
+
+				fridge.getFridgeContent().get(idProduct)
+						.decreaseQuantity(setQuantity);
+				break;
+
+			default:
+			}
+		}
+
 	}
 
 	public void unDoAction() {
