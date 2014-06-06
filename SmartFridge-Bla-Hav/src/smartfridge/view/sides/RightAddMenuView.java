@@ -1,14 +1,12 @@
 package smartfridge.view.sides;
 
-import java.util.Locale;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import jcalendar.JCalendar;
+import com.toedter.calendar.JDateChooser;
 
 public class RightAddMenuView extends RightSide {
 
@@ -27,7 +25,7 @@ public class RightAddMenuView extends RightSide {
 	
 	private JPanel expirationDatePanel;
 	private JLabel expirationDateLabel;
-	private JCalendar dateSelection;
+	private JDateChooser dateSelection;
 
 	private JPanel validationPanel;
 	private JButton validationButton;
@@ -57,8 +55,8 @@ public class RightAddMenuView extends RightSide {
 		expirationDatePanel = new JPanel();
 		expirationDatePanel.setLayout(new BoxLayout(expirationDatePanel, BoxLayout.X_AXIS));
 		expirationDateLabel = new JLabel("EXPIRATION DATE : ");
-		dateSelection = new JCalendar();
-		dateSelection.setLocale(new Locale("en"));
+		dateSelection = new JDateChooser();
+		
 		expirationDatePanel.add(expirationDateLabel);
 		expirationDatePanel.add(dateSelection);
 		

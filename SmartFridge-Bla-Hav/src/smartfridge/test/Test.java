@@ -1,6 +1,6 @@
 package smartfridge.test;
 
-import smartfridge.view.DetailMenu;
+import smartfridge.view.AddingMenu;
 
 public class Test {
 
@@ -84,9 +84,9 @@ public class Test {
 	
 	public static void main(String[] args) {
 //		MainMenu m = new MainMenu();
-		DetailMenu d = new DetailMenu();
+//		DetailMenu d = new DetailMenu();
 //		PerishedView p = new PerishedView();
-//		AddingMenu a = new AddingMenu();
+		AddingMenu a = new AddingMenu();
 		
 	}
 
