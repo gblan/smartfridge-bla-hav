@@ -1,6 +1,9 @@
 package smartfridge.test;
 
 import smartfridge.view.AddingMenu;
+import smartfridge.view.DetailMenu;
+import smartfridge.view.MainMenu;
+import smartfridge.view.PerishedView;
 
 public class Test {
 
