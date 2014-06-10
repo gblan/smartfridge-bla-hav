@@ -1,8 +1,8 @@
 package smartfridge.view.sides;
 
-import javax.swing.JPanel;
+import javax.swing.JComponent;
 
-public abstract class LeftSide extends JPanel {
+public abstract class LeftSide extends JComponent {
 
 	private static final long serialVersionUID = 1L;
 	
