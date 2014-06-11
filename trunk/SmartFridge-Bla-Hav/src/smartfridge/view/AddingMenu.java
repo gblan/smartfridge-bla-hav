@@ -7,7 +7,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.SpringLayout;
 
+import smartfridge.utils.SpringUtilities;
 import smartfridge.view.sides.LeftAddMenuView;
 import smartfridge.view.sides.RightAddMenuView;
 
@@ -25,6 +27,9 @@ public class AddingMenu extends JFrame{
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
 		LeftAddMenuView left = new LeftAddMenuView();
+		left.setLayout(new SpringLayout());
+		SpringUtilities.makeCompactGrid(left, 7, 1, 3, 3, 3, 3);
+
 		mainPanel.add(left);
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(30	, 0)));
@@ -34,6 +39,9 @@ public class AddingMenu extends JFrame{
 
 
 		RightAddMenuView right = new RightAddMenuView();
+		
+		right.setLayout(new SpringLayout());
+		SpringUtilities.makeCompactGrid(right, 5, 1, 3, 3, 3, 3);
 		mainPanel.add(right);
 
 		this.add(mainPanel);

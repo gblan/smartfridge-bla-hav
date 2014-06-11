@@ -7,7 +7,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.SpringLayout;
 
+import smartfridge.utils.SpringUtilities;
 import smartfridge.view.sides.LeftPerishedMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
@@ -25,6 +27,9 @@ public class PerishedView extends JFrame {
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
 		LeftPerishedMenuView left = new LeftPerishedMenuView();
+		left.setLayout(new SpringLayout());
+		SpringUtilities.makeCompactGrid(left, 4, 1, 3, 3, 3, 3);
+		
 		mainPanel.add(left);
 
 		mainPanel.add(Box.createRigidArea(new Dimension(30	, 0)));

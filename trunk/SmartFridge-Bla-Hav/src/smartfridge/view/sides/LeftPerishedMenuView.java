@@ -4,6 +4,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.swing.SpringLayout;
 
 public class LeftPerishedMenuView extends LeftSide {
 
