@@ -3,6 +3,7 @@ package smartfridge.view.sides;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JRadioButton;
+import javax.swing.SpringLayout;
 
 
 public class LeftAddMenuView extends LeftSide {
