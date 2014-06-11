@@ -88,8 +88,8 @@ public class Test {
 	public static void main(String[] args) {
 //		MainMenu m = new MainMenu();
 //		DetailMenu d = new DetailMenu();
-//		PerishedView p = new PerishedView();
-		AddingMenu a = new AddingMenu();
+		PerishedView p = new PerishedView();
+//		AddingMenu a = new AddingMenu();
 		
 	}
 
