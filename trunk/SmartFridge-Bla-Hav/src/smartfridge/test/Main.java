@@ -29,7 +29,7 @@ public class Main {
 		System.out.println();
 		System.out.println("To add a new product, follow this format and press enter :");
 		System.out.println("Type#;Name ;Expiration(dd/MM/yyyy)(optional);Quantity(optional)");
-		
+		fm.clearRedoList();
 		try {
 			line = console.readLine().split(";");
 			if(line[2].equalsIgnoreCase(" ")){
@@ -65,6 +65,7 @@ public class Main {
 				System.in));
 		String line;
 		System.out.println("Select the ID of the product you want to remove : ");
+		fm.clearRedoList();
 		try {
 			line = console.readLine();
 			int id = Integer.parseInt(line);
@@ -79,6 +80,7 @@ public class Main {
 				System.in));
 		String line;
 		System.out.println("Select the ID of the product you want to increase the quantity : ");
+		fm.clearRedoList();
 		try {
 			line = console.readLine();
 			int id = Integer.parseInt(line);
@@ -94,6 +96,7 @@ public class Main {
 				System.in));
 		String line;
 		System.out.println("Select the ID of the product you want to increase the quantity : ");
+		fm.clearRedoList();
 		try {
 			line = console.readLine();
 			int id = Integer.parseInt(line);
