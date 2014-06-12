@@ -3,6 +3,7 @@ package smartfridge.view.sides;
 import java.awt.BorderLayout;
 import java.util.GregorianCalendar;
 
+import javax.swing.DropMode;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
@@ -14,6 +15,7 @@ import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
+import smartfridge.utils.ListItemTransferHandler;
 
 public class RightProductMenuView extends RightSide {
 
@@ -33,14 +35,14 @@ public class RightProductMenuView extends RightSide {
 				"Colin", 150, g);
 		g.set(2016, 05, 25);
 
-		ProductPerishable p2 = new ProductPerishable(TypeProductEnum.DRINKS,
-				"rhum", 3, g);
+		ProductPerishable p2 = new ProductPerishable(TypeProductEnum.VEGETABLES,
+				"canne à sucre", 3, g);
 		ProductUnPerishable p3 = new ProductUnPerishable(
 				TypeProductEnum.DRINKS, "rhum blanc", 1);
 		g.set(2014, 05, 20);
 
-		ProductPerishable p4 = new ProductPerishable(TypeProductEnum.MEATS,
-				"rognons", 500, g);
+		ProductPerishable p4 = new ProductPerishable(TypeProductEnum.DIARY,
+				"yaourt", 500, g);
 
 		Fridge f = new Fridge();
 		FridgeManager fm = new FridgeManager(f);
@@ -64,7 +66,9 @@ public class RightProductMenuView extends RightSide {
 		productList.setListData(listData);
 		ListCellRenderer renderer = new FridgeProductRenderer();
 		productList.setCellRenderer(renderer);
-
+		productList.setTransferHandler(new ListItemTransferHandler());
+		productList.setDropMode(DropMode.INSERT);
+		productList.setDragEnabled(true);
 		this.setLayout(new BorderLayout());
 
 		this.add(scroll);
