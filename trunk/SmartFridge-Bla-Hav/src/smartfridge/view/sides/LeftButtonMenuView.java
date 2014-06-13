@@ -6,6 +6,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import smartfridge.controller.LeftAddMenuController;
+import smartfridge.controller.LeftButtonMenuController;
+
 public class LeftButtonMenuView extends LeftSide{
 
 	private static final long serialVersionUID = 1L;
@@ -43,6 +46,10 @@ public class LeftButtonMenuView extends LeftSide{
 		panelCheck.add(checkButton);
 		panelCheck.add(checkIn);
 
+		LeftButtonMenuController controler = new LeftButtonMenuController();
+		
+		
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(panelUndoRedo);
 		this.add(addingButton);

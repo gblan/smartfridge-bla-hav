@@ -6,6 +6,9 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import smartfridge.controller.LeftDetailMenuController;
+import smartfridge.controller.LeftPerishedMenuController;
+
 public class LeftPerishedMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
@@ -24,6 +27,9 @@ public class LeftPerishedMenuView extends LeftSide {
 		perished = new JLabel("days");
 		
 		menuButton = new JButton("RETURN");
+		
+		LeftPerishedMenuController controler = new LeftPerishedMenuController();
+		perishedLabel.addKeyListener(controler.getKeyListenerPerishedTextField());
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(perishedInLabel);

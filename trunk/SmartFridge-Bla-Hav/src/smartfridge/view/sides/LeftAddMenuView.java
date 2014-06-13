@@ -2,8 +2,11 @@ package smartfridge.view.sides;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
-import javax.swing.SpringLayout;
+
+import smartfridge.controller.LeftAddMenuController;
 
 
 public class LeftAddMenuView extends LeftSide {
@@ -34,6 +37,9 @@ public class LeftAddMenuView extends LeftSide {
 		eggs = new JRadioButton();
 		others = new JRadioButton();
 		
+		
+		Icon defaultIcon = new ImageIcon("resources/drinks2.jpg");
+		drinks.setIcon(defaultIcon );
 		bg.add(drinks);
 		bg.add(meats);
 		bg.add(fish);
@@ -42,6 +48,9 @@ public class LeftAddMenuView extends LeftSide {
 		bg.add(fruits);
 		bg.add(eggs);
 		bg.add(others);
+		
+		LeftAddMenuController controler = new LeftAddMenuController();
+
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(drinks);
