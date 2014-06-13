@@ -45,10 +45,10 @@ public class Main {
 				String date[] = line[2].split("/");
 				GregorianCalendar calendar = new GregorianCalendar(Integer.parseInt(date[2]), Integer.parseInt(date[1]), Integer.parseInt(date[0]));
 				if(line[3] == " ") {
-					fm.executeAction(TypeActionEnum.ADD, new ProductPerishable(TypeProductEnum.values()[Integer.parseInt(line[0])], line[1],Integer.parseInt(line[3]), calendar), 0);					
+					fm.executeAction(TypeActionEnum.ADD, new ProductPerishable(TypeProductEnum.values()[Integer.parseInt(line[0])], line[1],1, calendar), 0);					
 				}
 				else{
-					fm.executeAction(TypeActionEnum.ADD, new ProductPerishable(TypeProductEnum.values()[Integer.parseInt(line[0])], line[1],1, calendar), 0);					
+					fm.executeAction(TypeActionEnum.ADD, new ProductPerishable(TypeProductEnum.values()[Integer.parseInt(line[0])], line[1],Integer.parseInt(line[3]), calendar), 0);					
 
 					
 				}
