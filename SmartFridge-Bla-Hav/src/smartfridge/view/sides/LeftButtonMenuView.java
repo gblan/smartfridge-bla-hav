@@ -47,7 +47,7 @@ public class LeftButtonMenuView extends LeftSide{
 		panelCheck.add(checkIn);
 
 		LeftButtonMenuController controler = new LeftButtonMenuController();
-		
+		undoButton.addActionListener(controler.getUndoButtonActionListener());
 		
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
