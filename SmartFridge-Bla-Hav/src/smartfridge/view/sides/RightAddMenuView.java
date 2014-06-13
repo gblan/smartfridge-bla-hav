@@ -8,6 +8,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import smartfridge.controller.LeftPerishedMenuController;
+import smartfridge.controller.RightAddMenuController;
+
 import com.toedter.calendar.JDateChooser;
 
 public class RightAddMenuView extends RightSide {
@@ -71,6 +74,9 @@ public class RightAddMenuView extends RightSide {
 		validationPanel.add(validationButton);
 		validationPanel.add(returnButton);
 
+		RightAddMenuController controler = new RightAddMenuController();
+
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(instructionPanel);
 		this.add(namePanel);

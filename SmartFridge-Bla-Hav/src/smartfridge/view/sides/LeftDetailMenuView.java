@@ -7,6 +7,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import smartfridge.controller.LeftDetailMenuController;
+
 public class LeftDetailMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
@@ -48,6 +50,8 @@ public class LeftDetailMenuView extends LeftSide {
 		deleteReturnPanel.add(deleteButton);
 		deleteReturnPanel.add(returnButton);
 
+		LeftDetailMenuController controler = new LeftDetailMenuController();
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(iconePanel);
 		this.add(nomLabel);

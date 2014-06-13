@@ -9,6 +9,8 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 
+import smartfridge.controller.RightAddMenuController;
+import smartfridge.controller.RightProductMenuController;
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.fridge.Fridge;
 import smartfridge.fridge.FridgeManager;
@@ -69,6 +71,11 @@ public class RightProductMenuView extends RightSide {
 		productList.setTransferHandler(new ListItemTransferHandler());
 		productList.setDropMode(DropMode.INSERT);
 		productList.setDragEnabled(true);
+		
+		RightProductMenuController controler = new RightProductMenuController();
+		
+
+		
 		this.setLayout(new BorderLayout());
 
 		this.add(scroll);
