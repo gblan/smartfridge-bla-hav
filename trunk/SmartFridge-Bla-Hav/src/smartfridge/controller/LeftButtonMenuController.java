@@ -10,23 +10,8 @@ public class LeftButtonMenuController{
 		// TODO Auto-generated method stub
 		return null;
 	}
-		
-	public ActionListener getAddButtonActionListener() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	public ActionListener getRedoButtonActionListener() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public ActionListener getRemoveExpiredButtonActionListener() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	public ActionListener getCheckExpirationButtonActionListener() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -35,5 +20,4 @@ public class LeftButtonMenuController{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

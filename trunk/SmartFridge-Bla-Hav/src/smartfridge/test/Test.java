@@ -1,9 +1,8 @@
 package smartfridge.test;
 
-import smartfridge.view.AddingMenu;
-import smartfridge.view.DetailMenu;
-import smartfridge.view.MainMenu;
-import smartfridge.view.PerishedView;
+import javax.swing.JFrame;
+
+import smartfridge.controller.SwitchViewControler;
 
 public class Test {
 
@@ -86,11 +85,15 @@ public class Test {
 //	}
 	
 	public static void main(String[] args) {
-		MainMenu m = new MainMenu();
+//		MainMenu m = new MainMenu();
 //		DetailMenu d = new DetailMenu();
 //		PerishedView p = new PerishedView();
 //		AddingMenu a = new AddingMenu();
-		
-	}
 
+		SwitchViewControler switchView = new SwitchViewControler();
+		switchView.buildCardLayout();
+
+	}
+	
 }
+		

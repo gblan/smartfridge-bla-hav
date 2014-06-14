@@ -13,20 +13,28 @@ import smartfridge.utils.SpringUtilities;
 import smartfridge.view.sides.LeftButtonMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
-public class MainMenu extends JFrame {
+public class MainMenu extends JPanel {
 
 	private static final long serialVersionUID = 1L;
+	private LeftButtonMenuView left;
+	private RightProductMenuView right;
+
+	public LeftButtonMenuView getLeftButtonMenuView() {
+		return left;
+	}
+
+	public RightProductMenuView getRightProductMenuView() {
+		return right;
+	}
 
 	public MainMenu() {
-		super("Smart Fridge");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		/* Ajout des 2 parties de la fenêtre */
 
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-		LeftButtonMenuView left = new LeftButtonMenuView();
+		left = new LeftButtonMenuView();
 		left.setLayout(new SpringLayout());
 		SpringUtilities.makeCompactGrid(left, 4, 1, 3, 3, 3, 3);
 
@@ -37,14 +45,11 @@ public class MainMenu extends JFrame {
 		mainPanel.add(separator);
 		mainPanel.add(Box.createRigidArea(new Dimension(30, 0)));
 
-		RightProductMenuView right = new RightProductMenuView();
+		right = new RightProductMenuView();
 		mainPanel.add(right);
 
 		this.add(mainPanel);
 
-		pack();
-
-		setLocationRelativeTo(null);
 		setVisible(true);
 	}
 }
