@@ -12,12 +12,16 @@ import smartfridge.controller.LeftPerishedMenuController;
 public class LeftPerishedMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JLabel perishedInLabel;
 	private JTextField perishedLabel;
 	private JLabel perished;
 	private JButton menuButton;
-	
+
+	public JButton getMenuButton() {
+		return menuButton;
+	}
+
 	public LeftPerishedMenuView() {
 		super();
 
@@ -25,12 +29,13 @@ public class LeftPerishedMenuView extends LeftSide {
 		perishedLabel = new JTextField("");
 
 		perished = new JLabel("days");
-		
+
 		menuButton = new JButton("RETURN");
-		
+
 		LeftPerishedMenuController controler = new LeftPerishedMenuController();
-		perishedLabel.addKeyListener(controler.getKeyListenerPerishedTextField());
-		
+		perishedLabel.addKeyListener(controler
+				.getKeyListenerPerishedTextField());
+
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(perishedInLabel);
 		this.add(perishedLabel);

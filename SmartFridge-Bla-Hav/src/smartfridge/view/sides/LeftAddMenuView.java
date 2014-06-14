@@ -21,8 +21,7 @@ public class LeftAddMenuView extends LeftSide {
 	private JRadioButton vegetables;
 	private JRadioButton fruits;
 	private JRadioButton eggs;
-	private JRadioButton others;
-	
+	private JRadioButton others;	
 	
 	public LeftAddMenuView(){
 		super();
@@ -36,10 +35,7 @@ public class LeftAddMenuView extends LeftSide {
 		fruits = new JRadioButton();
 		eggs = new JRadioButton();
 		others = new JRadioButton();
-		
-		
-		Icon defaultIcon = new ImageIcon("resources/drinks2.jpg");
-		drinks.setIcon(defaultIcon );
+
 		bg.add(drinks);
 		bg.add(meats);
 		bg.add(fish);
@@ -50,9 +46,11 @@ public class LeftAddMenuView extends LeftSide {
 		bg.add(others);
 		
 		LeftAddMenuController controler = new LeftAddMenuController();
-
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		
+		Icon image = new ImageIcon("resources/drinks.jpg");
+		drinks.setIcon(image );
 		this.add(drinks);
 		this.add(meats);
 		this.add(fish);

@@ -26,6 +26,10 @@ public class LeftDetailMenuView extends LeftSide {
 	private JPanel deleteReturnPanel;
 	private JButton deleteButton;
 	private JButton returnButton;
+	
+	public JButton getReturnButton() {
+		return returnButton;
+	}
 
 	public LeftDetailMenuView() {
 		super();
