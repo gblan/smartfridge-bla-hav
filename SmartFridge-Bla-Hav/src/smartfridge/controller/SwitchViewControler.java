@@ -55,18 +55,18 @@ public class SwitchViewControler{
 		frame.add(mainPanel, BorderLayout.CENTER);
 
 		// Display the frame
-		frame.setSize(new Dimension(400, 500));
+		frame.setSize(new Dimension(700, 500));
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
-		addListenerToPane(frame.getContentPane());
+		addListenerToPane();
 	}
 
 	public static void changePanel(String name) {
 		cardlayout.show(mainPanel, name);
 	}
 
-	public void addListenerToPane(Container pane) {
+	public void addListenerToPane() {
 		this.mainMenuView.getLeftButtonMenuView().getAddingButton()
 				.addActionListener(new ActionListener() {
 
