@@ -117,7 +117,7 @@ public class Main {
 		try {
 			line = console.readLine();
 			int nbDays = Integer.parseInt(line);
-			fm.showListPerishedProductIn(nbDays);
+			System.out.println(fm.showListPerishedProductIn(nbDays));
 		} catch (IOException e) {
 			line = "Reading error";
 			e.printStackTrace();

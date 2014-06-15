@@ -8,6 +8,7 @@ import javax.swing.SpringLayout;
 
 import smartfridge.controller.LeftAddMenuController;
 import smartfridge.controller.LeftButtonMenuController;
+import smartfridge.fridge.FridgeManager;
 
 public class LeftButtonMenuView extends LeftSide {
 
@@ -24,16 +25,12 @@ public class LeftButtonMenuView extends LeftSide {
 	private JButton checkButton;
 	private JTextField checkIn;
 
-	public JButton getAddingButton() {
-		return addingButton;
-	}
-	
-	public JButton getCheckButton() {
-		return checkButton;
-	}
+
+
 
 	public LeftButtonMenuView() {
 		super();
+		
 
 		panelUndoRedo = new JPanel();
 		undoButton = new JButton("UnDo");
@@ -54,13 +51,43 @@ public class LeftButtonMenuView extends LeftSide {
 		panelCheck.add(checkButton);
 		panelCheck.add(checkIn);
 
-		LeftButtonMenuController controler = new LeftButtonMenuController();
-		undoButton.addActionListener(controler.getUndoButtonActionListener());
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(panelUndoRedo);
 		this.add(addingButton);
 		this.add(removeButton);
 		this.add(panelCheck);
+	}
+
+	public JButton getUndoButton() {
+		return undoButton;
+	}
+
+	public void setUndoButton(JButton undoButton) {
+		this.undoButton = undoButton;
+	}
+	
+	public JButton getAddingButton() {
+		return addingButton;
+	}
+	
+	public JButton getCheckButton() {
+		return checkButton;
+	}
+
+	public JButton getRedoButton() {
+		return redoButton;
+	}
+
+	public void setRedoButton(JButton redoButton) {
+		this.redoButton = redoButton;
+	}
+
+	public JButton getRemoveButton() {
+		return removeButton;
+	}
+
+	public void setRemoveButton(JButton removeButton) {
+		this.removeButton = removeButton;
 	}
 }

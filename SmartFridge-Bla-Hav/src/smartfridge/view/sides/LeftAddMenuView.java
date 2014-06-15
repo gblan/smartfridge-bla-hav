@@ -2,11 +2,9 @@ package smartfridge.view.sides;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 
-import smartfridge.controller.LeftAddMenuController;
 
 
 public class LeftAddMenuView extends LeftSide {
@@ -27,13 +25,13 @@ public class LeftAddMenuView extends LeftSide {
 		super();
 		
 		bg = new ButtonGroup();
-		drinks = new JRadioButton();
-		meats = new JRadioButton();
-		fish = new JRadioButton();
-		diary = new JRadioButton();
-		vegetables = new JRadioButton();
-		fruits = new JRadioButton();
-		eggs = new JRadioButton();
+		drinks = new JRadioButton(new ImageIcon("resources/drinks.jpg"));
+		meats = new JRadioButton(new ImageIcon("resources/meats.jpg"));
+		fish = new JRadioButton(new ImageIcon("resources/fish.jpg"));
+		diary = new JRadioButton(new ImageIcon("resources/diary.jpg"));
+		vegetables = new JRadioButton(new ImageIcon("resources/vegetables.jpg"));
+		fruits = new JRadioButton(new ImageIcon("resources/fruits.jpg"));
+		eggs = new JRadioButton(new ImageIcon("resources/eggs.jpg"));
 		others = new JRadioButton();
 
 		bg.add(drinks);
@@ -45,20 +43,106 @@ public class LeftAddMenuView extends LeftSide {
 		bg.add(eggs);
 		bg.add(others);
 		
-		LeftAddMenuController controler = new LeftAddMenuController();
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		
-		Icon image = new ImageIcon("resources/drinks.jpg");
-		drinks.setIcon(image );
+		//Icon image = new ImageIcon("resources/drinks.jpg");
+		drinks.setText("Drinks");
 		this.add(drinks);
+		meats.setText("Meats");
 		this.add(meats);
+		fish.setText("Fish");
 		this.add(fish);
+		diary.setText("Diary");
 		this.add(diary);
+		vegetables.setText("Vegetables");
 		this.add(vegetables);
+		fruits.setText("Fruits");
 		this.add(fruits);
+		eggs.setText("Eggs");
 		this.add(eggs);
+		others.setText("Others");
 		this.add(others);
 		
+
+	}
+
+	public ButtonGroup getBg() {
+		return bg;
+	}
+
+	public void setBg(ButtonGroup bg) {
+		this.bg = bg;
+	}
+
+	public JRadioButton getDrinks() {
+		return drinks;
+	}
+
+	public void setDrinks(JRadioButton drinks) {
+		this.drinks = drinks;
+	}
+
+	public JRadioButton getMeats() {
+		return meats;
+	}
+
+	public void setMeats(JRadioButton meats) {
+		this.meats = meats;
+	}
+
+	public JRadioButton getFish() {
+		return fish;
+	}
+
+	public void setFish(JRadioButton fish) {
+		this.fish = fish;
+	}
+
+	public JRadioButton getDiary() {
+		return diary;
+	}
+
+	public void setDiary(JRadioButton diary) {
+		this.diary = diary;
+	}
+
+	public JRadioButton getVegetables() {
+		return vegetables;
+	}
+
+	public void setVegetables(JRadioButton vegetables) {
+		this.vegetables = vegetables;
+	}
+
+	public JRadioButton getFruits() {
+		return fruits;
+	}
+
+	public void setFruits(JRadioButton fruits) {
+		this.fruits = fruits;
+	}
+
+	public JRadioButton getEggs() {
+		return eggs;
+	}
+
+	public void setEggs(JRadioButton eggs) {
+		this.eggs = eggs;
+	}
+
+	public JRadioButton getOthers() {
+		return others;
+	}
+
+	public void setOthers(JRadioButton others) {
+		this.others = others;
+	}
+	
+	public JRadioButton getSelected(){
+		try{
+			return (JRadioButton) this.bg.getSelection();
+		}catch(Exception e){
+			return null;
+		}
 	}
 }

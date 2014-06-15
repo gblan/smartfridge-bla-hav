@@ -231,21 +231,27 @@ public class FridgeManager {
 		}
 	}
 
-	public void showListPerishedProductIn(int n) {
+	public String showListPerishedProductIn(int n) {
+		String string = "";
 		GregorianCalendar calendar = new java.util.GregorianCalendar();
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.add(Calendar.DATE, n - 1);
-		System.out.println("Perished product in : " + n + " days : ");
+		if(n > 0){
+			string = "Perished product in : " + n + " days : \n";
+		}
+		else{
+			string = "Perished product in the fridge today : \n";
+		}
 		for (ProductAbstract p : this.fridge.getFridgeContent()) {
 			if (p instanceof ProductPerishable) {
 				if (((ProductPerishable) p).getDatePerishment()
 						.getTimeInMillis() < calendar.getTimeInMillis()) {
 
-					System.out.println(p);
+					string += p +"\n";
 				}
 			}
-
 		}
+		return string;
 
 	}
 
@@ -337,6 +343,14 @@ public class FridgeManager {
 	}
 	public void clearRedoList(){
 		this.reDo.clear();
+	}
+	
+	public boolean undoIsEmpty(){
+		return this.unDo.isEmpty();
+	}
+	
+	public boolean redoIsEmpty(){
+		return this.reDo.isEmpty();
 	}
 	/*
 	public boolean emptyUndoList(){

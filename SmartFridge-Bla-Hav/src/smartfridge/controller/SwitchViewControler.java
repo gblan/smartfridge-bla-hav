@@ -2,15 +2,17 @@ package smartfridge.controller;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import smartfridge.enu.TypeProductEnum;
+import smartfridge.fridge.Fridge;
+import smartfridge.fridge.FridgeManager;
+import smartfridge.product.ProductUnPerishable;
 import smartfridge.view.AddingMenu;
 import smartfridge.view.DetailMenu;
 import smartfridge.view.MainMenu;
@@ -24,6 +26,10 @@ public class SwitchViewControler{
 	private PerishedView perishedMenuView;
 	private static CardLayout cardlayout;
 	private static JPanel mainPanel;
+	
+	private static FridgeManager fridge;
+	
+	
 
 	public static final String ADDVIEW = "ADDVIEW";
 	public static final String DETAILVIEW = "DETAILVIEW";
@@ -32,12 +38,15 @@ public class SwitchViewControler{
 
 	public SwitchViewControler() {
 		super();
-		this.addingMenuView = new AddingMenu();
+		Fridge f = new Fridge();
+		SwitchViewControler.fridge = new FridgeManager(f);
+		fridge.addProduct(new ProductUnPerishable(TypeProductEnum.DRINKS,"coca", 1));
+		this.addingMenuView = new AddingMenu(SwitchViewControler.fridge);
 		this.detailMenuView = new DetailMenu();
-		this.mainMenuView = new MainMenu();
+		this.mainMenuView = new MainMenu(SwitchViewControler.fridge);
 		this.perishedMenuView = new PerishedView();
 		cardlayout = new CardLayout();
-		this.mainPanel = new JPanel(cardlayout);
+		SwitchViewControler.mainPanel = new JPanel(cardlayout);
 
 	}
 
@@ -81,6 +90,7 @@ public class SwitchViewControler{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainMenuView.getRightProductMenuController().refreshData();
 				changePanel(PERISHEDVIEW);
 			}
 		});
@@ -90,6 +100,7 @@ public class SwitchViewControler{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainMenuView.getRightProductMenuController().refreshData();
 				changePanel(MAINVIEW);
 			}
 		});
@@ -99,6 +110,7 @@ public class SwitchViewControler{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainMenuView.getRightProductMenuController().refreshData();
 				changePanel(MAINVIEW);
 			}
 		});
@@ -108,9 +120,31 @@ public class SwitchViewControler{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				mainMenuView.getRightProductMenuController().refreshData();
 				changePanel(MAINVIEW);
 			}
 		});
+		
+		this.addingMenuView.getRightProductMenuView().getValidationButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(addingMenuView.getRightAddMenuController().validationIsOk()){
+					addingMenuView.getRightAddMenuController().addProduct();
+					mainMenuView.getRightProductMenuController().refreshData();
+					changePanel(MAINVIEW);
+					
+				}
+			}
+		});
+		
+			
 	}
+
+
+
+	
+	
 
 }

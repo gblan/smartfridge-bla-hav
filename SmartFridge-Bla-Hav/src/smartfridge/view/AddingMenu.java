@@ -3,44 +3,53 @@ package smartfridge.view;
 import java.awt.Dimension;
 
 import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 
+import smartfridge.controller.LeftAddMenuController;
+import smartfridge.controller.RightAddMenuController;
+import smartfridge.enu.TypeProductEnum;
+import smartfridge.fridge.FridgeManager;
 import smartfridge.utils.SpringUtilities;
 import smartfridge.view.sides.LeftAddMenuView;
-import smartfridge.view.sides.LeftButtonMenuView;
 import smartfridge.view.sides.RightAddMenuView;
-import smartfridge.view.sides.RightProductMenuView;
 
 public class AddingMenu extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private LeftAddMenuView left;
-	private RightAddMenuView right;
+	private LeftAddMenuController left;
+	private RightAddMenuController right;
+	
+	private TypeProductEnum type;
+	
+	protected FridgeManager fridge;
 
 	public LeftAddMenuView getLeftButtonMenuView() {
-		return left;
+		return left.getView();
 	}
 
 	public RightAddMenuView getRightProductMenuView() {
-		return right;
+		return right.getView();
 	}
 	
-	public AddingMenu(){
+	public RightAddMenuController getRightAddMenuController(){
+		return this.right;
+	}
+	
+	public AddingMenu(FridgeManager fridge){
 
 		/* Ajout des 2 parties de la fenêtre */
 
+		this.fridge = fridge;
 		JPanel mainPanel = new JPanel();
 //		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-		left = new LeftAddMenuView();
+		left = new LeftAddMenuController(fridge);
 //		left.setLayout(new SpringLayout());
 //		SpringUtilities.makeCompactGrid(left, 8, 1, 3, 3, 3, 3);
 
-		mainPanel.add(left);
+		mainPanel.add(left.getView());
 		
 		mainPanel.add(Box.createRigidArea(new Dimension(30	, 0)));
 		JSeparator separator = new JSeparator(JSeparator.VERTICAL);		
@@ -48,14 +57,22 @@ public class AddingMenu extends JPanel{
 		mainPanel.add(Box.createRigidArea(new Dimension(30, 0)));
 
 
-		right = new RightAddMenuView();
+		right = new RightAddMenuController(fridge);
 		
-		right.setLayout(new SpringLayout());
-		SpringUtilities.makeCompactGrid(right, 5, 1, 3, 3, 3, 3);
-		mainPanel.add(right);
+		right.getView().setLayout(new SpringLayout());
+		SpringUtilities.makeCompactGrid(right.getView(), 5, 1, 3, 3, 3, 3);
+		mainPanel.add(right.getView());
 
 		this.add(mainPanel);
 
 		setVisible(true);
+	}
+
+	public TypeProductEnum getType() {
+		return type;
+	}
+
+	public void setType(TypeProductEnum type) {
+		this.type = type;
 	}
 }
