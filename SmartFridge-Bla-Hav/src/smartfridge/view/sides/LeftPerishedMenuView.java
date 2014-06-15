@@ -32,9 +32,7 @@ public class LeftPerishedMenuView extends LeftSide {
 
 		menuButton = new JButton("RETURN");
 
-		LeftPerishedMenuController controler = new LeftPerishedMenuController();
-		perishedLabel.addKeyListener(controler
-				.getKeyListenerPerishedTextField());
+
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(perishedInLabel);
@@ -42,5 +40,13 @@ public class LeftPerishedMenuView extends LeftSide {
 		this.add(perished);
 		this.add(menuButton);
 
+	}
+
+	public JTextField getPerishedLabel() {
+		return perishedLabel;
+	}
+
+	public void setPerishedLabel(JTextField perishedLabel) {
+		this.perishedLabel = perishedLabel;
 	}
 }

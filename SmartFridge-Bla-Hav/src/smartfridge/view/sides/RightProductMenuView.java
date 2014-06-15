@@ -39,7 +39,7 @@ public class RightProductMenuView extends RightSide {
 		productList.setDropMode(DropMode.INSERT);
 		productList.setDragEnabled(true);
 		
-		
+		scroll.setSize(100, 100);
 
 		
 		this.setLayout(new BorderLayout());
@@ -47,6 +47,32 @@ public class RightProductMenuView extends RightSide {
 		this.add(scroll);
 	}
 
+	public RightProductMenuView(int i) {
+		super();
+
+		if(i < 0){
+			i = 0;
+		}
+
+		productList = new JList<ProductAbstract>();
+		productList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		productList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+		productList.setVisibleRowCount(-1);
+
+		JScrollPane scroll = new JScrollPane(productList,
+				JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		ListCellRenderer renderer = new FridgeProductRenderer();
+		productList.setCellRenderer(renderer);
+		productList.setTransferHandler(new ListItemTransferHandler());
+		productList.setDropMode(DropMode.INSERT);
+		productList.setDragEnabled(true);
+
+		
+		this.setLayout(new BorderLayout());
+
+		this.add(scroll);
+	}
 	public JList<ProductAbstract> getProductList() {
 		return productList;
 	}

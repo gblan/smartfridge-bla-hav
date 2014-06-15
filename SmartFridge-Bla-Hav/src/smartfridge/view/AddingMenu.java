@@ -21,7 +21,6 @@ public class AddingMenu extends JPanel{
 	private LeftAddMenuController left;
 	private RightAddMenuController right;
 	
-	private TypeProductEnum type;
 	
 	protected FridgeManager fridge;
 
@@ -68,11 +67,4 @@ public class AddingMenu extends JPanel{
 		setVisible(true);
 	}
 
-	public TypeProductEnum getType() {
-		return type;
-	}
-
-	public void setType(TypeProductEnum type) {
-		this.type = type;
-	}
 }

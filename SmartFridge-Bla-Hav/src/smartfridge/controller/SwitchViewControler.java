@@ -44,7 +44,7 @@ public class SwitchViewControler{
 		this.addingMenuView = new AddingMenu(SwitchViewControler.fridge);
 		this.detailMenuView = new DetailMenu();
 		this.mainMenuView = new MainMenu(SwitchViewControler.fridge);
-		this.perishedMenuView = new PerishedView();
+		this.perishedMenuView = new PerishedView(fridge);
 		cardlayout = new CardLayout();
 		SwitchViewControler.mainPanel = new JPanel(cardlayout);
 
@@ -90,7 +90,14 @@ public class SwitchViewControler{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				mainMenuView.getRightProductMenuController().refreshData();
+				
+				if(mainMenuView.getLeftButtonMenuView().getCheckIn().getText().matches("\\d+")){
+					perishedMenuView.getRightControl().refreshDataPerished(Integer.parseInt(mainMenuView.getLeftButtonMenuView().getCheckIn().getText()));
+					perishedMenuView.getLeftControl().refreshText(mainMenuView.getLeftButtonMenuView().getCheckIn().getText());
+				}
+				else{
+					perishedMenuView.getRightControl().refreshDataPerished(0);
+				}
 				changePanel(PERISHEDVIEW);
 			}
 		});
@@ -138,7 +145,8 @@ public class SwitchViewControler{
 				}
 			}
 		});
-		
+	
+
 			
 	}
 
