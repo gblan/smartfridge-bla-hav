@@ -8,8 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import smartfridge.controller.LeftPerishedMenuController;
-import smartfridge.controller.RightAddMenuController;
 
 import com.toedter.calendar.JDateChooser;
 
@@ -61,7 +59,7 @@ public class RightAddMenuView extends RightSide {
 		quantityPanel = new JPanel();
 		quantityPanel.setLayout(new BoxLayout(quantityPanel, BoxLayout.X_AXIS));
 		quantityLabel = new JLabel("QUANTITY : ");
-		quantityTextField = new JTextField();
+		quantityTextField = new JTextField("1");
 		quantityPanel.add(quantityLabel);
 		quantityPanel.add(quantityTextField);
 
@@ -83,7 +81,6 @@ public class RightAddMenuView extends RightSide {
 		validationPanel.add(validationButton);
 		validationPanel.add(returnButton);
 
-		RightAddMenuController controler = new RightAddMenuController();
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(instructionPanel);
@@ -92,6 +89,38 @@ public class RightAddMenuView extends RightSide {
 		this.add(expirationDatePanel);
 		this.add(validationPanel);
 
+	}
+
+	public JTextField getQuantityTextField() {
+		return quantityTextField;
+	}
+
+	public void setQuantityTextField(JTextField quantityTextField) {
+		this.quantityTextField = quantityTextField;
+	}
+
+	public JButton getValidationButton() {
+		return validationButton;
+	}
+
+	public void setValidationButton(JButton validationButton) {
+		this.validationButton = validationButton;
+	}
+
+	public JTextField getNameTextField() {
+		return nameTextField;
+	}
+
+	public void setNameTextField(JTextField nameTextField) {
+		this.nameTextField = nameTextField;
+	}
+
+	public JDateChooser getDateSelection() {
+		return dateSelection;
+	}
+
+	public void setDateSelection(JDateChooser dateSelection) {
+		this.dateSelection = dateSelection;
 	}
 
 }
