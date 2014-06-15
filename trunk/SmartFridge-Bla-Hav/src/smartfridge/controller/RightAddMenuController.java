@@ -2,10 +2,12 @@ package smartfridge.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.swing.JOptionPane;
 
+import smartfridge.enu.TypeActionEnum;
 import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
@@ -58,13 +60,19 @@ public class RightAddMenuController extends AddingMenuController{
 	
 	public void addProduct(){
 		if(view.getDateSelection().getDate() == null){
-			fridge.addProduct(new ProductUnPerishable(AddingMenuController.TYPE, view.getNameTextField().getText(), Integer.parseInt(view.getQuantityTextField().getText())));
+			fridge.executeAction(TypeActionEnum.ADD,
+					new ProductUnPerishable(AddingMenuController.TYPE, view.getNameTextField().getText(), Integer.parseInt(view.getQuantityTextField().getText())),
+					Integer.parseInt(view.getQuantityTextField().getText()));
 			
 		}
 		else{
 			GregorianCalendar calendar = new GregorianCalendar();
 			calendar.setTime(view.getDateSelection().getDate());
-			fridge.addProduct(new ProductPerishable(AddingMenuController.TYPE, view.getNameTextField().getText(), Integer.parseInt(view.getQuantityTextField().getText()), calendar));
+			calendar.add(Calendar.MONTH,1);
+			fridge.executeAction(TypeActionEnum.ADD,
+					new ProductPerishable(AddingMenuController.TYPE, view.getNameTextField().getText(), Integer.parseInt(view.getQuantityTextField().getText()),calendar)
+					, Integer.parseInt(view.getQuantityTextField().getText()));
+
 
 		}
 		

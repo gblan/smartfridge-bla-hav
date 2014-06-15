@@ -64,4 +64,40 @@ public class LeftDetailMenuView extends LeftSide {
 		this.add(deleteReturnPanel);
 	}
 
+	public JButton getDecreaseQuantityButton() {
+		return decreaseQuantityButton;
+	}
+
+	public void setDecreaseQuantityButton(JButton decreaseQuantityButton) {
+		this.decreaseQuantityButton = decreaseQuantityButton;
+	}
+
+	public JTextField getActualQUantity() {
+		return actualQUantity;
+	}
+
+	public void setActualQUantity(JTextField actualQUantity) {
+		this.actualQUantity = actualQUantity;
+	}
+
+	public JButton getIncreaseQuantityButton() {
+		return increaseQuantityButton;
+	}
+
+	public void setIncreaseQuantityButton(JButton increaseQuantityButton) {
+		this.increaseQuantityButton = increaseQuantityButton;
+	}
+
+	public JButton getDeleteButton() {
+		return deleteButton;
+	}
+
+	public void setDeleteButton(JButton deleteButton) {
+		this.deleteButton = deleteButton;
+	}
+
+	public void setReturnButton(JButton returnButton) {
+		this.returnButton = returnButton;
+	}
+
 }

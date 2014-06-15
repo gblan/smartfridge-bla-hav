@@ -90,4 +90,12 @@ public class LeftButtonMenuView extends LeftSide {
 	public void setRemoveButton(JButton removeButton) {
 		this.removeButton = removeButton;
 	}
+
+	public JTextField getCheckIn() {
+		return checkIn;
+	}
+
+	public void setCheckIn(JTextField checkIn) {
+		this.checkIn = checkIn;
+	}
 }
