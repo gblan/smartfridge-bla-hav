@@ -5,20 +5,21 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import smartfridge.enu.TypeProductEnum;
 import smartfridge.fridge.Fridge;
 import smartfridge.fridge.FridgeManager;
-import smartfridge.product.ProductUnPerishable;
+import smartfridge.utils.FridgeUtils;
 import smartfridge.view.AddingMenu;
 import smartfridge.view.DetailMenu;
 import smartfridge.view.MainMenu;
 import smartfridge.view.PerishedView;
 
-public class SwitchViewControler{
+public class SwitchViewControler {
 
 	private AddingMenu addingMenuView;
 	private DetailMenu detailMenuView;
@@ -26,10 +27,8 @@ public class SwitchViewControler{
 	private PerishedView perishedMenuView;
 	private static CardLayout cardlayout;
 	private static JPanel mainPanel;
-	
-	private static FridgeManager fridge;
-	
-	
+
+	private static FridgeManager fridgeManager;
 
 	public static final String ADDVIEW = "ADDVIEW";
 	public static final String DETAILVIEW = "DETAILVIEW";
@@ -39,12 +38,14 @@ public class SwitchViewControler{
 	public SwitchViewControler() {
 		super();
 		Fridge f = new Fridge();
-		SwitchViewControler.fridge = new FridgeManager(f);
-		fridge.addProduct(new ProductUnPerishable(TypeProductEnum.DRINKS,"coca", 1));
-		this.addingMenuView = new AddingMenu(SwitchViewControler.fridge);
+		SwitchViewControler.fridgeManager = new FridgeManager(f);
+
+		fridgeManager.setFridge(FridgeUtils.loadFridge());
+
+		this.addingMenuView = new AddingMenu(SwitchViewControler.fridgeManager);
 		this.detailMenuView = new DetailMenu();
-		this.mainMenuView = new MainMenu(SwitchViewControler.fridge);
-		this.perishedMenuView = new PerishedView(fridge);
+		this.mainMenuView = new MainMenu(SwitchViewControler.fridgeManager);
+		this.perishedMenuView = new PerishedView(fridgeManager);
 		cardlayout = new CardLayout();
 		SwitchViewControler.mainPanel = new JPanel(cardlayout);
 
@@ -52,7 +53,14 @@ public class SwitchViewControler{
 
 	public void buildCardLayout() {
 		final JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				FridgeUtils.saveFridge(fridgeManager.getFridge());
+				frame.dispose();
+			}
+		});
 
 		// Build the panels
 		mainPanel.add(MAINVIEW, mainMenuView);
@@ -84,75 +92,82 @@ public class SwitchViewControler{
 						changePanel(ADDVIEW);
 					}
 				});
-		
+
 		this.mainMenuView.getLeftButtonMenuView().getCheckButton()
-		.addActionListener(new ActionListener() {
+				.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				
-				if(mainMenuView.getLeftButtonMenuView().getCheckIn().getText().matches("\\d+")){
-					perishedMenuView.getRightControl().refreshDataPerished(Integer.parseInt(mainMenuView.getLeftButtonMenuView().getCheckIn().getText()));
-					perishedMenuView.getLeftControl().refreshText(mainMenuView.getLeftButtonMenuView().getCheckIn().getText());
-				}
-				else{
-					perishedMenuView.getRightControl().refreshDataPerished(0);
-				}
-				changePanel(PERISHEDVIEW);
-			}
-		});
-		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+
+						if (mainMenuView.getLeftButtonMenuView().getCheckIn()
+								.getText().matches("\\d+")) {
+							perishedMenuView.getRightControl()
+									.refreshDataPerished(
+											Integer.parseInt(mainMenuView
+													.getLeftButtonMenuView()
+													.getCheckIn().getText()));
+							perishedMenuView.getLeftControl().refreshText(
+									mainMenuView.getLeftButtonMenuView()
+											.getCheckIn().getText());
+						} else {
+							perishedMenuView.getRightControl()
+									.refreshDataPerished(0);
+						}
+						changePanel(PERISHEDVIEW);
+					}
+				});
+
 		this.addingMenuView.getRightProductMenuView().getReturnButton()
-		.addActionListener(new ActionListener() {
+				.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainMenuView.getRightProductMenuController().refreshData();
-				changePanel(MAINVIEW);
-			}
-		});
-		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						mainMenuView.getRightProductMenuController()
+								.refreshData();
+						changePanel(MAINVIEW);
+					}
+				});
+
 		this.perishedMenuView.getLeftButtonMenuView().getMenuButton()
-		.addActionListener(new ActionListener() {
+				.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainMenuView.getRightProductMenuController().refreshData();
-				changePanel(MAINVIEW);
-			}
-		});
-		
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						mainMenuView.getRightProductMenuController()
+								.refreshData();
+						changePanel(MAINVIEW);
+					}
+				});
+
 		this.detailMenuView.getLeftButtonMenuView().getReturnButton()
-		.addActionListener(new ActionListener() {
+				.addActionListener(new ActionListener() {
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				mainMenuView.getRightProductMenuController().refreshData();
-				changePanel(MAINVIEW);
-			}
-		});
-		
-		this.addingMenuView.getRightProductMenuView().getValidationButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if(addingMenuView.getRightAddMenuController().validationIsOk()){
-					addingMenuView.getRightAddMenuController().addProduct();
-					mainMenuView.getRightProductMenuController().refreshData();
-					changePanel(MAINVIEW);
-					
-				}
-			}
-		});
-	
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						mainMenuView.getRightProductMenuController()
+								.refreshData();
+						changePanel(MAINVIEW);
+					}
+				});
 
-			
+		this.addingMenuView.getRightProductMenuView().getValidationButton()
+				.addActionListener(new ActionListener() {
+
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						if (addingMenuView.getRightAddMenuController()
+								.validationIsOk()) {
+							addingMenuView.getRightAddMenuController()
+									.addProduct();
+							mainMenuView.getRightProductMenuController()
+									.refreshData();
+							changePanel(MAINVIEW);
+
+						}
+					}
+				});
+
 	}
-
-
-
-	
-	
 
 }
