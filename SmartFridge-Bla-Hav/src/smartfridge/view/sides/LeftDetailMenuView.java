@@ -5,15 +5,14 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
 
-import smartfridge.controller.LeftDetailMenuController;
 
 public class LeftDetailMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
 	
 	private JPanel iconePanel;
+	private JLabel image;
 
 	private JLabel nomLabel;
 	private JLabel expirationDateLabel;
@@ -35,6 +34,8 @@ public class LeftDetailMenuView extends LeftSide {
 		super();
 
 		iconePanel = new JPanel();
+		image = new JLabel();
+		iconePanel.add(image);
 		nomLabel = new JLabel("ProductName");
 		expirationDateLabel = new JLabel("EXPIRATION DATE");
 
@@ -53,8 +54,6 @@ public class LeftDetailMenuView extends LeftSide {
 		returnButton = new JButton("RETURN");
 		deleteReturnPanel.add(deleteButton);
 		deleteReturnPanel.add(returnButton);
-
-		LeftDetailMenuController controler = new LeftDetailMenuController();
 		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(iconePanel);
@@ -98,6 +97,46 @@ public class LeftDetailMenuView extends LeftSide {
 
 	public void setReturnButton(JButton returnButton) {
 		this.returnButton = returnButton;
+	}
+
+	public JPanel getIconePanel() {
+		return iconePanel;
+	}
+
+	public void setIconePanel(JPanel iconePanel) {
+		this.iconePanel = iconePanel;
+	}
+
+	public JLabel getImage() {
+		return image;
+	}
+
+	public void setImage(JLabel image) {
+		this.image = image;
+	}
+
+	public JLabel getNomLabel() {
+		return nomLabel;
+	}
+
+	public void setNomLabel(JLabel nomLabel) {
+		this.nomLabel = nomLabel;
+	}
+
+	public JLabel getExpirationDateLabel() {
+		return expirationDateLabel;
+	}
+
+	public void setExpirationDateLabel(JLabel expirationDateLabel) {
+		this.expirationDateLabel = expirationDateLabel;
+	}
+
+	public JPanel getPanelQuantity() {
+		return panelQuantity;
+	}
+
+	public void setPanelQuantity(JPanel panelQuantity) {
+		this.panelQuantity = panelQuantity;
 	}
 
 }

@@ -41,7 +41,7 @@ public class RightAddMenuController extends AddingMenuController{
 					string += "Write a name for your add \n";
 				}
 				if(!verifQuantity()){
-					string += "Write a number in for quantity";
+					string += "Write a number in for quantity \n";
 				}
 				if(!verifType()){
 						string += "Choose a type at the left of the window";

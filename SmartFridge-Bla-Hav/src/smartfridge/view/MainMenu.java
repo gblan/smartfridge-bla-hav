@@ -49,8 +49,8 @@ public class MainMenu extends JPanel {
 		
 		
 		//left = new LeftButtonMenuView();
-		menu.getLeftControl().getView().setLayout(new SpringLayout());
-		SpringUtilities.makeCompactGrid(this.menu.getLeftControl().getView(), 4, 1, 3, 3, 3, 3);
+		//menu.getLeftControl().getView().setLayout(new SpringLayout());
+//		SpringUtilities.makeCompactGrid(this.menu.getLeftControl().getView(), 4, 1, 3, 3, 3, 3);
 
 		mainPanel.add(this.menu.getLeftControl().getView());
 

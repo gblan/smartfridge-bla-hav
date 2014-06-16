@@ -5,14 +5,12 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
 
-import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 import smartfridge.product.ProductAbstract;
 

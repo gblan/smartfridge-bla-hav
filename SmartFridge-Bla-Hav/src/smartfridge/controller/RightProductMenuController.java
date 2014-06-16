@@ -65,6 +65,10 @@ public class RightProductMenuController {
 		return list;
 	}
 	
+	public ProductAbstract getSelectedProduct(){
+		return this.view.getProductList().getSelectedValue();
+	}
+	
 	public void refreshDataPerished(int i){
 		this.view.getProductList().setListData(listProductPerished(i));
 	}
