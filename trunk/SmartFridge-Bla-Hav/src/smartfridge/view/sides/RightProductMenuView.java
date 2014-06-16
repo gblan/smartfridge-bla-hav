@@ -40,7 +40,6 @@ public class RightProductMenuView extends RightSide {
 		productList.setDragEnabled(true);
 		
 		scroll.setSize(100, 100);
-
 		
 		this.setLayout(new BorderLayout());
 

@@ -4,51 +4,58 @@ import java.awt.Dimension;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.SpringLayout;
 
-import smartfridge.utils.SpringUtilities;
-import smartfridge.view.sides.LeftAddMenuView;
+import smartfridge.controller.LeftDetailMenuController;
+import smartfridge.controller.RightProductMenuController;
+import smartfridge.fridge.FridgeManager;
 import smartfridge.view.sides.LeftDetailMenuView;
-import smartfridge.view.sides.RightAddMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
 public class DetailMenu extends JPanel{
 
 	private static final long serialVersionUID = 1L;
-	private LeftDetailMenuView left;
-	private RightProductMenuView right;
+	private LeftDetailMenuController leftcontrol;
+	private RightProductMenuController rightcontrol;
 
-	public LeftDetailMenuView getLeftButtonMenuView() {
-		return left;
+	
+	
+	public RightProductMenuController getRightProductMenuController(){
+		return rightcontrol;
+	}
+	public LeftDetailMenuController getLeftDetailMenuController(){
+		return leftcontrol;
+	}
+	public LeftDetailMenuView getLeftDetailMenuView() {
+		return leftcontrol.getView();
 	}
 
 	public RightProductMenuView getRightProductMenuView() {
-		return right;
+		return rightcontrol.getView();
 	}
 	
-	public DetailMenu(){
+	public DetailMenu(FridgeManager fridge){
 
 		/* Ajout des 2 parties de la fenêtre */
 
+		
+		leftcontrol = new LeftDetailMenuController();
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-		left = new LeftDetailMenuView();
-		left.setLayout(new SpringLayout());
-		SpringUtilities.makeCompactGrid(left, 5, 1, 2, 2, 2, 2);
+		//leftcontrol.getView().setLayout(new SpringLayout());
+		//SpringUtilities.makeCompactGrid(leftcontrol.getView(), 5, 1, 2, 2, 2, 2);
 		
-		mainPanel.add(left);
+		mainPanel.add(leftcontrol.getView());
 
 		mainPanel.add(Box.createRigidArea(new Dimension(30	, 0)));
 		JSeparator separator = new JSeparator(JSeparator.VERTICAL);		
 		mainPanel.add(separator);
 		mainPanel.add(Box.createRigidArea(new Dimension(30, 0)));
 
-		right = new RightProductMenuView();
-		mainPanel.add(right);
+		rightcontrol = new RightProductMenuController(fridge);
+		mainPanel.add(rightcontrol.getView());
 
 		this.add(mainPanel);
 

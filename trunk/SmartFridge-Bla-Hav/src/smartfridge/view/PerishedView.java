@@ -49,8 +49,8 @@ public class PerishedView extends JPanel {
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-		leftControl.getView().setLayout(new SpringLayout());
-		SpringUtilities.makeCompactGrid(leftControl.getView(), 4, 1, 3, 3, 3, 3);
+//		leftControl.getView().setLayout(new SpringLayout());
+//		SpringUtilities.makeCompactGrid(leftControl.getView(), 4, 1, 3, 3, 3, 3);
 		
 		mainPanel.add(leftControl.getView());
 

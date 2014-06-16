@@ -14,7 +14,7 @@ public class LeftPerishedMenuView extends LeftSide {
 	private static final long serialVersionUID = 1L;
 
 	private JLabel perishedInLabel;
-	private JTextField perishedLabel;
+	private JLabel perishedLabel;
 	private JLabel perished;
 	private JButton menuButton;
 
@@ -26,7 +26,7 @@ public class LeftPerishedMenuView extends LeftSide {
 		super();
 
 		perishedInLabel = new JLabel("PRODUCT PERISHED IN");
-		perishedLabel = new JTextField("");
+		perishedLabel = new JLabel();
 
 		perished = new JLabel("days");
 
@@ -42,11 +42,11 @@ public class LeftPerishedMenuView extends LeftSide {
 
 	}
 
-	public JTextField getPerishedLabel() {
+	public JLabel getPerishedLabel() {
 		return perishedLabel;
 	}
 
-	public void setPerishedLabel(JTextField perishedLabel) {
+	public void setPerishedLabel(JLabel perishedLabel) {
 		this.perishedLabel = perishedLabel;
 	}
 }
