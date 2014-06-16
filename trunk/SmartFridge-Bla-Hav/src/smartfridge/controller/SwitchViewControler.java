@@ -17,6 +17,7 @@ import smartfridge.enu.TypeProductEnum;
 import smartfridge.fridge.Fridge;
 import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductUnPerishable;
+import smartfridge.utils.FridgeUtils;
 import smartfridge.view.AddingMenu;
 import smartfridge.view.DetailMenu;
 import smartfridge.view.MainMenu;
@@ -31,7 +32,7 @@ public class SwitchViewControler{
 	private static CardLayout cardlayout;
 	private static JPanel mainPanel;
 	
-	private static FridgeManager fridge;
+	private static FridgeManager fridgeManager;
 	
 	
 
@@ -43,12 +44,14 @@ public class SwitchViewControler{
 	public SwitchViewControler() {
 		super();
 		Fridge f = new Fridge();
-		SwitchViewControler.fridge = new FridgeManager(f);
-		fridge.addProduct(new ProductUnPerishable(TypeProductEnum.DRINKS,"coca", 1));
-		this.addingMenuView = new AddingMenu(SwitchViewControler.fridge);
-		this.detailMenuView = new DetailMenu(fridge);
-		this.mainMenuView = new MainMenu(SwitchViewControler.fridge);
-		this.perishedMenuView = new PerishedView(fridge);
+		SwitchViewControler.fridgeManager = new FridgeManager(f);
+		/* Chargement du frigo */
+		fridgeManager.setFridge(FridgeUtils.loadFridge());
+
+		this.addingMenuView = new AddingMenu(SwitchViewControler.fridgeManager);
+		this.detailMenuView = new DetailMenu(fridgeManager);
+		this.mainMenuView = new MainMenu(SwitchViewControler.fridgeManager);
+		this.perishedMenuView = new PerishedView(fridgeManager);
 		cardlayout = new CardLayout();
 		SwitchViewControler.mainPanel = new JPanel(cardlayout);
 
@@ -56,8 +59,15 @@ public class SwitchViewControler{
 
 	public void buildCardLayout() {
 		final JFrame frame = new JFrame("SmartFridge");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		
+		/* sauvegarde du frigo à la fermeture */
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				FridgeUtils.saveFridge(fridgeManager.getFridge());
+				frame.dispose();
+			}
+		});
 		// Build the panels
 		mainPanel.add(MAINVIEW, mainMenuView);
 		mainPanel.add(ADDVIEW, addingMenuView);
