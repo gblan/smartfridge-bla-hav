@@ -3,6 +3,7 @@ package smartfridge.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import smartfridge.fridge.FridgeManager;
@@ -22,6 +23,7 @@ public class MenuController {
 		this.leftControl.getView().getUndoButton().addActionListener(buttonUndoListener);
 		this.leftControl.getView().getRedoButton().addActionListener(buttonRedoListener);
 		this.leftControl.getView().getRemoveButton().addActionListener(buttonRemoveListener);
+		this.leftControl.getView().getSortBy().addActionListener(sortByListener);
 	}
 	
 	private ActionListener buttonUndoListener = new ActionListener() {
@@ -40,6 +42,41 @@ public class MenuController {
 		}
 	};
 	
+	private ActionListener sortByListener = new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JComboBox<String> cb = (JComboBox)e.getSource();
+			String string = (String)cb.getSelectedItem();
+			
+			switch(string){
+			
+			case "AddingDate":
+				fridge.sortProductByAddingDate();
+				rightControl.refreshData();
+				break;
+			case "PerishmentDate" :
+				fridge.sortProductByPerishmentDate();
+				rightControl.refreshData();
+				break;
+			case "Type" :
+				fridge.sortProductByType();
+				rightControl.refreshData();
+				break;
+			case "Quantity" :
+				fridge.sortProductByQuantity(true);
+				rightControl.refreshData();
+				break;
+				
+			default :
+				rightControl.refreshData();
+				break;
+					
+			}
+			
+			
+		}
+	};
 	private ActionListener buttonRedoListener = new ActionListener() {
 		
 		@Override

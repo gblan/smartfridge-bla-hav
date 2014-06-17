@@ -1,14 +1,15 @@
 package smartfridge.view.sides;
 
+import java.awt.Dimension;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SpringLayout;
-
-import smartfridge.controller.LeftAddMenuController;
-import smartfridge.controller.LeftButtonMenuController;
-import smartfridge.fridge.FridgeManager;
+import javax.swing.SwingConstants;
 
 public class LeftButtonMenuView extends LeftSide {
 
@@ -20,6 +21,8 @@ public class LeftButtonMenuView extends LeftSide {
 
 	private JButton addingButton;
 	private JButton removeButton;
+	private JComboBox<String> sortBy;
+	
 
 	private JPanel panelCheck;
 	private JButton checkButton;
@@ -31,17 +34,20 @@ public class LeftButtonMenuView extends LeftSide {
 	public LeftButtonMenuView() {
 		super();
 		
-
+		
 		panelUndoRedo = new JPanel();
 		undoButton = new JButton("UnDo");
 		redoButton = new JButton("ReDo");
 
-		addingButton = new JButton("Add");
+		addingButton = new JButton(new ImageIcon("resources/buttonADD.png"));
 		removeButton = new JButton("Remove");
 
 		panelCheck = new JPanel();
+		panelCheck.setPreferredSize(new Dimension(85,50));
 		checkButton = new JButton("Check");
+		checkButton.setPreferredSize(new Dimension(75,50));
 		checkIn = new JTextField();
+		checkIn.setPreferredSize(new Dimension(10,50));
 
 		panelUndoRedo.setLayout(new BoxLayout(panelUndoRedo, BoxLayout.X_AXIS));
 		panelUndoRedo.add(undoButton);
@@ -51,11 +57,22 @@ public class LeftButtonMenuView extends LeftSide {
 		panelCheck.add(checkButton);
 		panelCheck.add(checkIn);
 
+		
+		String[] string = {"AddingDate","PerishmentDate","Type","Quantity"};
+		sortBy = new JComboBox<>(string);
+		sortBy.setSelectedIndex(0);
+
+		
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(panelUndoRedo);
+		this.add(Box.createRigidArea(new Dimension(0,20)));
 		this.add(addingButton);
+		this.add(Box.createRigidArea(new Dimension(0,20)));
 		this.add(removeButton);
+		this.add(Box.createRigidArea(new Dimension(0,20)));
+		this.add(sortBy);
+		this.add(Box.createRigidArea(new Dimension(0,20)));
 		this.add(panelCheck);
 	}
 
@@ -97,5 +114,13 @@ public class LeftButtonMenuView extends LeftSide {
 
 	public void setCheckIn(JTextField checkIn) {
 		this.checkIn = checkIn;
+	}
+
+	public JComboBox<String> getSortBy() {
+		return sortBy;
+	}
+
+	public void setSortBy(JComboBox<String> sortBy) {
+		this.sortBy = sortBy;
 	}
 }

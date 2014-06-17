@@ -1,13 +1,24 @@
 package smartfridge.view.sides;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.Rectangle;
 import java.util.GregorianCalendar;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
 import javax.swing.DropMode;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.product.ProductAbstract;
@@ -24,7 +35,9 @@ public class RightProductMenuView extends RightSide {
 	public RightProductMenuView() {
 		super();
 
+		
 
+		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		productList = new JList<ProductAbstract>();
 		productList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		productList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -39,11 +52,16 @@ public class RightProductMenuView extends RightSide {
 		productList.setDropMode(DropMode.INSERT);
 		productList.setDragEnabled(true);
 		
-		scroll.setSize(100, 100);
-		
+		scroll.setPreferredSize(new Dimension(200,300));
+	
 		this.setLayout(new BorderLayout());
 
 		this.add(scroll);
+		
+		
+		//JLabel trash = new JLabel(new ImageIcon("resources/corbeille.png"));
+		////this.add(Box.createRigidArea(new Dimension(0,300)));
+		//this.add(trash);
 	}
 
 	public RightProductMenuView(int i) {
