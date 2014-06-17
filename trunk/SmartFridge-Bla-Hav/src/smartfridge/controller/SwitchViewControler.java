@@ -11,6 +11,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import smartfridge.enu.TypeActionEnum;
@@ -209,11 +210,15 @@ public class SwitchViewControler{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				fridgeManager.executeAction(TypeActionEnum.REMOVE, detailMenuView.getRightProductMenuController().getSelectedProduct(), 0);
-				detailMenuView.getRightProductMenuController().refreshData();
-				mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
-				mainMenuView.getRightProductMenuController().refreshData();
-				changePanel(MAINVIEW);
+				int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Really Want to Remove This Product?","WARNING",JOptionPane.OK_OPTION);
+				if(dialogResult == JOptionPane.YES_OPTION){
+					fridgeManager.executeAction(TypeActionEnum.REMOVE, detailMenuView.getRightProductMenuController().getSelectedProduct(), 0);
+					detailMenuView.getRightProductMenuController().refreshData();
+					mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
+					mainMenuView.getRightProductMenuController().refreshData();
+					changePanel(MAINVIEW);
+				}
+				
 				
 			}
 		});
