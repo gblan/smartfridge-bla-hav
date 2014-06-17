@@ -1,9 +1,7 @@
 package smartfridge.controller;
 
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 import javax.swing.event.ChangeListener;
 
 import smartfridge.fridge.FridgeManager;
@@ -29,7 +27,22 @@ public class LeftButtonMenuController{
 		this.fridge = fridge;
 	}
 	
-	
+	public void refreshUndoRedo(){
+		if(!fridge.undoIsEmpty()){
+			this.view.getUndoButton().setEnabled(true);
+		}
+		else{
+			this.view.getUndoButton().setEnabled(false);
+
+		}
+		if(!fridge.redoIsEmpty()){
+			this.view.getRedoButton().setEnabled(true);
+		}
+		else{
+			this.view.getRedoButton().setEnabled(false);
+
+		}
+	}
 	
 	public ActionListener getRedoButtonActionListener() {
 		// TODO Auto-generated method stub

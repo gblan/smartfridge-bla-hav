@@ -1,14 +1,12 @@
 package smartfridge.controller;
 
-import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
 
+import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
 import smartfridge.view.sides.LeftDetailMenuView;
@@ -16,11 +14,16 @@ import smartfridge.view.sides.LeftDetailMenuView;
 public class LeftDetailMenuController {
 
 	private LeftDetailMenuView view;
+	private FridgeManager fridge;
 
-	public LeftDetailMenuController() {
+	public LeftDetailMenuController(FridgeManager fridge) {
 		this.view = new LeftDetailMenuView();
+		this.setFridge(fridge);
+		
 
 	}
+	
+
 
 	public void refreshData(ProductAbstract product) {
 
@@ -75,5 +78,13 @@ public class LeftDetailMenuController {
 
 	public void setView(LeftDetailMenuView view) {
 		this.view = view;
+	}
+
+	public FridgeManager getFridge() {
+		return fridge;
+	}
+
+	public void setFridge(FridgeManager fridge) {
+		this.fridge = fridge;
 	}
 }

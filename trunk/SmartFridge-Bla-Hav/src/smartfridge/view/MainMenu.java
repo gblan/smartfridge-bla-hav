@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 
+import smartfridge.controller.LeftButtonMenuController;
 import smartfridge.controller.MenuController;
 import smartfridge.controller.RightProductMenuController;
 import smartfridge.fridge.FridgeManager;
@@ -25,6 +26,9 @@ public class MainMenu extends JPanel {
 
 	public RightProductMenuController getRightProductMenuController(){
 		return this.menu.getRightControl();
+	}
+	public LeftButtonMenuController getLeftButtonMenuController(){
+		return this.menu.getLeftControl();
 	}
 
 	public LeftButtonMenuView getLeftButtonMenuView() {
