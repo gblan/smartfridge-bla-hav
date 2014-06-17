@@ -1,12 +1,10 @@
 package smartfridge.view.sides;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.Rectangle;
-import java.util.GregorianCalendar;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.dnd.DropTarget;
+import java.awt.dnd.DropTargetDropEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -17,13 +15,8 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
 
-import smartfridge.enu.TypeProductEnum;
 import smartfridge.product.ProductAbstract;
-import smartfridge.product.ProductPerishable;
-import smartfridge.product.ProductUnPerishable;
 import smartfridge.utils.ListItemTransferHandler;
 
 public class RightProductMenuView extends RightSide {
@@ -36,8 +29,9 @@ public class RightProductMenuView extends RightSide {
 		super();
 
 		
+//		this.setLayout(new BorderLayout());
 
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		productList = new JList<ProductAbstract>();
 		productList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		productList.setLayoutOrientation(JList.HORIZONTAL_WRAP);
@@ -54,14 +48,25 @@ public class RightProductMenuView extends RightSide {
 		
 		scroll.setPreferredSize(new Dimension(200,300));
 	
-		this.setLayout(new BorderLayout());
+//		this.setLayout(new BorderLayout());
 
 		this.add(scroll);
-		
-		
-		//JLabel trash = new JLabel(new ImageIcon("resources/corbeille.png"));
-		////this.add(Box.createRigidArea(new Dimension(0,300)));
-		//this.add(trash);
+				
+		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
+		labelTrash.setDropTarget(new DropTarget()
+		{
+			public void drop(DropTargetDropEvent dtde) 
+			{
+				try{
+					System.out.println("SUPPRIMER ICI");
+					DataFlavor[] datas = dtde.getCurrentDataFlavors();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		this.add(Box.createRigidArea(new Dimension(0,300)));
+		this.add(labelTrash);
 	}
 
 	public RightProductMenuView(int i) {
