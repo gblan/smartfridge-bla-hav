@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -21,6 +22,9 @@ public class LeftButtonMenuView extends LeftSide {
 
 	private JButton addingButton;
 	private JButton removeButton;
+	
+	private JPanel panelSortBy;
+	private JLabel sortByLabel;
 	private JComboBox<String> sortBy;
 	
 
@@ -58,9 +62,15 @@ public class LeftButtonMenuView extends LeftSide {
 		panelCheck.add(checkIn);
 
 		
+		panelSortBy = new JPanel();
+		
+		sortByLabel = new JLabel("Sort by");
 		String[] string = {"AddingDate","PerishmentDate","Type","Quantity"};
 		sortBy = new JComboBox<>(string);
 		sortBy.setSelectedIndex(0);
+
+		panelSortBy.add(sortByLabel);
+		panelSortBy.add(sortBy);
 
 		
 
@@ -71,7 +81,7 @@ public class LeftButtonMenuView extends LeftSide {
 		this.add(Box.createRigidArea(new Dimension(0,20)));
 		this.add(removeButton);
 		this.add(Box.createRigidArea(new Dimension(0,20)));
-		this.add(sortBy);
+		this.add(panelSortBy);
 		this.add(Box.createRigidArea(new Dimension(0,20)));
 		this.add(panelCheck);
 	}
