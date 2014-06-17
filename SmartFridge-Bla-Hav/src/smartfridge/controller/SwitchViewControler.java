@@ -13,6 +13,7 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import smartfridge.enu.TypeActionEnum;
 import smartfridge.enu.TypeProductEnum;
 import smartfridge.fridge.Fridge;
 import smartfridge.fridge.FridgeManager;
@@ -111,6 +112,8 @@ public class SwitchViewControler{
 				}
 				else{
 					perishedMenuView.getRightControl().refreshDataPerished(0);
+					perishedMenuView.getLeftControl().refreshText("0");
+
 				}
 				changePanel(PERISHEDVIEW);
 			}
@@ -122,6 +125,7 @@ public class SwitchViewControler{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainMenuView.getRightProductMenuController().refreshData();
+				mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
 				changePanel(MAINVIEW);
 			}
 		});
@@ -132,6 +136,7 @@ public class SwitchViewControler{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainMenuView.getRightProductMenuController().refreshData();
+				mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
 				changePanel(MAINVIEW);
 			}
 		});
@@ -142,6 +147,7 @@ public class SwitchViewControler{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				mainMenuView.getRightProductMenuController().refreshData();
+				mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
 				changePanel(MAINVIEW);
 			}
 		});
@@ -153,6 +159,7 @@ public class SwitchViewControler{
 				// TODO Auto-generated method stub
 				if(addingMenuView.getRightAddMenuController().validationIsOk()){
 					addingMenuView.getRightAddMenuController().addProduct();
+					mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
 					mainMenuView.getRightProductMenuController().refreshData();
 					changePanel(MAINVIEW);
 					
@@ -191,7 +198,35 @@ public class SwitchViewControler{
 				if(e.getClickCount() == 2 ){
 					detailMenuView.getLeftDetailMenuController().refreshData(mainMenuView.getRightProductMenuController().getSelectedProduct());
 					detailMenuView.getRightProductMenuController().refreshData();
+					detailMenuView.getRightProductMenuController().refreshSelected(mainMenuView.getRightProductMenuController().getIndexSelectedProduct());
 					changePanel(DETAILVIEW);
+				}
+				
+			}
+		});
+		
+		this.detailMenuView.getLeftDetailMenuController().getView().getDeleteButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				fridgeManager.executeAction(TypeActionEnum.REMOVE, detailMenuView.getRightProductMenuController().getSelectedProduct(), 0);
+				detailMenuView.getRightProductMenuController().refreshData();
+				mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
+				mainMenuView.getRightProductMenuController().refreshData();
+				changePanel(MAINVIEW);
+				
+			}
+		});
+		
+		this.detailMenuView.getLeftDetailMenuController().getView().getDecreaseQuantityButton().addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if(detailMenuView.getRightProductMenuController().getSelectedProduct().getQuantity() == 1){
+					fridgeManager.executeAction(TypeActionEnum.REMOVE, detailMenuView.getRightProductMenuController().getSelectedProduct(), 0);
+					mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
+					mainMenuView.getRightProductMenuController().refreshData();
+					changePanel(MAINVIEW);
 				}
 				
 			}

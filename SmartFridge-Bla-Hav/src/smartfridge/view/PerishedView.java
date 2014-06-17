@@ -42,7 +42,7 @@ public class PerishedView extends JPanel {
 
 		this.fridge= fridge;
 		
-		this.control = new PerishedController(fridge);
+		this.setControl(new PerishedController(fridge));
 		this.leftControl = new LeftPerishedMenuController(fridge);
 		this.rightControl = new RightProductMenuController(fridge, 0);
 		this.leftControl.getView().getPerishedLabel().addKeyListener(perishableListener);
@@ -109,5 +109,13 @@ public class PerishedView extends JPanel {
 
 	public void setRightControl(RightProductMenuController rightControl) {
 		this.rightControl = rightControl;
+	}
+
+	public PerishedController getControl() {
+		return control;
+	}
+
+	public void setControl(PerishedController control) {
+		this.control = control;
 	}
 }

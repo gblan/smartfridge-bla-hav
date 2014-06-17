@@ -36,6 +36,10 @@ public class RightProductMenuController {
 		this.view.getProductList().setListData(listProduct());
 	}
 	
+	public void refreshSelected(int index){
+		this.view.getProductList().setSelectedIndex(index);
+	}
+	
 	private ProductAbstract[] listProduct(){
 		ProductAbstract[] listData = fridge.getFridge().getFridgeContent().toArray(
 				new ProductAbstract[fridge.getFridge().getFridgeContent().size()]);
@@ -69,6 +73,9 @@ public class RightProductMenuController {
 		return this.view.getProductList().getSelectedValue();
 	}
 	
+	public int getIndexSelectedProduct(){
+		return this.view.getProductList().getSelectedIndex();
+	}
 	public void refreshDataPerished(int i){
 		this.view.getProductList().setListData(listProductPerished(i));
 	}

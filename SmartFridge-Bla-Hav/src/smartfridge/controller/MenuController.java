@@ -17,6 +17,8 @@ public class MenuController {
 		this.rightControl = new RightProductMenuController(fridge);
 		this.leftControl = new LeftButtonMenuController(fridge);
 		this.fridge = fridge;
+		this.leftControl.getView().getUndoButton().setEnabled(false);
+		this.leftControl.getView().getRedoButton().setEnabled(false);
 		this.leftControl.getView().getUndoButton().addActionListener(buttonUndoListener);
 		this.leftControl.getView().getRedoButton().addActionListener(buttonRedoListener);
 		this.leftControl.getView().getRemoveButton().addActionListener(buttonRemoveListener);
