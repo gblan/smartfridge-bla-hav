@@ -1,5 +1,6 @@
 package smartfridge.view.sides;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 
 import javax.swing.Box;
@@ -29,7 +30,9 @@ public class LeftButtonMenuView extends LeftSide {
 
 	private JPanel panelCheck;
 	private JButton checkButton;
+	private JLabel checkTextBegin;
 	private JTextField checkIn;
+	private JLabel checkTextEnd;
 
 
 
@@ -39,28 +42,33 @@ public class LeftButtonMenuView extends LeftSide {
 		
 		
 		panelUndoRedo = new JPanel();
-		undoButton = new JButton("UnDo");
-		redoButton = new JButton("ReDo");
+		undoButton = new JButton(new ImageIcon("resources/UndoButton.png"));
+		redoButton = new JButton(new ImageIcon("resources/RedoButton.png"));
 
-		addingButton = new JButton(new ImageIcon("resources/buttonADD.png"));
-		removeButton = new JButton("Remove");
+		addingButton = new JButton(new ImageIcon("resources/buttonADDSmall.png"));
+		removeButton = new JButton(new ImageIcon("resources/removeAllSmall.png"));
 
 		panelCheck = new JPanel();
 		panelCheck.setPreferredSize(new Dimension(85,50));
 		checkButton = new JButton("Check");
-		checkButton.setPreferredSize(new Dimension(75,50));
+		checkButton.setPreferredSize(new Dimension(75,25));
+		checkTextBegin = new JLabel("Perished Product in");
 		checkIn = new JTextField();
-		checkIn.setPreferredSize(new Dimension(10,50));
+		checkIn.setPreferredSize(new Dimension(50,25));
+		checkIn.setSize(new Dimension(10,50));
+		checkTextEnd = new JLabel("day(s)");
+
 
 		panelUndoRedo.setLayout(new BoxLayout(panelUndoRedo, BoxLayout.X_AXIS));
 		panelUndoRedo.add(undoButton);
 		panelUndoRedo.add(Box.createRigidArea(new Dimension(70,0)));
 		panelUndoRedo.add(redoButton);
 
-		panelCheck.setLayout(new BoxLayout(panelCheck, BoxLayout.X_AXIS));
+		//panelCheck.setLayout(new BoxLayout(panelCheck, BoxLayout.X_AXIS));
 		panelCheck.add(checkButton);
+		panelCheck.add(checkTextBegin);
 		panelCheck.add(checkIn);
-
+		panelCheck.add(checkTextEnd);
 		
 		panelSortBy = new JPanel();
 		
