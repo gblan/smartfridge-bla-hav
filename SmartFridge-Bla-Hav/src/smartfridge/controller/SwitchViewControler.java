@@ -175,6 +175,7 @@ public class SwitchViewControler{
 				// TODO Auto-generated method stub
 				if(addingMenuView.getRightAddMenuController().validationIsOk()){
 					addingMenuView.getRightAddMenuController().addProduct();
+					fridgeManager.clearRedoList();
 					mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
 					mainMenuView.getRightProductMenuController().refreshData();
 					changePanel(MAINVIEW);
@@ -228,6 +229,7 @@ public class SwitchViewControler{
 				int dialogResult = JOptionPane.showConfirmDialog (null, "Would You Really Want to Remove This Product?","WARNING",JOptionPane.OK_OPTION);
 				if(dialogResult == JOptionPane.YES_OPTION){
 					fridgeManager.executeAction(TypeActionEnum.REMOVE, detailMenuView.getRightProductMenuController().getSelectedProduct(), 0);
+					fridgeManager.clearRedoList();
 					detailMenuView.getRightProductMenuController().refreshData();
 					mainMenuView.getLeftButtonMenuController().refreshUndoRedo();
 					mainMenuView.getRightProductMenuController().refreshData();
