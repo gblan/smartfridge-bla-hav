@@ -104,6 +104,8 @@ public class MenuController {
 
 			JOptionPane.showMessageDialog(leftControl.getView(), fridge.showListPerishedProductIn(0),"Produits périmés", JOptionPane.WARNING_MESSAGE);
 			fridge.deletePerishedProduct();
+			fridge.clearUndoList();
+			leftControl.refreshUndoRedo();
 			rightControl.refreshData();
 		}
 	};
