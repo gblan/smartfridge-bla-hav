@@ -3,13 +3,19 @@ package smartfridge.controller;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -41,6 +47,10 @@ public class SwitchViewControler{
 	public static final String MAINVIEW = "MAINVIEW";
 	public static final String PERISHEDVIEW = "PERISHEDVIEW";
 
+	
+	
+	
+	@SuppressWarnings({ "serial", "static-access" })
 	public SwitchViewControler() {
 		super();
 		Fridge f = new Fridge();
@@ -56,6 +66,8 @@ public class SwitchViewControler{
 		this.perishedMenuView = new PerishedView(fridgeManager);
 		cardlayout = new CardLayout();
 		SwitchViewControler.mainPanel = new JPanel(cardlayout);
+
+		
 
 	}
 
@@ -75,6 +87,7 @@ public class SwitchViewControler{
 		mainPanel.add(ADDVIEW, addingMenuView);
 		mainPanel.add(DETAILVIEW, detailMenuView);
 		mainPanel.add(PERISHEDVIEW, perishedMenuView);
+	
 
 		// Add components to the frame
 		frame.add(mainPanel, BorderLayout.CENTER);
@@ -84,6 +97,8 @@ public class SwitchViewControler{
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
+
+	
 		addListenerToPane();
 	}
 
@@ -277,6 +292,7 @@ public class SwitchViewControler{
 		});
 			
 	}
+	
 
 
 

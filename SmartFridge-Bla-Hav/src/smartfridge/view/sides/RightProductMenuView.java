@@ -81,12 +81,13 @@ public class RightProductMenuView extends RightSide {
 
 
 		this.add(scroll);
-
+		/*
 		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
 		labelTrash.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
 
 		//this.add(Box.createRigidArea(new Dimension(0, 300)));
 		this.add(labelTrash);
+		*/	
 	}
 
 	public JList<ProductAbstract> getProductList() {
