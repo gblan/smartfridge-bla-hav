@@ -46,9 +46,11 @@ public class SwitchViewControler{
 	public SwitchViewControler() {
 		super();
 		Fridge f = new Fridge();
-		SwitchViewControler.fridgeManager = new FridgeManager(f);
+		SwitchViewControler.fridgeManager = new FridgeManager(f);		
 		/* Chargement du frigo */
 		fridgeManager.setFridge(FridgeUtils.loadFridge());
+		fridgeManager.clearRedoList();
+		fridgeManager.clearUndoList();
 
 		this.addingMenuView = new AddingMenu(SwitchViewControler.fridgeManager);
 		this.detailMenuView = new DetailMenu(fridgeManager);
@@ -237,6 +239,44 @@ public class SwitchViewControler{
 			}
 		});
 
+		this.perishedMenuView.getRightControl().getView().getProductList().addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+
+				detailMenuView.getLeftDetailMenuController().refreshData(perishedMenuView.getRightControl().getSelectedProduct());
+				detailMenuView.getRightProductMenuController().refreshDataPerished(Integer.parseInt(perishedMenuView.getLeftControl().getView().getPerishedLabel().getText()));
+				detailMenuView.getRightProductMenuController().refreshSelected(perishedMenuView.getRightControl().getIndexSelectedProduct());
+				changePanel(DETAILVIEW);
+
+
+								
+			}
+		});
 			
 	}
 

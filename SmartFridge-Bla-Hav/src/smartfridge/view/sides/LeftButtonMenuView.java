@@ -55,6 +55,7 @@ public class LeftButtonMenuView extends LeftSide {
 
 		panelUndoRedo.setLayout(new BoxLayout(panelUndoRedo, BoxLayout.X_AXIS));
 		panelUndoRedo.add(undoButton);
+		panelUndoRedo.add(Box.createRigidArea(new Dimension(70,0)));
 		panelUndoRedo.add(redoButton);
 
 		panelCheck.setLayout(new BoxLayout(panelCheck, BoxLayout.X_AXIS));

@@ -344,7 +344,9 @@ public class FridgeManager {
 	public void clearRedoList(){
 		this.reDo.clear();
 	}
-	
+	public void clearUndoList(){
+		this.unDo.clear();
+	}
 	public boolean undoIsEmpty(){
 		return this.unDo.isEmpty();
 	}

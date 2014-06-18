@@ -55,6 +55,7 @@ public class RightProductMenuView extends RightSide {
 		this.add(labelTrash);
 	}
 
+
 	public RightProductMenuView(FridgeManager fm,RightProductMenuController rightProductMenuController, int i) {
 		super();
 
