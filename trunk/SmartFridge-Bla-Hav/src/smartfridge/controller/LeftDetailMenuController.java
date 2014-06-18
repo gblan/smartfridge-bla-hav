@@ -1,7 +1,5 @@
 package smartfridge.controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Calendar;
 
 import javax.swing.ImageIcon;
@@ -19,11 +17,8 @@ public class LeftDetailMenuController {
 	public LeftDetailMenuController(FridgeManager fridge) {
 		this.view = new LeftDetailMenuView();
 		this.setFridge(fridge);
-		
 
 	}
-	
-
 
 	public void refreshData(ProductAbstract product) {
 
@@ -51,25 +46,6 @@ public class LeftDetailMenuController {
 		this.view.getActualQUantity().setText(
 				String.valueOf(product.getQuantity()));
 
-	}
-	
-	private void addQuantityControler(){
-		this.view.getDecreaseQuantityButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-		});
-		
-		this.view.getIncreaseQuantityButton().addActionListener(new ActionListener() {
-			
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
 	}
 
 	public LeftDetailMenuView getView() {

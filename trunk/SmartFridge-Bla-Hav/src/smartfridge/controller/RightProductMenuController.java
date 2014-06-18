@@ -19,16 +19,16 @@ public class RightProductMenuController {
 	private FridgeManager fridge;
 	private RightProductMenuView view;
 	
-	public RightProductMenuController(FridgeManager f){
+	public RightProductMenuController(FridgeManager fm){
 		// TODO Auto-generated constructor stub
-		this.setFridge(f);
-		this.setView(new RightProductMenuView());
+		this.setFridge(fm);
+		this.setView(new RightProductMenuView(fm,this));
 		this.view.getProductList().setListData(listProduct());
 	}
-	public RightProductMenuController(FridgeManager f, int check){
+	public RightProductMenuController(FridgeManager fm, int check){
 		// TODO Auto-generated constructor stub
-		this.setFridge(f);
-		this.setView(new RightProductMenuView(check));
+		this.setFridge(fm);
+		this.setView(new RightProductMenuView(fm,this, check));
 		this.view.getProductList().setListData(listProductPerished(check));
 	}
 

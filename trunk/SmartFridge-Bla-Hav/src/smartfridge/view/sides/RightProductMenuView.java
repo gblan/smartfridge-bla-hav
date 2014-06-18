@@ -2,13 +2,9 @@ package smartfridge.view.sides;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.datatransfer.DataFlavor;
-import java.awt.dnd.DropTarget;
-import java.awt.dnd.DropTargetDropEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.DropMode;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,20 +12,22 @@ import javax.swing.JScrollPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.ListSelectionModel;
 
+import smartfridge.controller.RightProductMenuController;
+import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductAbstract;
-import smartfridge.utils.ListItemTransferHandler;
+import smartfridge.utils.ListTransferHandler;
 
 public class RightProductMenuView extends RightSide {
 
 	private static final long serialVersionUID = 1L;
 
 	private JList<ProductAbstract> productList;
+	private FridgeManager fm;
 
-	public RightProductMenuView() {
+	public RightProductMenuView(FridgeManager fm, RightProductMenuController rightProductMenuController) {
 		super();
 
-		
-//		this.setLayout(new BorderLayout());
+		// this.setLayout(new BorderLayout());
 
 		this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		productList = new JList<ProductAbstract>();
@@ -42,37 +40,25 @@ public class RightProductMenuView extends RightSide {
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		ListCellRenderer renderer = new FridgeProductRenderer();
 		productList.setCellRenderer(renderer);
-		productList.setTransferHandler(new ListItemTransferHandler());
-		productList.setDropMode(DropMode.INSERT);
+
 		productList.setDragEnabled(true);
-		
-		scroll.setPreferredSize(new Dimension(200,300));
-	
-//		this.setLayout(new BorderLayout());
+		productList.setTransferHandler(new ListTransferHandler(fm,rightProductMenuController));
+
+		scroll.setPreferredSize(new Dimension(200, 300));
 
 		this.add(scroll);
-				
+
 		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
-		labelTrash.setDropTarget(new DropTarget()
-		{
-			public void drop(DropTargetDropEvent dtde) 
-			{
-				try{
-					System.out.println("SUPPRIMER ICI");
-					DataFlavor[] datas = dtde.getCurrentDataFlavors();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		this.add(Box.createRigidArea(new Dimension(0,300)));
+		labelTrash.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
+
+		this.add(Box.createRigidArea(new Dimension(0, 300)));
 		this.add(labelTrash);
 	}
 
-	public RightProductMenuView(int i) {
+	public RightProductMenuView(FridgeManager fm,RightProductMenuController rightProductMenuController, int i) {
 		super();
 
-		if(i < 0){
+		if (i < 0) {
 			i = 0;
 		}
 
@@ -86,15 +72,15 @@ public class RightProductMenuView extends RightSide {
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		ListCellRenderer renderer = new FridgeProductRenderer();
 		productList.setCellRenderer(renderer);
-		productList.setTransferHandler(new ListItemTransferHandler());
-		productList.setDropMode(DropMode.INSERT);
-		productList.setDragEnabled(true);
 
-		
+		productList.setDragEnabled(true);
+		productList.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
+
 		this.setLayout(new BorderLayout());
 
 		this.add(scroll);
 	}
+
 	public JList<ProductAbstract> getProductList() {
 		return productList;
 	}
