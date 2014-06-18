@@ -1,8 +1,8 @@
 package smartfridge.view.sides;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -43,10 +43,13 @@ public class LeftButtonMenuView extends LeftSide {
 		
 		panelUndoRedo = new JPanel();
 		undoButton = new JButton(new ImageIcon("resources/UndoButton.png"));
+		undoButton.setBorder(BorderFactory.createEmptyBorder());
 		redoButton = new JButton(new ImageIcon("resources/RedoButton.png"));
-
+		redoButton.setBorder(BorderFactory.createEmptyBorder());
 		addingButton = new JButton(new ImageIcon("resources/buttonADDSmall.png"));
+		addingButton.setBorder(BorderFactory.createEmptyBorder());
 		removeButton = new JButton(new ImageIcon("resources/removeAllSmall.png"));
+		removeButton.setBorder(BorderFactory.createEmptyBorder());
 
 		panelCheck = new JPanel();
 		panelCheck.setPreferredSize(new Dimension(85,50));
