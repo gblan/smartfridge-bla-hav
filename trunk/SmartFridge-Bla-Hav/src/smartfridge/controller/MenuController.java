@@ -46,7 +46,8 @@ public class MenuController {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JComboBox<String> cb = (JComboBox)e.getSource();
+			@SuppressWarnings("unchecked")
+			JComboBox<String> cb = (JComboBox<String>)e.getSource();
 			String string = (String)cb.getSelectedItem();
 			
 			switch(string){

@@ -51,7 +51,7 @@ public class RightProductMenuView extends RightSide {
 		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
 		labelTrash.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
 
-		this.add(Box.createRigidArea(new Dimension(0, 300)));
+		//this.add(Box.createRigidArea(new Dimension(0, 300)));
 		this.add(labelTrash);
 	}
 
@@ -76,10 +76,17 @@ public class RightProductMenuView extends RightSide {
 
 		productList.setDragEnabled(true);
 		productList.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
+		
+		scroll.setPreferredSize(new Dimension(200, 300));
 
-		this.setLayout(new BorderLayout());
 
 		this.add(scroll);
+
+		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
+		labelTrash.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
+
+		//this.add(Box.createRigidArea(new Dimension(0, 300)));
+		this.add(labelTrash);
 	}
 
 	public JList<ProductAbstract> getProductList() {

@@ -18,8 +18,8 @@ import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
-import smartfridge.view.MainMenu;
 
+@SuppressWarnings("serial")
 public class ListTransferHandler extends TransferHandler {
 
 	private FridgeManager fm;

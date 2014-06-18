@@ -15,10 +15,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import smartfridge.enu.TypeActionEnum;
-import smartfridge.enu.TypeProductEnum;
 import smartfridge.fridge.Fridge;
 import smartfridge.fridge.FridgeManager;
-import smartfridge.product.ProductUnPerishable;
 import smartfridge.utils.FridgeUtils;
 import smartfridge.view.AddingMenu;
 import smartfridge.view.DetailMenu;
