@@ -12,6 +12,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
 
+import smartfridge.controller.MenuController;
 import smartfridge.controller.RightProductMenuController;
 import smartfridge.enu.TypeActionEnum;
 import smartfridge.fridge.FridgeManager;
@@ -24,12 +25,22 @@ public class ListTransferHandler extends TransferHandler {
 
 	private FridgeManager fm;
 	private RightProductMenuController mainMenuController;
+	private MenuController menuControlleur;
 
 	public ListTransferHandler(FridgeManager fm,
 			RightProductMenuController mainMenuController) {
 		this.fm = fm;
 		this.mainMenuController = mainMenuController;
 	}
+	
+	public ListTransferHandler(FridgeManager fm,
+			MenuController mainMenuController) {
+		this.fm = fm;
+		this.mainMenuController = mainMenuController.getRightControl();
+		this.menuControlleur = mainMenuController;
+	}	
+
+	
 
 	@Override
 	public boolean canImport(TransferSupport support) {
@@ -100,7 +111,13 @@ public class ListTransferHandler extends TransferHandler {
 					e.printStackTrace();
 				}
 			}
-			mainMenuController.refreshData();
+			if(menuControlleur != null){
+				this.menuControlleur.getRightControl().refreshData();
+				this.menuControlleur.getLeftControl().refreshUndoRedo();
+			}
+			else{
+				this.mainMenuController.refreshData();
+			}
 		}
 	}
 }

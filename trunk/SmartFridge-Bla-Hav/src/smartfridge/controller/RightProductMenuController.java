@@ -25,6 +25,14 @@ public class RightProductMenuController {
 		this.setView(new RightProductMenuView(fm,this));
 		this.view.getProductList().setListData(listProduct());
 	}
+	
+	public RightProductMenuController(FridgeManager fm, MenuController menu){
+		// TODO Auto-generated constructor stub
+		this.setFridge(fm);
+		this.setView(new RightProductMenuView(fm,menu));
+		this.view.getProductList().setListData(listProduct());
+	}
+	
 	public RightProductMenuController(FridgeManager fm, int check){
 		// TODO Auto-generated constructor stub
 		this.setFridge(fm);

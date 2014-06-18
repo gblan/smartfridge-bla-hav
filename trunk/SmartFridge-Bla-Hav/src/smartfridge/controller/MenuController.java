@@ -7,6 +7,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import smartfridge.fridge.FridgeManager;
+import smartfridge.view.sides.RightProductMenuView;
 
 public class MenuController {
 
@@ -15,7 +16,8 @@ public class MenuController {
 	private FridgeManager fridge;
 	
 	public MenuController( FridgeManager fridge){
-		this.rightControl = new RightProductMenuController(fridge);
+		this.rightControl = new RightProductMenuController(fridge,this);
+
 		this.leftControl = new LeftButtonMenuController(fridge);
 		this.fridge = fridge;
 		this.leftControl.getView().getUndoButton().setEnabled(false);
@@ -105,6 +107,7 @@ public class MenuController {
 
 			JOptionPane.showMessageDialog(leftControl.getView(), fridge.showListPerishedProductIn(0),"Produits périmés", JOptionPane.WARNING_MESSAGE);
 			fridge.deletePerishedProduct();
+			fridge.clearRedoList();
 			fridge.clearUndoList();
 			leftControl.refreshUndoRedo();
 			rightControl.refreshData();
