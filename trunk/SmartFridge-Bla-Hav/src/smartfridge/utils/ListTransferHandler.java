@@ -25,7 +25,8 @@ public class ListTransferHandler extends TransferHandler {
 	private FridgeManager fm;
 	private RightProductMenuController mainMenuController;
 
-	public ListTransferHandler(FridgeManager fm, RightProductMenuController mainMenuController) {
+	public ListTransferHandler(FridgeManager fm,
+			RightProductMenuController mainMenuController) {
 		this.fm = fm;
 		this.mainMenuController = mainMenuController;
 	}
@@ -83,23 +84,23 @@ public class ListTransferHandler extends TransferHandler {
 
 	@Override
 	protected void exportDone(JComponent source, Transferable data, int action) {
-
-		int dialogResult = JOptionPane.showConfirmDialog(null,
-				"Would You Really Want to Remove This Product?", "WARNING",
-				JOptionPane.OK_OPTION);
-		if (dialogResult == JOptionPane.YES_OPTION) {
-			try {
-				this.fm.executeAction(TypeActionEnum.REMOVE,
-						(ProductAbstract) data.getTransferData(null), 0);
-			} catch (UnsupportedFlavorException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		if (action == MOVE) {
+			int dialogResult = JOptionPane.showConfirmDialog(null,
+					"Would You Really Want to Remove This Product?", "WARNING",
+					JOptionPane.OK_OPTION);
+			if (dialogResult == JOptionPane.YES_OPTION) {
+				try {
+					this.fm.executeAction(TypeActionEnum.REMOVE,
+							(ProductAbstract) data.getTransferData(null), 0);
+				} catch (UnsupportedFlavorException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
+			mainMenuController.refreshData();
 		}
-		mainMenuController.refreshData();
-
 	}
 }
