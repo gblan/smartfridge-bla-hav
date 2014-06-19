@@ -30,9 +30,7 @@ public class LeftButtonMenuView extends LeftSide {
 
 	private JPanel panelCheck;
 	private JButton checkButton;
-	private JLabel checkTextBegin;
 	private JTextField checkIn;
-	private JLabel checkTextEnd;
 
 
 
@@ -44,36 +42,40 @@ public class LeftButtonMenuView extends LeftSide {
 		panelUndoRedo = new JPanel();
 		undoButton = new JButton(new ImageIcon("resources/UndoButton.png"));
 		undoButton.setBorder(BorderFactory.createEmptyBorder());
+		undoButton.setContentAreaFilled(false);
 		redoButton = new JButton(new ImageIcon("resources/RedoButton.png"));
 		redoButton.setBorder(BorderFactory.createEmptyBorder());
+		redoButton.setContentAreaFilled(false);
 		addingButton = new JButton(new ImageIcon("resources/buttonADDSmall.png"));
 		addingButton.setBorder(BorderFactory.createEmptyBorder());
-		//addingButton.setBorderPainted(false);
 		addingButton.setContentAreaFilled(false);
+		addingButton.setAlignmentX((float) 0.5);
 		removeButton = new JButton(new ImageIcon("resources/removeAllSmall.png"));
+		removeButton.setContentAreaFilled(false);
 		removeButton.setBorder(BorderFactory.createEmptyBorder());
+		removeButton.setAlignmentX((float) 0.5);
+
 
 		panelCheck = new JPanel();
 		panelCheck.setPreferredSize(new Dimension(85,50));
-		checkButton = new JButton("Check");
-		checkButton.setPreferredSize(new Dimension(75,25));
-		checkTextBegin = new JLabel("Perished Product in");
+		checkButton = new JButton(new ImageIcon("resources/buttonCheck.png"));
+		checkButton.setBorder(BorderFactory.createEmptyBorder());
+		checkButton.setContentAreaFilled(false);
+		checkButton.setAlignmentX((float) 0.5);
 		checkIn = new JTextField();
 		checkIn.setPreferredSize(new Dimension(50,25));
 		checkIn.setSize(new Dimension(10,50));
-		checkTextEnd = new JLabel("day(s)");
 
 
 		panelUndoRedo.setLayout(new BoxLayout(panelUndoRedo, BoxLayout.X_AXIS));
 		panelUndoRedo.add(undoButton);
 		panelUndoRedo.add(Box.createRigidArea(new Dimension(70,0)));
 		panelUndoRedo.add(redoButton);
+		panelUndoRedo.setAlignmentX((float) 0.5);
 
 		//panelCheck.setLayout(new BoxLayout(panelCheck, BoxLayout.X_AXIS));
 		panelCheck.add(checkButton);
-		panelCheck.add(checkTextBegin);
 		panelCheck.add(checkIn);
-		panelCheck.add(checkTextEnd);
 		
 		panelSortBy = new JPanel();
 		
@@ -89,13 +91,13 @@ public class LeftButtonMenuView extends LeftSide {
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(panelUndoRedo);
-		this.add(Box.createRigidArea(new Dimension(0,20)));
+		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(addingButton);
-		this.add(Box.createRigidArea(new Dimension(0,20)));
+		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(removeButton);
-		this.add(Box.createRigidArea(new Dimension(0,20)));
+		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(panelSortBy);
-		this.add(Box.createRigidArea(new Dimension(0,20)));
+		this.add(Box.createRigidArea(new Dimension(0,10)));
 		this.add(panelCheck);
 	}
 
