@@ -6,7 +6,7 @@ import java.util.List;
 
 import smartfridge.product.ProductAbstract;
 
-public class Fridge implements Serializable{
+public class Fridge implements Serializable {
 
 	private static final long serialVersionUID = -5601074623725600420L;
 	private List<ProductAbstract> fridgeContent = new ArrayList<ProductAbstract>();
@@ -28,8 +28,6 @@ public class Fridge implements Serializable{
 	public Fridge() {
 		// TODO Auto-generated constructor stub
 	}
-
-
 
 	@Override
 	public String toString() {

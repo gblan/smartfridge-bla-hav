@@ -5,12 +5,10 @@ import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 
-
-
 public class LeftAddMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private ButtonGroup bg;
 	private JRadioButton drinks;
 	private JRadioButton meats;
@@ -19,11 +17,11 @@ public class LeftAddMenuView extends LeftSide {
 	private JRadioButton vegetables;
 	private JRadioButton fruits;
 	private JRadioButton eggs;
-	private JRadioButton others;	
-	
-	public LeftAddMenuView(){
+	private JRadioButton others;
+
+	public LeftAddMenuView() {
 		super();
-		
+
 		bg = new ButtonGroup();
 		drinks = new JRadioButton(new ImageIcon("resources/drinks.jpg"));
 		meats = new JRadioButton(new ImageIcon("resources/meats.jpg"));
@@ -42,10 +40,9 @@ public class LeftAddMenuView extends LeftSide {
 		bg.add(fruits);
 		bg.add(eggs);
 		bg.add(others);
-		
-		
+
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		//Icon image = new ImageIcon("resources/drinks.jpg");
+		// Icon image = new ImageIcon("resources/drinks.jpg");
 		drinks.setText("Drinks");
 		this.add(drinks);
 		meats.setText("Meats");
@@ -62,7 +59,6 @@ public class LeftAddMenuView extends LeftSide {
 		this.add(eggs);
 		others.setText("Others");
 		this.add(others);
-		
 
 	}
 
@@ -137,11 +133,11 @@ public class LeftAddMenuView extends LeftSide {
 	public void setOthers(JRadioButton others) {
 		this.others = others;
 	}
-	
-	public JRadioButton getSelected(){
-		try{
+
+	public JRadioButton getSelected() {
+		try {
 			return (JRadioButton) this.bg.getSelection();
-		}catch(Exception e){
+		} catch (Exception e) {
 			return null;
 		}
 	}

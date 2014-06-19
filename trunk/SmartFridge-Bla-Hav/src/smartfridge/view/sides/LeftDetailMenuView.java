@@ -12,13 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class LeftDetailMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private JPanel identityPanel;
-	
+
 	private JPanel iconePanel;
 	private JLabel image;
 
@@ -33,7 +32,7 @@ public class LeftDetailMenuView extends LeftSide {
 	private JPanel deleteReturnPanel;
 	private JButton deleteButton;
 	private JButton returnButton;
-	
+
 	public JButton getReturnButton() {
 		return returnButton;
 	}
@@ -42,9 +41,9 @@ public class LeftDetailMenuView extends LeftSide {
 		super();
 
 		identityPanel = new JPanel();
-		
+
 		iconePanel = new JPanel();
-		iconePanel.setPreferredSize(new Dimension(75,75));
+		iconePanel.setPreferredSize(new Dimension(75, 75));
 		image = new JLabel();
 		iconePanel.add(image);
 		nomLabel = new JLabel("ProductName");
@@ -57,7 +56,7 @@ public class LeftDetailMenuView extends LeftSide {
 
 		decreaseQuantityButton = new JButton("-");
 		actualQUantity = new JTextField();
-		actualQUantity.setPreferredSize(new Dimension(50,25));
+		actualQUantity.setPreferredSize(new Dimension(50, 25));
 
 		increaseQuantityButton = new JButton("+");
 		panelQuantity.add(decreaseQuantityButton);
@@ -66,24 +65,25 @@ public class LeftDetailMenuView extends LeftSide {
 
 		deleteReturnPanel = new JPanel();
 		deleteButton = new JButton("DELETE");
+
 		returnButton = new JButton(new ImageIcon("resources/returnButton.png"));
 		returnButton.setBorder(BorderFactory.createEmptyBorder());
 		returnButton.setContentAreaFilled(false);
 
 		deleteReturnPanel.add(deleteButton);
 		deleteReturnPanel.add(returnButton);
-		
+
 		identityPanel.add(iconePanel);
 		identityPanel.add(nomLabel);
 		identityPanel.add(expirationDateLabel);
 		identityPanel.setLayout(new BoxLayout(identityPanel, BoxLayout.Y_AXIS));
-		
+
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		//this.add(iconePanel);
-		//this.add(nomLabel);
-		//this.add(expirationDateLabel);
+		// this.add(iconePanel);
+		// this.add(nomLabel);
+		// this.add(expirationDateLabel);
 		this.add(identityPanel);
-		this.add(Box.createRigidArea(new Dimension(0,100)));
+		this.add(Box.createRigidArea(new Dimension(0, 100)));
 
 		this.add(panelQuantity);
 		this.add(deleteReturnPanel);

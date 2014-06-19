@@ -29,41 +29,45 @@ public class FridgeManager {
 	public Fridge getFridge() {
 		return fridge;
 	}
-	
-	public void setFridge(Fridge f){
+
+	public void setFridge(Fridge f) {
 		this.fridge = f;
 	}
-	
-	public void executeAction(TypeActionEnum enu,
-			ProductAbstract addProduct, int setQuantity) {
+
+	public void executeAction(TypeActionEnum enu, ProductAbstract addProduct,
+			int setQuantity) {
 		int idProduct = getIdProduct(addProduct);
-		if((idProduct < 0 || idProduct >= this.getFridge().getFridgeContent().size() )&& enu != TypeActionEnum.ADD){
+		if ((idProduct < 0 || idProduct >= this.getFridge().getFridgeContent()
+				.size())
+				&& enu != TypeActionEnum.ADD) {
 			System.err.println("Problem ID");
-		}
-		else{
+		} else {
 			switch (enu) {
 
 			case ADD:
 				addProduct(addProduct);
 				idProduct = getIdProduct(addProduct);
-				unDo.add(new Actions(addProduct, enu , idProduct));
-				
+				unDo.add(new Actions(addProduct, enu, idProduct));
+
 				break;
 
 			case REMOVE:
 
-				unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct), enu , idProduct));
+				unDo.add(new Actions(this.fridge.getFridgeContent().get(
+						idProduct), enu, idProduct));
 				deleteProduct(idProduct);
 				break;
 			case INCREASE_QUANTITY:
-				unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
+				unDo.add(new Actions(this.fridge.getFridgeContent()
+						.get(idProduct).clone(), enu, idProduct));
 
 				fridge.getFridgeContent().get(idProduct)
 						.increaseQuantity(setQuantity);
 				break;
 
 			case DECREASE_QUANTITY:
-				unDo.add(new Actions(this.fridge.getFridgeContent().get(idProduct).clone(), enu , idProduct));
+				unDo.add(new Actions(this.fridge.getFridgeContent()
+						.get(idProduct).clone(), enu, idProduct));
 
 				fridge.getFridgeContent().get(idProduct)
 						.decreaseQuantity(setQuantity);
@@ -76,128 +80,152 @@ public class FridgeManager {
 	}
 
 	public void unDoAction() {
-		
-		if(!this.unDo.isEmpty()){
+
+		if (!this.unDo.isEmpty()) {
 			Actions actions = unDo.get(unDo.size() - 1);
 
 			int previousQuantity;
 			int actualQuantity;
 
-
-			
 			switch (Actions.getOppositeAction(actions.getEnu())) {
 			case ADD:
-				reDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
-				addProduct(unDo.get(unDo.size()- 1).getProduct(),actions.getIdProduit());
+				reDo.add(new Actions(actions.getProduct(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
+				addProduct(unDo.get(unDo.size() - 1).getProduct(),
+						actions.getIdProduit());
 				break;
 
 			case REMOVE:
-				reDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
+				reDo.add(new Actions(actions.getProduct(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
 				deleteProduct(actions.getIdProduit());
 				break;
 
 			case INCREASE_QUANTITY:
-				reDo.add(new Actions(fridge.getFridgeContent().get(actions.getIdProduit()).clone(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
+				reDo.add(new Actions(fridge.getFridgeContent()
+						.get(actions.getIdProduit()).clone(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
 
-				previousQuantity = unDo.get(unDo.size() - 1).getProduct().getQuantity();
-				actualQuantity = fridge.getFridgeContent().get(actions.getIdProduit())
-					.getQuantity();
-				//System.out.println(previousQuantity  + "actual" + actualQuantity);
+				previousQuantity = unDo.get(unDo.size() - 1).getProduct()
+						.getQuantity();
+				actualQuantity = fridge.getFridgeContent()
+						.get(actions.getIdProduit()).getQuantity();
+				// System.out.println(previousQuantity + "actual" +
+				// actualQuantity);
 				fridge.getFridgeContent().get(actions.getIdProduit())
 						.increaseQuantity(previousQuantity - actualQuantity);
 				break;
 
-
 			case DECREASE_QUANTITY:
-				reDo.add(new Actions(fridge.getFridgeContent().get(actions.getIdProduit()).clone(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
-				previousQuantity = unDo.get(unDo.size() - 1).getProduct().getQuantity();
-				actualQuantity = fridge.getFridgeContent().get(actions.getIdProduit())
+				reDo.add(new Actions(fridge.getFridgeContent()
+						.get(actions.getIdProduit()).clone(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
+				previousQuantity = unDo.get(unDo.size() - 1).getProduct()
 						.getQuantity();
-				
+				actualQuantity = fridge.getFridgeContent()
+						.get(actions.getIdProduit()).getQuantity();
+
 				fridge.getFridgeContent().get(actions.getIdProduit())
 						.decreaseQuantity(actualQuantity - previousQuantity);
 
 				break;
 			default:
 				break;
-		
+
 			}
 			unDo.remove(unDo.size() - 1);
 		}
 
-	
 	}
-	
+
 	public void reDoAction() {
-		if(!this.reDo.isEmpty()){
+		if (!this.reDo.isEmpty()) {
 			Actions actions = reDo.get(reDo.size() - 1);
 
 			int previousQuantity;
 			int actualQuantity;
 
-
-			
 			switch (Actions.getOppositeAction(actions.getEnu())) {
 			case ADD:
-				unDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
-				addProduct(reDo.get(reDo.size()- 1).getProduct(),actions.getIdProduit());
+				unDo.add(new Actions(actions.getProduct(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
+				addProduct(reDo.get(reDo.size() - 1).getProduct(),
+						actions.getIdProduit());
 				break;
 
 			case REMOVE:
-				unDo.add(new Actions(actions.getProduct(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
+				unDo.add(new Actions(actions.getProduct(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
 
 				deleteProduct(actions.getIdProduit());
 				break;
 
-			case INCREASE_QUANTITY:	
-				unDo.add(new Actions(fridge.getFridgeContent().get(actions.getIdProduit()).clone(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
-				previousQuantity = reDo.get(reDo.size() - 1).getProduct().getQuantity();
-				actualQuantity = fridge.getFridgeContent().get(actions.getIdProduit())
-					.getQuantity();
-				//System.out.println(previousQuantity  + "actual" + actualQuantity);
+			case INCREASE_QUANTITY:
+				unDo.add(new Actions(fridge.getFridgeContent()
+						.get(actions.getIdProduit()).clone(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
+				previousQuantity = reDo.get(reDo.size() - 1).getProduct()
+						.getQuantity();
+				actualQuantity = fridge.getFridgeContent()
+						.get(actions.getIdProduit()).getQuantity();
+				// System.out.println(previousQuantity + "actual" +
+				// actualQuantity);
 				fridge.getFridgeContent().get(actions.getIdProduit())
 						.increaseQuantity(previousQuantity - actualQuantity);
 				break;
 
-
 			case DECREASE_QUANTITY:
-				unDo.add(new Actions(fridge.getFridgeContent().get(actions.getIdProduit()).clone(), Actions.getOppositeAction(actions.getEnu()) , actions.getIdProduit()));
-				previousQuantity = reDo.get(reDo.size() - 1).getProduct().getQuantity();
-				actualQuantity = fridge.getFridgeContent().get(actions.getIdProduit())
+				unDo.add(new Actions(fridge.getFridgeContent()
+						.get(actions.getIdProduit()).clone(), Actions
+						.getOppositeAction(actions.getEnu()), actions
+						.getIdProduit()));
+				previousQuantity = reDo.get(reDo.size() - 1).getProduct()
 						.getQuantity();
-				System.out.println(previousQuantity + "  actual : " + actualQuantity );
+				actualQuantity = fridge.getFridgeContent()
+						.get(actions.getIdProduit()).getQuantity();
+				System.out.println(previousQuantity + "  actual : "
+						+ actualQuantity);
 
-				
 				fridge.getFridgeContent().get(actions.getIdProduit())
 						.decreaseQuantity(actualQuantity - previousQuantity);
 				break;
 
-			default:break;
+			default:
+				break;
 			}
 			reDo.remove(reDo.size() - 1);
 		}
 
 	}
-	public int getIdProduct(ProductAbstract product){
+
+	public int getIdProduct(ProductAbstract product) {
 		int i = 0;
-		for(ProductAbstract p : this.fridge.getFridgeContent()){
-			if(p.equals(product)){
+		for (ProductAbstract p : this.fridge.getFridgeContent()) {
+			if (p.equals(product)) {
 				return i;
 			}
 			i++;
-			
+
 		}
 		return -1;
-		
+
 	}
 
 	public void addProduct(ProductAbstract p) {
 		this.fridge.getFridgeContent().add(p);
 	}
 
-	public void addProduct(ProductAbstract p, int idAction){
+	public void addProduct(ProductAbstract p, int idAction) {
 		this.fridge.getFridgeContent().add(idAction, p);
 	}
+
 	public void deleteProduct(int n) {
 		this.fridge.getFridgeContent().remove(n);
 	}
@@ -236,10 +264,9 @@ public class FridgeManager {
 		GregorianCalendar calendar = new java.util.GregorianCalendar();
 		calendar.setTimeInMillis(System.currentTimeMillis());
 		calendar.add(Calendar.DATE, n - 1);
-		if(n > 0){
+		if (n > 0) {
 			string = "Perished product in : " + n + " days : \n";
-		}
-		else{
+		} else {
 			string = "Perished product in the fridge today : \n";
 		}
 		for (ProductAbstract p : this.fridge.getFridgeContent()) {
@@ -247,7 +274,7 @@ public class FridgeManager {
 				if (((ProductPerishable) p).getDatePerishment()
 						.getTimeInMillis() < calendar.getTimeInMillis()) {
 
-					string += p +"\n";
+					string += p + "\n";
 				}
 			}
 		}
@@ -322,55 +349,45 @@ public class FridgeManager {
 
 		Collections.sort(this.fridge.getFridgeContent(), comparatorQuantity);
 	}
-	
-	public String showUndoList(){
-		String res = "";
-		for(Actions act : this.unDo){
-			res += act.toString()+"\n";
-		}
-		
-		return res;
-	}
-	
 
-	public String showRedoList(){
+	public String showUndoList() {
 		String res = "";
-		for(Actions act : this.reDo){
-			res += act.toString()+"\n";
+		for (Actions act : this.unDo) {
+			res += act.toString() + "\n";
 		}
-		
+
 		return res;
 	}
-	public void clearRedoList(){
+
+	public String showRedoList() {
+		String res = "";
+		for (Actions act : this.reDo) {
+			res += act.toString() + "\n";
+		}
+
+		return res;
+	}
+
+	public void clearRedoList() {
 		this.reDo.clear();
 	}
-	public void clearUndoList(){
+
+	public void clearUndoList() {
 		this.unDo.clear();
 	}
-	public boolean undoIsEmpty(){
+
+	public boolean undoIsEmpty() {
 		return this.unDo.isEmpty();
 	}
-	
-	public boolean redoIsEmpty(){
+
+	public boolean redoIsEmpty() {
 		return this.reDo.isEmpty();
 	}
 	/*
-	public boolean emptyUndoList(){
-		if(this.unDo.isEmpty()){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-
-	public boolean emptyRedoList(){
-		if(this.reDo.isEmpty()){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
-	*/
+	 * public boolean emptyUndoList(){ if(this.unDo.isEmpty()){ return true; }
+	 * else{ return false; } }
+	 * 
+	 * public boolean emptyRedoList(){ if(this.reDo.isEmpty()){ return true; }
+	 * else{ return false; } }
+	 */
 }

@@ -13,101 +13,99 @@ import smartfridge.product.ProductPerishable;
 import smartfridge.product.ProductUnPerishable;
 import smartfridge.view.sides.RightAddMenuView;
 
-public class RightAddMenuController extends AddingMenuController{
+public class RightAddMenuController extends AddingMenuController {
 
 	private FridgeManager fridge;
 	private RightAddMenuView view;
-	
-	
-	public RightAddMenuController(FridgeManager f){
-		
+
+	public RightAddMenuController(FridgeManager f) {
+
 		this.setFridge(f);
 		this.setView(new RightAddMenuView());
 		this.view.getValidationButton().addActionListener(validationListener);
 	}
-	
-	
-	
+
 	private ActionListener validationListener = new ActionListener() {
-		
+
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			String string = "";
 
+			if (!validationIsOk()) {
 
-			if(!validationIsOk()){
-
-				if(view.getNameTextField().getText().isEmpty()){
+				if (view.getNameTextField().getText().isEmpty()) {
 					string += "Write a name for your add \n";
 				}
-				if(!verifQuantity()){
+				if (!verifQuantity()) {
 					string += "Write a number in for quantity \n";
 				}
-				if(!verifType()){
-						string += "Choose a type at the left of the window";
+				if (!verifType()) {
+					string += "Choose a type at the left of the window";
 				}
-				
-				JOptionPane.showMessageDialog(view, string,"Wrong Input", JOptionPane.WARNING_MESSAGE);
-					
+
+				JOptionPane.showMessageDialog(view, string, "Wrong Input",
+						JOptionPane.WARNING_MESSAGE);
+
 			}
 
-
-			
-			
-		
 		}
 	};
-	
-	public void addProduct(){
-		if(view.getDateSelection().getDate() == null){
-			fridge.executeAction(TypeActionEnum.ADD,
-					new ProductUnPerishable(AddingMenuController.TYPE, view.getNameTextField().getText(), Integer.parseInt(view.getQuantityTextField().getText())),
+
+	public void addProduct() {
+		if (view.getDateSelection().getDate() == null) {
+			fridge.executeAction(
+					TypeActionEnum.ADD,
+					new ProductUnPerishable(AddingMenuController.TYPE, view
+							.getNameTextField().getText(), Integer
+							.parseInt(view.getQuantityTextField().getText())),
 					Integer.parseInt(view.getQuantityTextField().getText()));
-			
-		}
-		else{
+
+		} else {
 			GregorianCalendar calendar = new GregorianCalendar();
 			calendar.setTime(view.getDateSelection().getDate());
-			calendar.add(Calendar.MONTH,1);
-			fridge.executeAction(TypeActionEnum.ADD,
-					new ProductPerishable(AddingMenuController.TYPE, view.getNameTextField().getText(), Integer.parseInt(view.getQuantityTextField().getText()),calendar)
-					, Integer.parseInt(view.getQuantityTextField().getText()));
-
+			calendar.add(Calendar.MONTH, 1);
+			fridge.executeAction(
+					TypeActionEnum.ADD,
+					new ProductPerishable(AddingMenuController.TYPE, view
+							.getNameTextField().getText(), Integer
+							.parseInt(view.getQuantityTextField().getText()),
+							calendar), Integer.parseInt(view
+							.getQuantityTextField().getText()));
 
 		}
-		
+
 	}
-	private boolean verifType(){
-		if(AddingMenuController.TYPE == null){
+
+	private boolean verifType() {
+		if (AddingMenuController.TYPE == null) {
 			return false;
 		}
 		return true;
 	}
-	
-	private boolean verifQuantity(){
-		
-		if(view.getQuantityTextField().getText().matches("\\d+")){
+
+	private boolean verifQuantity() {
+
+		if (view.getQuantityTextField().getText().matches("\\d+")) {
 			return true;
-			
-		}
-		else
+
+		} else
 			return false;
-		
+
 	}
-	public boolean validationIsOk(){
-		if(view.getNameTextField().getText().isEmpty()){
+
+	public boolean validationIsOk() {
+		if (view.getNameTextField().getText().isEmpty()) {
 			return false;
 		}
-		if(!verifQuantity()){
+		if (!verifQuantity()) {
 			return false;
 		}
-		if(AddingMenuController.TYPE == null){
+		if (AddingMenuController.TYPE == null) {
 			return false;
 		}
 		return true;
 
 	}
-
 
 	public FridgeManager getFridge() {
 		return fridge;

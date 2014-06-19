@@ -26,7 +26,8 @@ public class RightProductMenuView extends RightSide {
 	private FridgeManager fm;
 	private JLabel labelTrash;
 
-	public RightProductMenuView(FridgeManager fm, RightProductMenuController menuController) {
+	public RightProductMenuView(FridgeManager fm,
+			RightProductMenuController menuController) {
 		super();
 
 		// this.setLayout(new BorderLayout());
@@ -44,7 +45,8 @@ public class RightProductMenuView extends RightSide {
 		productList.setCellRenderer(renderer);
 
 		productList.setDragEnabled(true);
-		productList.setTransferHandler(new ListTransferHandler(fm,menuController));
+		productList.setTransferHandler(new ListTransferHandler(fm,
+				menuController));
 
 		scroll.setPreferredSize(new Dimension(250, 450));
 
@@ -52,16 +54,15 @@ public class RightProductMenuView extends RightSide {
 
 		labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
 		labelTrash.addMouseListener(corbeilleListener);
-		labelTrash.setTransferHandler(new ListTransferHandler(fm, menuController));
-		
+		labelTrash.setTransferHandler(new ListTransferHandler(fm,
+				menuController));
 
-
-		//this.add(Box.createRigidArea(new Dimension(0, 300)));
+		// this.add(Box.createRigidArea(new Dimension(0, 300)));
 		this.add(labelTrash);
 	}
 
-
-	public RightProductMenuView(FridgeManager fm,RightProductMenuController rightProductMenuController, int i) {
+	public RightProductMenuView(FridgeManager fm,
+			RightProductMenuController rightProductMenuController, int i) {
 		super();
 
 		if (i < 0) {
@@ -80,21 +81,23 @@ public class RightProductMenuView extends RightSide {
 		productList.setCellRenderer(renderer);
 
 		productList.setDragEnabled(true);
-		productList.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
-		
-		scroll.setPreferredSize(new Dimension(250, 450));
+		productList.setTransferHandler(new ListTransferHandler(fm,
+				rightProductMenuController));
 
+		scroll.setPreferredSize(new Dimension(250, 450));
 
 		this.add(scroll);
 		/*
-		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
-		labelTrash.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
-
-		//this.add(Box.createRigidArea(new Dimension(0, 300)));
-		this.add(labelTrash);
-		*/	
+		 * JLabel labelTrash = new JLabel(new
+		 * ImageIcon("resources/corbeille.png"));
+		 * labelTrash.setTransferHandler(new ListTransferHandler(fm,
+		 * rightProductMenuController));
+		 * 
+		 * //this.add(Box.createRigidArea(new Dimension(0, 300)));
+		 * this.add(labelTrash);
+		 */
 	}
-	
+
 	public RightProductMenuView(FridgeManager fm, MenuController menuController) {
 		super();
 
@@ -113,7 +116,8 @@ public class RightProductMenuView extends RightSide {
 		productList.setCellRenderer(renderer);
 
 		productList.setDragEnabled(true);
-		productList.setTransferHandler(new ListTransferHandler(fm,menuController));
+		productList.setTransferHandler(new ListTransferHandler(fm,
+				menuController));
 
 		scroll.setPreferredSize(new Dimension(250, 450));
 
@@ -121,44 +125,44 @@ public class RightProductMenuView extends RightSide {
 
 		labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
 		labelTrash.addMouseListener(corbeilleListener);
-		labelTrash.setTransferHandler(new ListTransferHandler(fm, menuController));
+		labelTrash.setTransferHandler(new ListTransferHandler(fm,
+				menuController));
 
-
-		//this.add(Box.createRigidArea(new Dimension(0, 300)));
+		// this.add(Box.createRigidArea(new Dimension(0, 300)));
 		this.add(labelTrash);
 	}
 
 	private MouseListener corbeilleListener = new MouseListener() {
-		
+
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 		@Override
 		public void mousePressed(MouseEvent e) {
-//			labelTrash.setIcon(new ImageIcon("resources/corbeilleFocus.png"));
+			// labelTrash.setIcon(new
+			// ImageIcon("resources/corbeilleFocus.png"));
 
-			
 		}
-		
+
 		@Override
 		public void mouseExited(MouseEvent e) {
-			
+
 			labelTrash.setIcon(new ImageIcon("resources/corbeille.png"));
-			
+
 		}
-		
+
 		@Override
 		public void mouseEntered(MouseEvent e) {
 			labelTrash.setIcon(new ImageIcon("resources/corbeilleFocus.png"));
 
 		}
-		
+
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			
+
 		}
 	};
 

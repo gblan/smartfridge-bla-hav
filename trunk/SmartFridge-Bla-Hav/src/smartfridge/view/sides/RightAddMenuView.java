@@ -10,7 +10,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 import com.toedter.calendar.JDateChooser;
 
 public class RightAddMenuView extends RightSide {
@@ -78,7 +77,8 @@ public class RightAddMenuView extends RightSide {
 		validationPanel = new JPanel();
 		validationPanel.setLayout(new BoxLayout(validationPanel,
 				BoxLayout.X_AXIS));
-		validationButton = new JButton(new ImageIcon("resources/AddToFridge.png"));
+		validationButton = new JButton(new ImageIcon(
+				"resources/AddToFridge.png"));
 		validationButton.setBorder(BorderFactory.createEmptyBorder());
 		validationButton.setContentAreaFilled(false);
 
@@ -86,10 +86,8 @@ public class RightAddMenuView extends RightSide {
 		returnButton.setBorder(BorderFactory.createEmptyBorder());
 		returnButton.setContentAreaFilled(false);
 
-
 		validationPanel.add(validationButton);
 		validationPanel.add(returnButton);
-
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(instructionPanel);
