@@ -1,14 +1,9 @@
 package smartfridge.view.sides;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 
-import javax.swing.AbstractButton;
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -29,6 +24,7 @@ public class RightProductMenuView extends RightSide {
 
 	private JList<ProductAbstract> productList;
 	private FridgeManager fm;
+	private JLabel labelTrash;
 
 	public RightProductMenuView(FridgeManager fm, RightProductMenuController menuController) {
 		super();
@@ -54,9 +50,8 @@ public class RightProductMenuView extends RightSide {
 
 		this.add(scroll);
 
-		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
+		labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
 		labelTrash.addMouseListener(corbeilleListener);
-		labelTrash.addMouseMotionListener(corbeilleListenerDrag);
 		labelTrash.setTransferHandler(new ListTransferHandler(fm, menuController));
 		
 
@@ -124,9 +119,8 @@ public class RightProductMenuView extends RightSide {
 
 		this.add(scroll);
 
-		JLabel labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
+		labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
 		labelTrash.addMouseListener(corbeilleListener);
-		labelTrash.addMouseMotionListener(corbeilleListenerDrag);
 		labelTrash.setTransferHandler(new ListTransferHandler(fm, menuController));
 
 
@@ -144,44 +138,30 @@ public class RightProductMenuView extends RightSide {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			((JLabel) e.getSource()).setIcon(new ImageIcon("resources/corbeilleFocus.png"));
+//			labelTrash.setIcon(new ImageIcon("resources/corbeilleFocus.png"));
 
 			
 		}
 		
 		@Override
 		public void mouseExited(MouseEvent e) {
-			((JLabel) e.getSource()).setIcon(new ImageIcon("resources/corbeille.png"));
+			
+			labelTrash.setIcon(new ImageIcon("resources/corbeille.png"));
 			
 		}
 		
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			//((JLabel) e.getSource()).setIcon(new ImageIcon("resources/corbeilleFocus.png"));
-			
+			labelTrash.setIcon(new ImageIcon("resources/corbeilleFocus.png"));
+
 		}
 		
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			((JLabel) e.getSource()).setIcon(new ImageIcon("resources/corbeilleFocus.png"));
 			
 		}
 	};
-	private MouseMotionListener corbeilleListenerDrag = new MouseMotionListener() {
-		
-		@Override
-		public void mouseMoved(MouseEvent e) {
-			
-		}
-		
-		@Override
-		public void mouseDragged(MouseEvent e) {
-			System.out.println("mouse dragged");
-			((JLabel) e.getSource()).setIcon(new ImageIcon("resources/corbeilleFocus.png"));
 
-			
-		}
-	};
 	public JList<ProductAbstract> getProductList() {
 		return productList;
 	}

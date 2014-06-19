@@ -2,7 +2,9 @@ package smartfridge.view.sides;
 
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -76,8 +78,15 @@ public class RightAddMenuView extends RightSide {
 		validationPanel = new JPanel();
 		validationPanel.setLayout(new BoxLayout(validationPanel,
 				BoxLayout.X_AXIS));
-		validationButton = new JButton("OK");
-		returnButton = new JButton("MENU");
+		validationButton = new JButton(new ImageIcon("resources/AddToFridge.png"));
+		validationButton.setBorder(BorderFactory.createEmptyBorder());
+		validationButton.setContentAreaFilled(false);
+
+		returnButton = new JButton(new ImageIcon("resources/returnButton.png"));
+		returnButton.setBorder(BorderFactory.createEmptyBorder());
+		returnButton.setContentAreaFilled(false);
+
+
 		validationPanel.add(validationButton);
 		validationPanel.add(returnButton);
 
