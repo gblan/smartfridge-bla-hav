@@ -252,7 +252,6 @@ public class FridgeManager {
 		}
 
 		for (i = 0; i < j; i++) {
-			System.out.println(tab[i]);
 			deleteProduct(tab[i] - k);
 			k++;
 
