@@ -64,7 +64,9 @@ public class LeftDetailMenuView extends LeftSide {
 		panelQuantity.add(increaseQuantityButton);
 
 		deleteReturnPanel = new JPanel();
-		deleteButton = new JButton("DELETE");
+		deleteButton = new JButton(new ImageIcon("resources/deleteProduct.png"));
+		deleteButton.setBorder(BorderFactory.createEmptyBorder());
+		deleteButton.setContentAreaFilled(false);
 
 		returnButton = new JButton(new ImageIcon("resources/returnButton.png"));
 		returnButton.setBorder(BorderFactory.createEmptyBorder());
