@@ -1,9 +1,10 @@
 package smartfridge.view.sides;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-
 
 public class LeftPerishedMenuView extends LeftSide {
 
@@ -12,10 +13,10 @@ public class LeftPerishedMenuView extends LeftSide {
 	private JLabel perishedInLabel;
 	private JLabel perishedLabel;
 	private JLabel perished;
-	private JButton menuButton;
+	private JButton returnButton;
 
 	public JButton getMenuButton() {
-		return menuButton;
+		return returnButton;
 	}
 
 	public LeftPerishedMenuView() {
@@ -26,15 +27,15 @@ public class LeftPerishedMenuView extends LeftSide {
 
 		perished = new JLabel("days");
 
-		menuButton = new JButton("RETURN");
-
-
+		returnButton = new JButton(new ImageIcon("resources/returnButton.png"));
+		returnButton.setBorder(BorderFactory.createEmptyBorder());
+		returnButton.setContentAreaFilled(false);
 
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		this.add(perishedInLabel);
 		this.add(perishedLabel);
 		this.add(perished);
-		this.add(menuButton);
+		this.add(returnButton);
 
 	}
 
@@ -42,7 +43,8 @@ public class LeftPerishedMenuView extends LeftSide {
 		return perishedLabel;
 	}
 
-	public void setPerishedLabel(JLabel perishedLabel) {
-		this.perishedLabel = perishedLabel;
+	public JButton getReturnButton() {
+		return returnButton;
 	}
+
 }

@@ -2,12 +2,12 @@ package smartfridge.product;
 
 import smartfridge.enu.TypeProductEnum;
 
-public class ProductUnPerishable extends ProductAbstract{
+public class ProductUnPerishable extends ProductAbstract {
 
 	private static final long serialVersionUID = 7936712427023867097L;
 
 	public ProductUnPerishable(TypeProductEnum typeProduct, String productName,
-			 int quantity) {
+			int quantity) {
 		super(typeProduct, productName, quantity);
 	}
 
@@ -16,7 +16,5 @@ public class ProductUnPerishable extends ProductAbstract{
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
 
 }

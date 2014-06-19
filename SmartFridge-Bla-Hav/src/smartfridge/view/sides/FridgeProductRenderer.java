@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -16,8 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 
 import smartfridge.product.ProductAbstract;
 import smartfridge.product.ProductPerishable;
@@ -72,8 +68,7 @@ public class FridgeProductRenderer extends DefaultListCellRenderer {
 
 					panel.setBorder(BorderFactory.createMatteBorder(3, 3, 3, 3,
 							Color.ORANGE));
-				}
-				else{
+				} else {
 					panel.setBorder(null);
 
 				}

@@ -32,15 +32,13 @@ public class ListTransferHandler extends TransferHandler {
 		this.fm = fm;
 		this.mainMenuController = mainMenuController;
 	}
-	
+
 	public ListTransferHandler(FridgeManager fm,
 			MenuController mainMenuController) {
 		this.fm = fm;
 		this.mainMenuController = mainMenuController.getRightControl();
 		this.menuControlleur = mainMenuController;
-	}	
-
-	
+	}
 
 	@Override
 	public boolean canImport(TransferSupport support) {
@@ -111,12 +109,11 @@ public class ListTransferHandler extends TransferHandler {
 					e.printStackTrace();
 				}
 			}
-			if(menuControlleur != null){
+			if (menuControlleur != null) {
 				this.menuControlleur.getRightControl().refreshData();
 				fm.clearRedoList();
 				this.menuControlleur.getLeftControl().refreshUndoRedo();
-			}
-			else{
+			} else {
 				this.mainMenuController.refreshData();
 			}
 		}

@@ -6,17 +6,13 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.SpringLayout;
 
 import smartfridge.controller.LeftPerishedMenuController;
 import smartfridge.controller.PerishedController;
 import smartfridge.controller.RightProductMenuController;
 import smartfridge.fridge.FridgeManager;
-import smartfridge.utils.SpringUtilities;
-import smartfridge.view.sides.LeftButtonMenuView;
 import smartfridge.view.sides.LeftPerishedMenuView;
 import smartfridge.view.sides.RightProductMenuView;
 
@@ -35,27 +31,29 @@ public class PerishedView extends JPanel {
 	public RightProductMenuView getRightProductMenuView() {
 		return rightControl.getView();
 	}
-	
+
 	public PerishedView(FridgeManager fridge) {
 
 		/* Ajout des 2 parties de la fenêtre */
 
-		this.fridge= fridge;
-		
+		this.fridge = fridge;
+
 		this.setControl(new PerishedController(fridge));
 		this.leftControl = new LeftPerishedMenuController(fridge);
 		this.rightControl = new RightProductMenuController(fridge, 0);
-		this.leftControl.getView().getPerishedLabel().addKeyListener(perishableListener);
+		this.leftControl.getView().getPerishedLabel()
+				.addKeyListener(perishableListener);
 		JPanel mainPanel = new JPanel();
 		mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
 
-//		leftControl.getView().setLayout(new SpringLayout());
-//		SpringUtilities.makeCompactGrid(leftControl.getView(), 4, 1, 3, 3, 3, 3);
-		
+		// leftControl.getView().setLayout(new SpringLayout());
+		// SpringUtilities.makeCompactGrid(leftControl.getView(), 4, 1, 3, 3, 3,
+		// 3);
+
 		mainPanel.add(leftControl.getView());
 
-		mainPanel.add(Box.createRigidArea(new Dimension(30	, 0)));
-		JSeparator separator = new JSeparator(JSeparator.VERTICAL);		
+		mainPanel.add(Box.createRigidArea(new Dimension(30, 0)));
+		JSeparator separator = new JSeparator(JSeparator.VERTICAL);
 		mainPanel.add(separator);
 		mainPanel.add(Box.createRigidArea(new Dimension(30, 0)));
 
@@ -66,35 +64,35 @@ public class PerishedView extends JPanel {
 		setVisible(true);
 	}
 
-	
 	private KeyListener perishableListener = new KeyListener() {
-		
+
 		@Override
 		public void keyTyped(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 		@Override
 		public void keyReleased(KeyEvent arg0) {
 			// TODO Auto-generated method stub
-			if(leftControl.verifText()){
-				System.out.println(fridge.showListPerishedProductIn(Integer.parseInt(leftControl.getView().getPerishedLabel().getText())));
+			if (leftControl.verifText()) {
+				System.out.println(fridge.showListPerishedProductIn(Integer
+						.parseInt(leftControl.getView().getPerishedLabel()
+								.getText())));
 
-				rightControl = new RightProductMenuController(fridge, Integer.parseInt(leftControl.getView().getPerishedLabel().getText()));
+				rightControl = new RightProductMenuController(fridge,
+						Integer.parseInt(leftControl.getView()
+								.getPerishedLabel().getText()));
 
-				
-				
 			}
 		}
-		
+
 		@Override
 		public void keyPressed(KeyEvent arg0) {
-			
 
-			
 		}
 	};
+
 	public LeftPerishedMenuController getLeftControl() {
 		return leftControl;
 	}

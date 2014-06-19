@@ -11,7 +11,7 @@ public class ProductPerishable extends ProductAbstract {
 	private GregorianCalendar datePerishment;
 
 	public ProductPerishable(TypeProductEnum typeProduct, String productName,
-			 int quantity, GregorianCalendar datePerishment) {
+			int quantity, GregorianCalendar datePerishment) {
 		super(typeProduct, productName, quantity);
 		datePerishment.add(Calendar.MONTH, -1);
 		this.datePerishment = datePerishment;
@@ -23,8 +23,10 @@ public class ProductPerishable extends ProductAbstract {
 
 	@Override
 	public String toString() {
-		String tmp = super.toString(); 
-		tmp += " --- " + this.datePerishment.get(Calendar.DATE) + "/" + (this.datePerishment.get(Calendar.MONTH)+1) + "/"+ this.datePerishment.get(Calendar.YEAR);
+		String tmp = super.toString();
+		tmp += " --- " + this.datePerishment.get(Calendar.DATE) + "/"
+				+ (this.datePerishment.get(Calendar.MONTH) + 1) + "/"
+				+ this.datePerishment.get(Calendar.YEAR);
 
 		return tmp;
 	}
