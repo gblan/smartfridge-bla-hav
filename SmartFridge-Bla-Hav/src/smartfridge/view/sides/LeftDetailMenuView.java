@@ -1,5 +1,9 @@
 package smartfridge.view.sides;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -10,6 +14,8 @@ import javax.swing.JTextField;
 public class LeftDetailMenuView extends LeftSide {
 
 	private static final long serialVersionUID = 1L;
+	
+	private JPanel identityPanel;
 	
 	private JPanel iconePanel;
 	private JLabel image;
@@ -33,17 +39,24 @@ public class LeftDetailMenuView extends LeftSide {
 	public LeftDetailMenuView() {
 		super();
 
+		identityPanel = new JPanel();
+		
 		iconePanel = new JPanel();
+		iconePanel.setPreferredSize(new Dimension(75,75));
 		image = new JLabel();
 		iconePanel.add(image);
 		nomLabel = new JLabel("ProductName");
+		nomLabel.setAlignmentX((float) 0.5);
 		expirationDateLabel = new JLabel("EXPIRATION DATE");
+		expirationDateLabel.setAlignmentX((float) 0.5);
 
 		panelQuantity = new JPanel();
-		panelQuantity.setLayout(new BoxLayout(panelQuantity, BoxLayout.X_AXIS));
+		panelQuantity.setLayout(new FlowLayout());
 
 		decreaseQuantityButton = new JButton("-");
 		actualQUantity = new JTextField();
+		actualQUantity.setPreferredSize(new Dimension(50,25));
+
 		increaseQuantityButton = new JButton("+");
 		panelQuantity.add(decreaseQuantityButton);
 		panelQuantity.add(actualQUantity);
@@ -55,10 +68,18 @@ public class LeftDetailMenuView extends LeftSide {
 		deleteReturnPanel.add(deleteButton);
 		deleteReturnPanel.add(returnButton);
 		
+		identityPanel.add(iconePanel);
+		identityPanel.add(nomLabel);
+		identityPanel.add(expirationDateLabel);
+		identityPanel.setLayout(new BoxLayout(identityPanel, BoxLayout.Y_AXIS));
+		
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.add(iconePanel);
-		this.add(nomLabel);
-		this.add(expirationDateLabel);
+		//this.add(iconePanel);
+		//this.add(nomLabel);
+		//this.add(expirationDateLabel);
+		this.add(identityPanel);
+		this.add(Box.createRigidArea(new Dimension(0,100)));
+
 		this.add(panelQuantity);
 		this.add(deleteReturnPanel);
 	}

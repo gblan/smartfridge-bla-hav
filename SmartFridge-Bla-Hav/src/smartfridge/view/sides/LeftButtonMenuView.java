@@ -64,7 +64,6 @@ public class LeftButtonMenuView extends LeftSide {
 		checkButton.setAlignmentX((float) 0.5);
 		checkIn = new JTextField();
 		checkIn.setPreferredSize(new Dimension(50,25));
-		checkIn.setSize(new Dimension(10,50));
 
 
 		panelUndoRedo.setLayout(new BoxLayout(panelUndoRedo, BoxLayout.X_AXIS));
