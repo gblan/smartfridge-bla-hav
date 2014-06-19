@@ -74,15 +74,15 @@ private MouseListener redobuttonListener = new MouseListener() {
 	private MouseListener undobuttonListener = new MouseListener() {
 		
 		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mouseReleased(MouseEvent e) {
+			if(!((AbstractButton) e.getSource()).isEnabled()){
+				((AbstractButton) e.getSource()).setIcon(new ImageIcon("resources/UndoButton.png"));
+			}						
 		}
 		
 		@Override
-		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mousePressed(MouseEvent e) {
+
 		}
 		
 		@Override
@@ -108,13 +108,14 @@ private MouseListener redobuttonListener = new MouseListener() {
 	private MouseListener checkbuttonListener = new MouseListener() {
 		
 		@Override
-		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
+		public void mouseReleased(MouseEvent e) {
+			if(!((AbstractButton) e.getSource()).isEnabled()){
+				((AbstractButton) e.getSource()).setIcon(new ImageIcon("resources/UndoButton.png"));
+			}						
 		}
 		
 		@Override
-		public void mousePressed(MouseEvent arg0) {
+		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
