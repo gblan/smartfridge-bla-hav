@@ -1,17 +1,9 @@
 package smartfridge.controller;
 
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import javax.swing.ImageIcon;
 
 import smartfridge.fridge.FridgeManager;
 import smartfridge.product.ProductAbstract;
@@ -22,31 +14,35 @@ public class RightProductMenuController {
 
 	private FridgeManager fridge;
 	private RightProductMenuView view;
+	private int perishedInt;
+
 
 	public RightProductMenuController(FridgeManager fm) {
 		// TODO Auto-generated constructor stub
 		this.setFridge(fm);
 		this.setView(new RightProductMenuView(fm, this));
 		this.view.getProductList().setListData(listProduct());
-		//this.view.getLabelTrash().addMouseListener(corbeilleListener);
-		//this.view.getLabelTrash().addFocusListener(corbeilleFocusListener);
-		//this.view.getLabelTrash().addMouseMotionListener(corbeilleDragListener);
-	}
 
-	public RightProductMenuController(FridgeManager fm, MenuController menu) {
-		// TODO Auto-generated constructor stub
+	}
+	
+	public RightProductMenuController(FridgeManager fm, DetailMenuController menu) {
 		this.setFridge(fm);
 		this.setView(new RightProductMenuView(fm, menu));
 		this.view.getProductList().setListData(listProduct());
-		//this.view.getLabelTrash().addMouseListener(corbeilleListener);
-		//this.view.getLabelTrash().addFocusListener(corbeilleFocusListener);
-		//this.view.getLabelTrash().addMouseMotionListener(corbeilleDragListener);
+
+	}
+
+	public RightProductMenuController(FridgeManager fm, MenuController menu) {
+		this.setFridge(fm);
+		this.setView(new RightProductMenuView(fm, menu));
+		this.view.getProductList().setListData(listProduct());
+
 
 	}
 
 	public RightProductMenuController(FridgeManager fm, int check) {
-		// TODO Auto-generated constructor stub
 		this.setFridge(fm);
+		this.perishedInt = check;
 		this.setView(new RightProductMenuView(fm, this, check));
 		this.view.getProductList().setListData(listProductPerished(check));
 	}
@@ -94,12 +90,16 @@ public class RightProductMenuController {
 	public ProductAbstract getSelectedProduct() {
 		return this.view.getProductList().getSelectedValue();
 	}
+	public void setSelectedProduct(){
+		this.view.getProductList().setSelectedIndex(0);
+	}
 
 	public int getIndexSelectedProduct() {
 		return this.view.getProductList().getSelectedIndex();
 	}
 
 	public void refreshDataPerished(int i) {
+		this.perishedInt = i;
 		this.view.getProductList().setListData(listProductPerished(i));
 	}
 
@@ -127,68 +127,9 @@ public class RightProductMenuController {
 		this.view = rightProductMenuView;
 	}
 	
+	public void refreshDataPerished(){
+		this.view.getProductList().setListData(listProductPerished(this.perishedInt));
+	}
 	
-	private MouseMotionListener corbeilleDragListener = new MouseMotionListener() {
-		
-		@Override
-		public void mouseMoved(MouseEvent arg0) {
-			// TODO Auto-generated method stub
-			
-		}
-		
-		@Override
-		public void mouseDragged(MouseEvent arg0) {
-			System.out.println("drag");
-			view.getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
-			
-		}
-	};
-	
-	private FocusListener corbeilleFocusListener = new FocusListener() {
-		
-		@Override
-		public void focusLost(FocusEvent e) {
-			view.getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
-			
-		}
-		
-		@Override
-		public void focusGained(FocusEvent e) {
-			view.getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
-			
-		}
-	};
-	private MouseListener corbeilleListener = new MouseListener() {
 
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// labelTrash.setIcon(new
-			// ImageIcon("resources/corbeilleFocus.png"));
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-
-			view.getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			view.getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
-
-		}
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-
-		}
-	};
 }

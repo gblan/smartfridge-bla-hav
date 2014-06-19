@@ -124,6 +124,25 @@ public class LeftDetailMenuController {
 
 	}
 
+	
+	public void clear(){
+		ImageIcon img = new ImageIcon();
+		this.view.getImage().setIcon(img);
+		this.view.getNomLabel().setText("Product Name");
+		this.view.getExpirationDateLabel().setText("Expiration Date or Unperishable");
+		this.view.getActualQUantity().setText("?");
+		this.view.getIncreaseQuantityButton().setEnabled(false);
+		this.view.getDecreaseQuantityButton().setEnabled(false);
+		this.view.getDeleteButton().setEnabled(false);
+
+	}
+	
+	public void refreshButton(){
+		this.view.getIncreaseQuantityButton().setEnabled(true);
+		this.view.getDecreaseQuantityButton().setEnabled(true);
+		this.view.getDeleteButton().setEnabled(true);
+
+	}
 	public LeftDetailMenuView getView() {
 		return view;
 	}
