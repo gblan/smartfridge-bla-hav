@@ -141,9 +141,9 @@ public class Main {
 				
 				line = console.readLine();
 				switch (line) {
-				case "a":	add(fm); break;
+				case "a":	add(fm); break; // done
 				case "r":	remove(fm); break; // done
-				case "re":  fm.deletePerishedProduct();	break;
+				case "re":  fm.deletePerishedProduct();	break; // done
 				case "i":	increaseQuantity(fm); break; // done
 				case "d":	decreaseQuantity(fm); break; // done
 				case "ck":	checkExpiration(fm); break; // done
@@ -152,10 +152,10 @@ public class Main {
 				case "sed":	fm.sortProductByPerishmentDate(); break; //done
 				case "siq":	fm.sortProductByQuantity(true); break; //done
 				case "sqd":	fm.sortProductByQuantity(false); break; //done
-				case "ud":	fm.unDoAction(); break;
-				case "rd":	fm.reDoAction(); break;
+				case "ud":	fm.unDoAction(); break; // done
+				case "rd":	fm.reDoAction(); break; // done
 				case "sa":	FridgeUtils.saveFridge(fm.getFridge()); break; // done
-				case "lo":	fm.setFridge(FridgeUtils.loadFridge()); break; // ça marche
+				case "lo":	fm.setFridge(FridgeUtils.loadFridge()); break; // done
 				case "ex":	exit = true; break;// ça marche
 				default:
 					System.out.println("Unrecognize command, try again");

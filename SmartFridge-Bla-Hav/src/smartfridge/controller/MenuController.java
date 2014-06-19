@@ -118,7 +118,7 @@ public class MenuController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			JOptionPane.showMessageDialog(leftControl.getView(), fridge.showListPerishedProductIn(0),"Produits périmés", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(leftControl.getView(), fridge.showListPerishedProductIn(0),"Perished Products", JOptionPane.WARNING_MESSAGE);
 			fridge.deletePerishedProduct();
 			fridge.clearRedoList();
 			fridge.clearUndoList();
