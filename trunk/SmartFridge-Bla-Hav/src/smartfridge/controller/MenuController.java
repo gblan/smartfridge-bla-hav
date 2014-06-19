@@ -56,22 +56,35 @@ public class MenuController {
 			
 			case "AddingDate":
 				fridge.sortProductByAddingDate();
+				fridge.clearRedoList();
+				fridge.clearUndoList();
+				leftControl.refreshUndoRedo();
 				rightControl.refreshData();
 				break;
 			case "PerishmentDate" :
 				fridge.sortProductByPerishmentDate();
+				fridge.clearRedoList();
+				fridge.clearUndoList();
+				leftControl.refreshUndoRedo();
 				rightControl.refreshData();
 				break;
 			case "Type" :
 				fridge.sortProductByType();
+				fridge.clearRedoList();
+				fridge.clearUndoList();
+				leftControl.refreshUndoRedo();
 				rightControl.refreshData();
 				break;
 			case "Quantity" :
 				fridge.sortProductByQuantity(true);
+				fridge.clearRedoList();
+				fridge.clearUndoList();
+				leftControl.refreshUndoRedo();
 				rightControl.refreshData();
 				break;
 				
 			default :
+				leftControl.refreshUndoRedo();
 				rightControl.refreshData();
 				break;
 					

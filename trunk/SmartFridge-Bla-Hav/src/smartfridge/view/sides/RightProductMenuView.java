@@ -45,7 +45,7 @@ public class RightProductMenuView extends RightSide {
 		productList.setDragEnabled(true);
 		productList.setTransferHandler(new ListTransferHandler(fm,menuController));
 
-		scroll.setPreferredSize(new Dimension(200, 300));
+		scroll.setPreferredSize(new Dimension(250, 450));
 
 		this.add(scroll);
 
@@ -78,7 +78,7 @@ public class RightProductMenuView extends RightSide {
 		productList.setDragEnabled(true);
 		productList.setTransferHandler(new ListTransferHandler(fm, rightProductMenuController));
 		
-		scroll.setPreferredSize(new Dimension(200, 300));
+		scroll.setPreferredSize(new Dimension(250, 450));
 
 
 		this.add(scroll);
@@ -111,7 +111,7 @@ public class RightProductMenuView extends RightSide {
 		productList.setDragEnabled(true);
 		productList.setTransferHandler(new ListTransferHandler(fm,menuController));
 
-		scroll.setPreferredSize(new Dimension(200, 300));
+		scroll.setPreferredSize(new Dimension(250, 450));
 
 		this.add(scroll);
 

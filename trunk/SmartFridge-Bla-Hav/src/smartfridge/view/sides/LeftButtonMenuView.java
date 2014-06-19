@@ -48,6 +48,9 @@ public class LeftButtonMenuView extends LeftSide {
 		redoButton.setBorder(BorderFactory.createEmptyBorder());
 		addingButton = new JButton(new ImageIcon("resources/buttonADDSmall.png"));
 		addingButton.setBorder(BorderFactory.createEmptyBorder());
+		//addingButton.setBorderPainted(false);
+		addingButton.setContentAreaFilled(false);
+		addingButton.setFocusable(true);
 		removeButton = new JButton(new ImageIcon("resources/removeAllSmall.png"));
 		removeButton.setBorder(BorderFactory.createEmptyBorder());
 
