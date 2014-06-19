@@ -316,22 +316,23 @@ public class SwitchViewControler {
 
 					@Override
 					public void mouseClicked(MouseEvent e) {
-
-						detailMenuView.getLeftDetailMenuController()
-								.refreshData(
-										perishedMenuView.getRightControl()
-												.getSelectedProduct());
-						detailMenuView.getRightProductMenuController()
-								.refreshDataPerished(
-										Integer.parseInt(perishedMenuView
-												.getLeftControl().getView()
-												.getPerishedLabel().getText()));
-						detailMenuView.getRightProductMenuController()
-								.refreshSelected(
-										perishedMenuView.getRightControl()
-												.getIndexSelectedProduct());
-						changePanel(DETAILVIEW);
-
+						if (e.getClickCount() == 2) {
+							detailMenuView.getLeftDetailMenuController()
+									.refreshData(
+											perishedMenuView.getRightControl()
+													.getSelectedProduct());
+							detailMenuView.getRightProductMenuController()
+									.refreshDataPerished(
+											Integer.parseInt(perishedMenuView
+													.getLeftControl().getView()
+													.getPerishedLabel().getText()));
+							detailMenuView.getRightProductMenuController()
+									.refreshSelected(
+											perishedMenuView.getRightControl()
+													.getIndexSelectedProduct());
+							detailMenuView.getLeftDetailMenuController().refreshButton();
+							changePanel(DETAILVIEW);
+						}
 					}
 				});
 

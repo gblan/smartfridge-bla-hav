@@ -13,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.TransferHandler;
 
+import smartfridge.controller.DetailMenuController;
 import smartfridge.controller.MenuController;
 import smartfridge.controller.RightProductMenuController;
 import smartfridge.enu.TypeActionEnum;
@@ -27,6 +28,7 @@ public class ListTransferHandler extends TransferHandler {
 	private FridgeManager fm;
 	private RightProductMenuController mainMenuController;
 	private MenuController menuControlleur;
+	private DetailMenuController detailmenu;
 
 	public ListTransferHandler(FridgeManager fm,
 			RightProductMenuController mainMenuController) {
@@ -41,6 +43,11 @@ public class ListTransferHandler extends TransferHandler {
 		this.menuControlleur = mainMenuController;
 
 	}
+
+	public ListTransferHandler(FridgeManager fm, DetailMenuController menu) {
+		this.fm = fm;
+		this.mainMenuController = menu.getRightControl();
+		this.detailmenu = menu;	}
 
 	@Override
 	public boolean canImport(TransferSupport support) {
@@ -86,7 +93,7 @@ public class ListTransferHandler extends TransferHandler {
 			this.menuControlleur.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
 		}
 		else{
-			this.mainMenuController.getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
+			this.detailmenu.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
 		}
 		Transferable t = null;
 		if (c instanceof JList) {
@@ -121,19 +128,34 @@ public class ListTransferHandler extends TransferHandler {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				this.fm.clearRedoList();
+				this.detailmenu.getRightControl().refreshDataPerished();
+				if(this.detailmenu.getRightControl().getView().getProductList().getModel().getSize() == 0){
+					this.detailmenu.getLeftControl().clear();
+				}
+				else{
+					this.detailmenu.getRightControl().setSelectedProduct();
+					this.detailmenu.getLeftControl().refreshData(this.detailmenu.getRightControl().getSelectedProduct());
+				}
 				
 			}
+			
+			
 			if(this.menuControlleur != null){
 				this.menuControlleur.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
 			}
 			else{
-				this.mainMenuController.getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
-			}			if (menuControlleur != null) {
+				this.detailmenu.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
+			}
+			
+			
+			if (menuControlleur != null) {
 				this.menuControlleur.getRightControl().refreshData();
 				fm.clearRedoList();
 				this.menuControlleur.getLeftControl().refreshUndoRedo();
-			} else {
-				this.mainMenuController.refreshData();
+			}
+			else{
+
 			}
 		}
 		else{
@@ -141,7 +163,7 @@ public class ListTransferHandler extends TransferHandler {
 				this.menuControlleur.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
 			}
 			else{
-				this.mainMenuController.getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
+				this.detailmenu.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
 			}
 
 		}

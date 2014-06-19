@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 
 import smartfridge.enu.TypeActionEnum;
 import smartfridge.fridge.FridgeManager;
+import smartfridge.view.sides.RightProductMenuView;
 
 public class DetailMenuController {
 
@@ -19,7 +20,7 @@ public class DetailMenuController {
 	}
 
 	public DetailMenuController(FridgeManager fridge) {
-		this.rightControl = new RightProductMenuController(fridge);
+		this.rightControl = new RightProductMenuController(fridge,this);
 		this.leftControl = new LeftDetailMenuController(fridge);
 		this.fridge = fridge;
 		this.rightControl.getView().getProductList()
