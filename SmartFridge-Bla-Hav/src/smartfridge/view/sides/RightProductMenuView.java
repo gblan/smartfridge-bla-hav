@@ -53,7 +53,6 @@ public class RightProductMenuView extends RightSide {
 		this.add(scroll);
 
 		labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
-		labelTrash.addMouseListener(corbeilleListener);
 		labelTrash.setTransferHandler(new ListTransferHandler(fm,
 				menuController));
 
@@ -80,7 +79,7 @@ public class RightProductMenuView extends RightSide {
 		ListCellRenderer renderer = new FridgeProductRenderer();
 		productList.setCellRenderer(renderer);
 
-		productList.setDragEnabled(true);
+		productList.setDragEnabled(false);
 		productList.setTransferHandler(new ListTransferHandler(fm,
 				rightProductMenuController));
 
@@ -124,7 +123,6 @@ public class RightProductMenuView extends RightSide {
 		this.add(scroll);
 
 		labelTrash = new JLabel(new ImageIcon("resources/corbeille.png"));
-		labelTrash.addMouseListener(corbeilleListener);
 		labelTrash.setTransferHandler(new ListTransferHandler(fm,
 				menuController));
 
@@ -132,39 +130,7 @@ public class RightProductMenuView extends RightSide {
 		this.add(labelTrash);
 	}
 
-	private MouseListener corbeilleListener = new MouseListener() {
 
-		@Override
-		public void mouseReleased(MouseEvent e) {
-			// TODO Auto-generated method stub
-
-		}
-
-		@Override
-		public void mousePressed(MouseEvent e) {
-			// labelTrash.setIcon(new
-			// ImageIcon("resources/corbeilleFocus.png"));
-
-		}
-
-		@Override
-		public void mouseExited(MouseEvent e) {
-
-			labelTrash.setIcon(new ImageIcon("resources/corbeille.png"));
-
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			labelTrash.setIcon(new ImageIcon("resources/corbeilleFocus.png"));
-
-		}
-
-		@Override
-		public void mouseClicked(MouseEvent e) {
-
-		}
-	};
 
 	public JList<ProductAbstract> getProductList() {
 		return productList;
@@ -172,5 +138,13 @@ public class RightProductMenuView extends RightSide {
 
 	public void setProductList(JList<ProductAbstract> productList) {
 		this.productList = productList;
+	}
+
+	public JLabel getLabelTrash() {
+		return labelTrash;
+	}
+
+	public void setLabelTrash(JLabel labelTrash) {
+		this.labelTrash = labelTrash;
 	}
 }
