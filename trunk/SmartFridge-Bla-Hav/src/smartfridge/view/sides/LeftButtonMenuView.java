@@ -57,7 +57,7 @@ public class LeftButtonMenuView extends LeftSide {
 
 
 		panelCheck = new JPanel();
-		panelCheck.setPreferredSize(new Dimension(85,50));
+		panelCheck.setAlignmentX((float) 0.5);
 		checkButton = new JButton(new ImageIcon("resources/buttonCheck.png"));
 		checkButton.setBorder(BorderFactory.createEmptyBorder());
 		checkButton.setContentAreaFilled(false);
@@ -78,6 +78,7 @@ public class LeftButtonMenuView extends LeftSide {
 		panelCheck.add(checkIn);
 		
 		panelSortBy = new JPanel();
+		panelSortBy.setAlignmentX((float) 0.5);
 		
 		sortByLabel = new JLabel("Sort by");
 		String[] string = {"AddingDate","PerishmentDate","Type","Quantity"};

@@ -113,6 +113,7 @@ public class ListTransferHandler extends TransferHandler {
 			}
 			if(menuControlleur != null){
 				this.menuControlleur.getRightControl().refreshData();
+				fm.clearRedoList();
 				this.menuControlleur.getLeftControl().refreshUndoRedo();
 			}
 			else{
