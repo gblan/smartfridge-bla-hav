@@ -15,6 +15,8 @@ public class RightProductMenuController {
 	private FridgeManager fridge;
 	private RightProductMenuView view;
 	private int perishedInt;
+	private boolean perished;
+
 
 
 	public RightProductMenuController(FridgeManager fm) {
@@ -48,6 +50,7 @@ public class RightProductMenuController {
 	}
 
 	public void refreshData() {
+		this.setPerished(false);
 		this.view.getProductList().setListData(listProduct());
 	}
 
@@ -100,6 +103,8 @@ public class RightProductMenuController {
 
 	public void refreshDataPerished(int i) {
 		this.perishedInt = i;
+		this.setPerished(true);
+
 		this.view.getProductList().setListData(listProductPerished(i));
 	}
 
@@ -128,7 +133,16 @@ public class RightProductMenuController {
 	}
 	
 	public void refreshDataPerished(){
+		this.setPerished(true);
 		this.view.getProductList().setListData(listProductPerished(this.perishedInt));
+	}
+
+	public boolean isPerished() {
+		return perished;
+	}
+
+	public void setPerished(boolean perished) {
+		this.perished = perished;
 	}
 	
 
