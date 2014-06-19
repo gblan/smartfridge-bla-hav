@@ -21,9 +21,45 @@ public class LeftDetailMenuController {
 		this.view = new LeftDetailMenuView();
 		this.setFridge(fridge);
 		this.view.getReturnButton().addMouseListener(returnbuttonListener);
-
+		this.view.getDeleteButton().addMouseListener(deleteButtonListener);
 	}
 
+	private MouseListener deleteButtonListener = new MouseListener() {
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			((AbstractButton) e.getSource()).setIcon(new ImageIcon(
+					"resources/deleteProduct.png"));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			if (((AbstractButton) e.getSource()).isEnabled()) {
+				((AbstractButton) e.getSource()).setIcon(new ImageIcon(
+						"resources/deleteProductFocus.png"));
+			}
+
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+	};
+	
 	private MouseListener returnbuttonListener = new MouseListener() {
 
 		@Override

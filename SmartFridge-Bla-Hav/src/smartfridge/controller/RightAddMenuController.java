@@ -2,9 +2,13 @@ package smartfridge.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import javax.swing.AbstractButton;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 import smartfridge.enu.TypeActionEnum;
@@ -23,7 +27,44 @@ public class RightAddMenuController extends AddingMenuController {
 		this.setFridge(f);
 		this.setView(new RightAddMenuView());
 		this.view.getValidationButton().addActionListener(validationListener);
+		this.view.getReturnButton().addMouseListener(returnbuttonListener);
 	}
+
+	private MouseListener returnbuttonListener = new MouseListener() {
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			((AbstractButton) e.getSource()).setIcon(new ImageIcon(
+					"resources/returnButton.png"));
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			if (((AbstractButton) e.getSource()).isEnabled()) {
+				((AbstractButton) e.getSource()).setIcon(new ImageIcon(
+						"resources/returnButtonFocus.png"));
+			}
+
+		}
+
+		@Override
+		public void mouseClicked(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+
+		}
+	};
 
 	private ActionListener validationListener = new ActionListener() {
 
