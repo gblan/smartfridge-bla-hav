@@ -6,6 +6,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.dnd.DnDConstants;
 import java.io.IOException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -38,10 +39,13 @@ public class ListTransferHandler extends TransferHandler {
 		this.fm = fm;
 		this.mainMenuController = mainMenuController.getRightControl();
 		this.menuControlleur = mainMenuController;
+
 	}
 
 	@Override
 	public boolean canImport(TransferSupport support) {
+
+
 		return (support.getComponent() instanceof JLabel)
 				&& support
 						.isDataFlavorSupported(ListProductTransferable.LIST_ITEM_DATA_FLAVOR);
@@ -49,6 +53,7 @@ public class ListTransferHandler extends TransferHandler {
 
 	@Override
 	public boolean importData(TransferSupport support) {
+		
 		boolean accept = false;
 		if (canImport(support)) {
 			try {
@@ -72,10 +77,17 @@ public class ListTransferHandler extends TransferHandler {
 	@Override
 	public int getSourceActions(JComponent c) {
 		return DnDConstants.ACTION_COPY_OR_MOVE;
+		
 	}
 
 	@Override
 	protected Transferable createTransferable(JComponent c) {
+		if(this.menuControlleur != null){
+			this.menuControlleur.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
+		}
+		else{
+			this.mainMenuController.getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeilleFocus.png"));
+		}
 		Transferable t = null;
 		if (c instanceof JList) {
 			JList list = (JList) c;
@@ -94,6 +106,7 @@ public class ListTransferHandler extends TransferHandler {
 	@Override
 	protected void exportDone(JComponent source, Transferable data, int action) {
 		if (action == MOVE) {
+
 			int dialogResult = JOptionPane.showConfirmDialog(null,
 					"Would You Really Want to Remove This Product?", "WARNING",
 					JOptionPane.OK_OPTION);
@@ -108,14 +121,29 @@ public class ListTransferHandler extends TransferHandler {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				
 			}
-			if (menuControlleur != null) {
+			if(this.menuControlleur != null){
+				this.menuControlleur.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
+			}
+			else{
+				this.mainMenuController.getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
+			}			if (menuControlleur != null) {
 				this.menuControlleur.getRightControl().refreshData();
 				fm.clearRedoList();
 				this.menuControlleur.getLeftControl().refreshUndoRedo();
 			} else {
 				this.mainMenuController.refreshData();
 			}
+		}
+		else{
+			if(this.menuControlleur != null){
+				this.menuControlleur.getRightControl().getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
+			}
+			else{
+				this.mainMenuController.getView().getLabelTrash().setIcon(new ImageIcon("resources/corbeille.png"));
+			}
+
 		}
 	}
 }
