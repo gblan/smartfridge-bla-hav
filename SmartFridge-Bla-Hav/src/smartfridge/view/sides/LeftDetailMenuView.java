@@ -3,8 +3,10 @@ package smartfridge.view.sides;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -64,7 +66,10 @@ public class LeftDetailMenuView extends LeftSide {
 
 		deleteReturnPanel = new JPanel();
 		deleteButton = new JButton("DELETE");
-		returnButton = new JButton("RETURN");
+		returnButton = new JButton(new ImageIcon("resources/returnButton.png"));
+		returnButton.setBorder(BorderFactory.createEmptyBorder());
+		returnButton.setContentAreaFilled(false);
+
 		deleteReturnPanel.add(deleteButton);
 		deleteReturnPanel.add(returnButton);
 		
