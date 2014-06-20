@@ -129,22 +129,26 @@ public class ListTransferHandler extends TransferHandler {
 					e.printStackTrace();
 				}
 				this.fm.clearRedoList();
-				if(this.detailmenu.getRightControl().isPerished()){
-					this.detailmenu.getRightControl().refreshDataPerished();
-					if(this.detailmenu.getRightControl().getView().getProductList().getModel().getSize() == 0){
-						this.detailmenu.getLeftControl().clear();
+				if(this.detailmenu != null){
+					if(this.detailmenu.getRightControl().isPerished()){
+						this.detailmenu.getRightControl().refreshDataPerished();
+						if(this.detailmenu.getRightControl().getView().getProductList().getModel().getSize() == 0){
+							this.detailmenu.getLeftControl().clear();
+						}
+						else{
+							this.detailmenu.getRightControl().setSelectedProduct();
+							this.detailmenu.getLeftControl().refreshData(this.detailmenu.getRightControl().getSelectedProduct());
+						}
 					}
 					else{
-						this.detailmenu.getRightControl().setSelectedProduct();
-						this.detailmenu.getLeftControl().refreshData(this.detailmenu.getRightControl().getSelectedProduct());
+						this.detailmenu.getRightControl().refreshData();
+						if(this.detailmenu.getRightControl().getView().getProductList().getModel().getSize() == 0){
+							this.detailmenu.getLeftControl().clear();
+						}
 					}
-				}
-				else{
-					this.detailmenu.getRightControl().refreshData();
-					if(this.detailmenu.getRightControl().getView().getProductList().getModel().getSize() == 0){
-						this.detailmenu.getLeftControl().clear();
-					}
-				}
+					
+				}				
+
 
 			}
 			
