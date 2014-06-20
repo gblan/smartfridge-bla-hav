@@ -118,14 +118,25 @@ public class MenuController {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			JOptionPane.showMessageDialog(leftControl.getView(),
-					fridge.showListPerishedProductIn(0), "Perished Products",
-					JOptionPane.WARNING_MESSAGE);
-			fridge.deletePerishedProduct();
-			fridge.clearRedoList();
-			fridge.clearUndoList();
-			leftControl.refreshUndoRedo();
-			rightControl.refreshData();
+			int dialogDelete = JOptionPane.showConfirmDialog(null,
+					fridge.showListPerishedProductIn(0), "WARNING",
+					JOptionPane.OK_OPTION,JOptionPane.WARNING_MESSAGE);
+			if (dialogDelete == JOptionPane.YES_OPTION) {
+				fridge.deletePerishedProduct();
+				fridge.clearRedoList();
+				fridge.clearUndoList();
+				leftControl.refreshUndoRedo();
+				rightControl.refreshData();
+			}
+			
+//			JOptionPane.showMessageDialog(leftControl.getView(),
+//					fridge.showListPerishedProductIn(0), "Perished Products",
+//					JOptionPane.WARNING_MESSAGE);
+//			fridge.deletePerishedProduct();
+//			fridge.clearRedoList();
+//			fridge.clearUndoList();
+//			leftControl.refreshUndoRedo();
+//			rightControl.refreshData();
 		}
 	};
 
